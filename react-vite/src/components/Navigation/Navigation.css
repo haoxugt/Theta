@@ -44,15 +44,28 @@ span.logo-title {
 
 .login-btn,
 .signup-btn {
-  width: 102px;
+  width: 110px;
   height: 44px;
   border: 1px solid white;
   border-radius: 22px;
+  font-weight: 550;
 }
 
 .login-btn {
   background-color: black;
   color: white;
+}
+
+.login-btn:hover {
+  cursor: pointer;
+  color: var(--bg-grey-color);
+  border-color: var(--bg-grey-color);
+}
+
+.signup-btn:hover {
+  cursor: pointer;
+  background-color: var(--bg-grey-color);
+  border-color: var(--bg-grey-color);
 }
 
 .nav-links {

@@ -1,5 +1,17 @@
+import { useSelector } from "react-redux";
+import HomeLoggedIn from "./HomeLoggedIn";
+import HomeLoggedOut from "./HomeLoggedOut";
+
+import './HomePage.css'
+
+
 function HomePage() {
-  return <h2>Home page</h2>
+  const sessionUser = useSelector(state => state.session.user);
+  if (sessionUser) {
+    return <HomeLoggedIn />
+  } else {
+    return <HomeLoggedOut />
+  }
 }
 
 export default HomePage;
