@@ -18,7 +18,11 @@
   padding: 0;
 }
 
-#root {
+/* #root {
+
+} */
+
+body {
   background-color: black;
   color: #b3b3b3;
   text-decoration: none;
