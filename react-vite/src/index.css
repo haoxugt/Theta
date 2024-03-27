@@ -1,1 +1,30 @@
 /* TODO: Add sitewide styles */
+@font-face {
+  font-family: 'Capsula';
+  src :url('/fonts/Capsuula.ttf') format('truetype')
+}
+
+:root {
+  --black-color: rgb(25, 20, 20);
+  --blue-color: rgb(10,186,181);
+  --error-red-color: #f15e6c;
+  --green-color: rgb(30, 215, 96);
+  --light-black-color: rgb(48, 43, 43);
+}
+
+* {
+  font-family: "Capsula", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: black;
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

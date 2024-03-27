@@ -6,7 +6,10 @@ function Navigation() {
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink className="homepage-logo-sec" to="/">
+          <span className="logo-title">Theta</span>
+          <img className="logo" src='/images/logo_white.png' alt='logo' />
+        </NavLink>
       </li>
 
       <li>
