@@ -13,7 +13,8 @@
 }
 
 * {
-  font-family: "Capsula", sans-serif;
+  /* font-family: "Capsula", sans-serif; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -30,5 +31,8 @@ body {
   font-size: 16px;
   width: 100%;
   margin: 0;
-  padding: 0;
+}
+
+#root{
+  padding: 10px;
 }

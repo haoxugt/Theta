@@ -4,18 +4,18 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <ul>
-      <li>
+    <div className="nav-container">
+      <div>
         <NavLink className="homepage-logo-sec" to="/">
           <span className="logo-title">Theta</span>
           <img className="logo" src='/images/logo_white.png' alt='logo' />
         </NavLink>
-      </li>
+      </div>
 
-      <li>
+      <div className="profile-btn">
         <ProfileButton />
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

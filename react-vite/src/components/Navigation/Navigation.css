@@ -31,3 +31,40 @@ span.logo-title {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
 }
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-btn {
+  display: flex;
+  column-gap: 10px;
+}
+
+.login-btn,
+.signup-btn {
+  width: 102px;
+  height: 44px;
+  border: 1px solid white;
+  border-radius: 22px;
+}
+
+.login-btn {
+  background-color: black;
+  color: white;
+}
+
+.nav-links {
+  background-color: black;
+  color: white;
+  width: 70px;
+  height: 44px;
+  border: none;
+  font-weight: 550;
+}
+
+.nav-links:hover {
+  cursor: pointer;
+  color: var(--blue-color);
+}
