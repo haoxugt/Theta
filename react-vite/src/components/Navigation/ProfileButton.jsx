@@ -48,7 +48,7 @@ function ProfileButton() {
     <>
       {user ?
         <>
-          <button className={navLinkClassName} onClick={() => alert('Investing')}>
+          <button className={navLinkClassName} onClick={() => navigate('/')}>
             Investing
           </button>
           <button className={navLinkClassName} onClick={() => alert('Retirement')}>

@@ -1,4 +1,25 @@
-.loaging-figure {
+.loading-figure {
   object-fit: cover;
   width: 100vw;
+}
+
+.homepage-left-col {
+  padding: 20px;
+}
+
+.homepage-container {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+}
+
+.homepage-right-col {
+  border: 1px solid white;
+}
+
+.positive-num {
+  color: var(--blue-color);
+}
+
+.negative-num {
+  color: red;
 }

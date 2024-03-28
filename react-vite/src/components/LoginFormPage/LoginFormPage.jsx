@@ -8,7 +8,7 @@ function LoginFormPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
+  const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -19,7 +19,7 @@ function LoginFormPage() {
 
     const serverResponse = await dispatch(
       thunkLogin({
-        email,
+        email: credential,
         password,
       })
     );
@@ -31,6 +31,12 @@ function LoginFormPage() {
     }
   };
 
+  const DemoUserLogin = () => {
+    setCredential("demo@aa.io");
+    setPassword("password");
+    setErrors({});
+  }
+
   return (
     <>
       <h1>Log In</h1>
@@ -41,8 +47,8 @@ function LoginFormPage() {
           Email
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
             required
           />
         </label>
@@ -58,6 +64,9 @@ function LoginFormPage() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
+        <button className="Demouser-login" onClick={DemoUserLogin} type="submit">
+          Log in as Demo User
+        </button>
       </form>
     </>
   );

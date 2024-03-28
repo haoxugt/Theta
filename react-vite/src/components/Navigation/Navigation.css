@@ -35,11 +35,19 @@ span.logo-title {
 .nav-container {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
+
+}
+
+.nav-container a {
+  text-decoration: none;
+  height: 64px;
 }
 
 .profile-btn {
   display: flex;
   column-gap: 10px;
+  align-items: center;
 }
 
 .login-btn,
@@ -49,6 +57,7 @@ span.logo-title {
   border: 1px solid white;
   border-radius: 22px;
   font-weight: 550;
+  font-size: 14px;
 }
 
 .login-btn {
