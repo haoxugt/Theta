@@ -1,5 +1,5 @@
 function StockHoldList() {
-  return <div>StockHoldlsit</div>
+  return <div>StockHoldlist</div>
 }
 
 export default StockHoldList;

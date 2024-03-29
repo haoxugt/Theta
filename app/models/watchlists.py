@@ -34,8 +34,5 @@ class Watchlist(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'stocks': self.portfolio_id,
-            'avg_price': self.avg_price,
-            'shares': self.shares,
             "stocks": self.stocks
         }

@@ -35,7 +35,4 @@ class StockInfo(db.Model):
         return {
             'code': self.code,
             'name': self.name,
-            'long_name': self.long_name,
-            'user': self.user,
-            'open_date': self.open_date
         }

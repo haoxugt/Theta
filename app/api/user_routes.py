@@ -32,6 +32,7 @@ def getCurrentUser():
     user = current_user.to_dict()
     return {"user": user}
 
+
 # get all the watchlists belongs to current user
 @user_routes.route("/current/watchlists", methods=["GET"])
 @login_required

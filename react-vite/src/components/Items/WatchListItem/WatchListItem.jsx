@@ -1,9 +1,9 @@
 
 
-function WatchListItem() {
+function WatchListItem({stock}) {
   return (
-  <div className="watchlist-row">
-
+  <div className="watchlist-row" >
+     {stock.code}
   </div>
   )
 }

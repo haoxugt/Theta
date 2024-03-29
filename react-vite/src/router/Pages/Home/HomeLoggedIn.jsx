@@ -1,8 +1,16 @@
+import { useEffect } from "react";
 import Chart from "../../../components/Chart/Chart";
 import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
 import WatchList from "../../../components/Lists/WatchList/WatchList";
+import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
+import { useDispatch, useSelector } from "react-redux";
 
 function HomeLoggedIn() {
+  const dispatch = useDispatch();
+  const watchlists = useSelector(state => state.watchlist);
+  const watchlist_array = Object.values(watchlists?.Watchlists);
+  console.log("watchlist array =====> ", watchlist_array)
+
   let amount = 123456.78;
   const open_amount = 123000;
   let change = amount - open_amount;
@@ -13,6 +21,11 @@ function HomeLoggedIn() {
     if (num >= 0) return " positive-num";
     else return " negative-num"
   }
+
+  useEffect(() => {
+     dispatch(getCurrentWatchlistsThunk());
+  }, [dispatch])
+
   return (
     <div className="homepage-container">
       <div className="homepage-left-col">
@@ -42,7 +55,13 @@ function HomeLoggedIn() {
       <div className="homepage-right-col">
         <div className="lists-container">
             <StockHoldList />
-            <WatchList />
+            {watchlist_array?.map(el => {
+              console.log("2222222222222222", el)
+              return (
+                <WatchList key={el.id} watchlist={el}/>
+              )
+            })}
+
         </div>
 
 
