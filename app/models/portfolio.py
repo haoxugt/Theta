@@ -16,6 +16,8 @@ class Portfolio(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     user_in_portfolio = db.relationship('User', back_populates='portfolio_in_user')
+    order_in_portfolio = db.relationship('Order', back_populates='portfolio_in_order')
+    stockhold_in_portfolio = db.relationship('StockHold', back_populates='portfolio_in_stockhold')
 
     @property
     def user(self):

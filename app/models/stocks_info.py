@@ -25,7 +25,8 @@ class StockInfo(db.Model):
     open_price = db.Column(db.Float, nullable=False)
     volume = db.Column(db.Float, nullable=False)
 
-
+    order_in_stockinfo = db.relationship('Order', back_populates='stockinfo_in_order')
+    stockhold_in_stockinfo = db.relationship('StockHold', back_populates='stockinfo_in_stockhold')
 
     def to_dict(self):
         return {
