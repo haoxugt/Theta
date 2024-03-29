@@ -19,10 +19,12 @@ class Watchlist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    stockinfo_in_watchlist = db.relationship("StockInfo", secondary="stocks_watchlists", back_populates="user_in_song")
+    user_in_watchlist = db.relationship('User', back_populates='watchlist_in_user')
+    stockinfo_in_watchlist = db.relationship("StockInfo", secondary="stocks_watchlists", back_populates="watchlist_in_stockinfo")
 
     @property
     def stocks(self):

@@ -12,7 +12,7 @@ class LimitOrder(db.Model):
     limit_price = db.Column(db.Float, nullable=False)
     trading_type = db.Column(db.Integer, nullable=False)
     expiration = db.Column(db.DateTime)
-    pending = db.Column(db.Boolean, default=True)
+    is_pending = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 

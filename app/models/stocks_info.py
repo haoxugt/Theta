@@ -15,6 +15,7 @@ class StockInfo(db.Model):
     country = db.Column(db.String(50))
     employees = db.Column(db.Integer)
     CEO = db.Column(db.String(50))
+    industry = db.Column(db.String(50))
     sector_disp = db.Column(db.String(50))
     high_52wk = db.Column(db.Float, nullable=False)
     low_52wk = db.Column(db.Float, nullable=False)
@@ -27,6 +28,8 @@ class StockInfo(db.Model):
 
     order_in_stockinfo = db.relationship('Order', back_populates='stockinfo_in_order')
     stockhold_in_stockinfo = db.relationship('StockHold', back_populates='stockinfo_in_stockhold')
+    watchlist_in_stockinfo  = db.relationship("Watchlist", secondary="stocks_watchlists", back_populates="stockinfo_in_watchlist")
+
 
     def to_dict(self):
         return {

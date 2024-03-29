@@ -12,12 +12,14 @@ class Portfolio(db.Model):
     cash = db.Column(db.Float, default=0.0)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     open_date = db.Column(db.DateTime, nullable=False)
+    is_retirement = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     user_in_portfolio = db.relationship('User', back_populates='portfolio_in_user')
     order_in_portfolio = db.relationship('Order', back_populates='portfolio_in_order')
     stockhold_in_portfolio = db.relationship('StockHold', back_populates='portfolio_in_stockhold')
+    transfer_in_portfolio = db.relationship('Transfer', back_populates='portfolio_in_transfer')
 
     @property
     def user(self):
@@ -33,5 +35,6 @@ class Portfolio(db.Model):
             'title': self.title,
             'cash': self.cash,
             'user': self.user,
-            'open_date': self.open_date
+            'open_date': self.open_date,
+            "is_retirement": self.is_retirement
         }
