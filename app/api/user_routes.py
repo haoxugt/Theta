@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, Watchlist
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +23,19 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+# get current user
+@user_routes.route("/current")
+@login_required
+def getCurrentUser():
+    user = current_user.to_dict()
+    return {"user": user}
+
+# get all the watchlists belongs to current user
+@user_routes.route("/current/watchlists", methods=["GET"])
+@login_required
+def getCurrentUserWatchlists():
+    user = current_user.to_dict()
+    watchlists = Watchlist.query.join(User).filter(User.id == user["id"]).all()
+    return {"watchlists": [watchlist.to_dict() for watchlist in watchlists]}

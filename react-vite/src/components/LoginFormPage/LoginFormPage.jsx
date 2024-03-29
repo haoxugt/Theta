@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { FaCircleExclamation } from "react-icons/fa6";
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -12,28 +13,43 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const serverResponse = await dispatch(
       thunkLogin({
-        email: credential,
+        credential,
         password,
       })
-    );
+      );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      navigate("/");
-    }
-  };
+      if (serverResponse) {
+        setErrors(serverResponse);
+      } else {
+        navigate("/");
+      }
+    };
 
-  const DemoUserLogin = () => {
-    setCredential("demo@aa.io");
-    setPassword("password");
+  useEffect(() => {
+      const err = {};
+      if (credential.length < 4) err.credential = 'It must be 4 or more characters';
+      if (password.length < 6) err.password = 'Password must be 6 or more characters';
+      setErrors(err);
+
+  }, [credential, password])
+
+  if (sessionUser) return <Navigate to="/" replace={true} />;
+
+  const DemoUserLogin1 = () => {
+    setCredential("roberty@downton.com");
+    setPassword("RobertCrawley");
+    setErrors({});
+  }
+
+  const DemoUserLogin2 = () => {
+    setCredential("matthew@lawyer.org");
+    setPassword("MatthewCrawley");
     setErrors({});
   }
 
@@ -44,7 +60,9 @@ function LoginFormPage() {
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit}>
         <label>
-          Email
+          Email or username <p>{errors.credential &&
+          (<><FaCircleExclamation color="#f15e6c" />
+            {" " + errors.credential} </>)}</p>
           <input
             type="text"
             value={credential}
@@ -52,9 +70,9 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+
         <label>
-          Password
+          Password <p>{errors.password && (<>{errors.password}</>)}</p>
           <input
             type="password"
             value={password}
@@ -62,10 +80,13 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+
         <button type="submit">Log In</button>
-        <button className="Demouser-login" onClick={DemoUserLogin} type="submit">
-          Log in as Demo User
+        <button className="Demouser-login" onClick={DemoUserLogin1} type="submit">
+          Log in as Robert Crawley
+        </button>
+        <button className="Demouser-login" onClick={DemoUserLogin2} type="submit">
+          Log in as Matthew Crawley
         </button>
       </form>
     </>

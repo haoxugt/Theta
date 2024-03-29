@@ -13,7 +13,11 @@
 }
 
 .homepage-right-col {
-  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  border:1px solid white;
+  padding: 10px;
+  color: white;
 }
 
 .positive-num {
@@ -22,4 +26,16 @@
 
 .negative-num {
   color: red;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  min-width: 200px;
+  border: 1px solid var(--grey-border);
+  height: 500px;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: var(--light-grey-color);
 }

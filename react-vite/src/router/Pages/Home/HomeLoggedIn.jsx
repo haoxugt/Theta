@@ -1,4 +1,6 @@
 import Chart from "../../../components/Chart/Chart";
+import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
+import WatchList from "../../../components/Lists/WatchList/WatchList";
 
 function HomeLoggedIn() {
   let amount = 123456.78;
@@ -37,7 +39,14 @@ function HomeLoggedIn() {
         </div>
 
       </div>
-      <div className="homepage-right-col"></div>
+      <div className="homepage-right-col">
+        <div className="lists-container">
+            <StockHoldList />
+            <WatchList />
+        </div>
+
+
+      </div>
     </div>
   )
 }
