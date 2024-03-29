@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(100), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    portfolio_in_user = db.relationship('Portfolio', back_populates='user_in_portfolio')
+
     @property
     def password(self):
         return self.hashed_password
