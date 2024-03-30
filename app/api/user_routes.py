@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, Watchlist
+from app.models import User, Watchlist, Portfolio, StockHold
+from sqlalchemy import and_
 
 user_routes = Blueprint('users', __name__)
 
@@ -40,3 +41,38 @@ def getCurrentUserWatchlists():
     user = current_user.to_dict()
     watchlists = Watchlist.query.join(User).filter(User.id == user["id"]).all()
     return {"watchlists": [watchlist.to_dict() for watchlist in watchlists]}
+
+
+# get all the portfolios belongs to current user
+@user_routes.route("/current/portfolios", methods=["GET"])
+@login_required
+def getCurrentUserPortfolios():
+    user_id= current_user.id
+    portfolios = Portfolio.query.filter(Portfolio.user_id == user_id).all()
+    return {"portfolios": [portfolio.to_dict() for portfolio in portfolios]}
+
+
+# get all the investing portfolio belongs to current user
+@user_routes.route("/current/portfolios/investing", methods=["GET"])
+@login_required
+def getCurrentUserInvestingPortfolio():
+    user_id = current_user.id
+    portfolio = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == False).first()
+    return {"Investing": portfolio.to_dict()}
+
+# get all thecurrent user's stocks under investing portfolio
+@user_routes.route("/current/portfolios/investing/stockshold", methods=["GET"])
+@login_required
+def getCurrentUserStocksholdInInvestingPortfolio():
+    user_id = current_user.id
+    portfolio = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == False).first()
+    stocks = [stock.to_dict() for stock in portfolio.stockhold_in_portfolio]
+    return {"Stockshold": stocks}
+
+# get all the retirement portfolio belongs to current user
+@user_routes.route("/current/portfolios/retirement", methods=["GET"])
+@login_required
+def getCurrentUserRetirementPortfolio():
+    user_id = current_user.id
+    portfolio = Portfolio.query.filter(and_(Portfolio.user_id == user_id, Portfolio.is_retirement == True)).first()
+    return {"Retirement": portfolio.to_dict()}

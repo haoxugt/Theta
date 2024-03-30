@@ -32,7 +32,39 @@ class StockInfo(db.Model):
 
 
     def to_dict(self):
-        return {
-            'code': self.code,
-            'name': self.name,
+        if self.quote_type == 'EQUITY':
+            return {
+                'code': self.code,
+                'name': self.name,
+                'quote_type': self.quote_type,
+                'long_name': self.long_name,
+                'city': self.city,
+                'state': self.state,
+                'country': self.country,
+                'employees': self.employees,
+                'CEO': self.CEO,
+                'industry': self.industry,
+                'sector_disp': self.sector_disp,
+                'high_52wk': self.high_52wk,
+                'low_52wk': self.low_52wk,
+                'market_cap': self.market_cap,
+                'pe_ratio':self.pe_ratio,
+                'high_today': self.high_today,
+                'low_today': self.low_today,
+                'open_price':self.open_price,
+                'volume':self.volume
+            }
+        else:
+            return {
+                'code': self.code,
+                'name': self.name,
+                'quote_type': self.quote_type,
+                'long_name': self.long_name,
+                'high_52wk': self.high_52wk,
+                'low_52wk': self.low_52wk,
+                'pe_ratio':self.pe_ratio,
+                'high_today': self.high_today,
+                'low_today': self.low_today,
+                'open_price':self.open_price,
+                'volume':self.volume
         }

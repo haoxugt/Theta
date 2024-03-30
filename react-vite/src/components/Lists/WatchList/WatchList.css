@@ -1,0 +1,20 @@
+.watchlist-header,
+.watchlist-name {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 25px 20px 30px;
+}
+
+.watchlist-header {
+  border-bottom: 1px solid var(--grey-border);
+}
+
+.watchlist-name-left,
+.watchlist-name-right {
+  display: flex;
+  column-gap: 15px;
+}
+
+.watchlist-name-right {
+  column-gap: 25px;
+}

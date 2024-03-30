@@ -1,0 +1,14 @@
+.stockhold-row {
+  padding: 20px 25px 20px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stockhold-row:last-child {
+  border-bottom: 1px solid var(--grey-border);
+}
+
+.stockhold-row:hover {
+  cursor: pointer;
+  background-color: var(--light-grey-color);
+}

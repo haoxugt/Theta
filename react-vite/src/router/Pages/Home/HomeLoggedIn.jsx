@@ -3,13 +3,17 @@ import Chart from "../../../components/Chart/Chart";
 import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
+import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
 import { useDispatch, useSelector } from "react-redux";
+import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
 
 function HomeLoggedIn() {
   const dispatch = useDispatch();
   const watchlists = useSelector(state => state.watchlist);
+  const stockshold = useSelector(state => state.stockshold)
   const watchlist_array = Object.values(watchlists?.Watchlists);
-  console.log("watchlist array =====> ", watchlist_array)
+  const stockshold_array = Object.values(stockshold?.Stockshold)
+
 
   let amount = 123456.78;
   const open_amount = 123000;
@@ -22,8 +26,10 @@ function HomeLoggedIn() {
     else return " negative-num"
   }
 
+
   useEffect(() => {
      dispatch(getCurrentWatchlistsThunk());
+     dispatch(getAllStocksHoldThunk());
   }, [dispatch])
 
   return (
@@ -50,19 +56,23 @@ function HomeLoggedIn() {
           <Chart />
 
         </div>
+        <div className='chart-test'>
+          <CandlestickChart />
+
+        </div>
 
       </div>
       <div className="homepage-right-col">
         <div className="lists-container">
-            <StockHoldList />
+            <StockHoldList stockholdlist={stockshold_array} />
             {watchlist_array?.map(el => {
-              console.log("2222222222222222", el)
               return (
                 <WatchList key={el.id} watchlist={el}/>
               )
             })}
 
         </div>
+
 
 
       </div>

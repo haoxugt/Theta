@@ -23,10 +23,10 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import './Chart.css'
-import { stockTestData } from './data';
+import './SmallChart.css'
+import { stockTestData } from '../data.js';
 
-function Chart() {
+function SmallChart() {
   // const [plotData, setPlotData] = useState([]);
   // ============ row data format ======================================
   // const data = [
@@ -38,19 +38,14 @@ function Chart() {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    tooltips: {
-      mode: "index",
-      intersect: false,
-    },
     plugins: {
       legend: {
         position: 'top',
         display: false,
       },
-      // tooltips: {
-      //   mode: "index",
-      //   intersect: false,
-      // },
+      tooltips: {
+        enabled: false,
+      },
     },
     scales: {
       x: {
@@ -63,8 +58,8 @@ function Chart() {
         ticks: {
           display: false,
         },
-        // suggestedMin: 0,
-        // suggestedMax: 1000
+        suggestedMin: 30,
+        suggestedMax: 70
       },
     },
   };
@@ -83,23 +78,18 @@ function Chart() {
         data: stockTestData,
         backgroundColor: "black",
         borderColor: "rgb(10,186,181)",
-        borderWidth: 3,
+        borderWidth: 1,
         pointBorderColor: 'rgba(0, 0, 0, 0)',
         pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-        pointHoverBackgroundColor: 'rgb(10,186,181)',
-        pointHoverBorderColor: '#000000',
-        pointHoverBorderWidth: 4,
-        pointHoverRadius: 6,
       }
     ]
   };
 
   return (
-    <div className='line-chart'>
-       {/* =========== test ====================  */}
+    <div className='small-line-chart'>
       <Line data={data} options={options} />
     </div>
   )
 }
 
-export default Chart;
+export default SmallChart;
