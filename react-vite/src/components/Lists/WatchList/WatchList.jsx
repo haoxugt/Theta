@@ -2,16 +2,14 @@ import WatchListItem from "../../Items/WatchListItem/WatchListItem";
 import { FaLightbulb } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
-import { HiOutlinePlus } from "react-icons/hi2";
+
 
 import './WatchList.css'
 
 function WatchList({ watchlist }) {
     return (
         <div className="watchlist-container">
-            <div className="watchlist-header">
-                Lists <HiOutlinePlus />
-            </div>
+
             <div className="watchlist-name">
                 <div className="watchlist-name-left">
                     <FaLightbulb color="yellow" /> {watchlist.name}

@@ -60,3 +60,19 @@
   max-width: 1100px;
   min-width: 400px;
 }
+
+.watchlist-header button {
+  background-color: black;
+  border: none;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+.watchlist-header button:hover {
+  cursor: pointer;
+  background-color: var(--light-grey-color);
+}

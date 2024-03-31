@@ -1,10 +1,18 @@
 const GET_CURRENT_WATCHLISTS = 'watchlist/getCurrentWatchlists';
+const CREATE_WATCHLIST = 'watchlist/createWatchlist'
 
 // action
 const getCurrentWatchlistsAction = (watchlists) => {
   return {
     type: GET_CURRENT_WATCHLISTS,
     payload: watchlists
+  }
+}
+
+const createWatchlistAction = (watchlist) => {
+  return {
+    type: CREATE_WATCHLIST,
+    payload: watchlist
   }
 }
 
@@ -16,6 +24,15 @@ export const getCurrentWatchlistsThunk = () => async (dispatch) => {
   // console.log("data======>", data)
 
   dispatch(getCurrentWatchlistsAction(data.watchlists));
+  return data
+}
+
+export const createWatchlistThunk = () => async (dispatch) => {
+  const response = await fetch('/api/users/current/watchlists');
+  const data = await response.json();
+  // console.log("data======>", data)
+
+  dispatch(createWatchlistAction(data.watchlist));
   return data
 }
 

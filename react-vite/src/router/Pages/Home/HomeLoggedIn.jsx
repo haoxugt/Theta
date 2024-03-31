@@ -5,6 +5,9 @@ import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
 import { useDispatch, useSelector } from "react-redux";
+import { HiOutlinePlus } from "react-icons/hi2";
+import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
+import OpenModalButton from "../../../components/Items/OpenModalButton";
 // import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
 
 function HomeLoggedIn() {
@@ -76,6 +79,14 @@ function HomeLoggedIn() {
       <div className="homepage-right-col">
         <div className="lists-container">
             <StockHoldList stockholdlist={stockshold_array} />
+            <div className="watchlist-header">
+                Lists
+                <OpenModalButton
+                    buttonText={<HiOutlinePlus size={20} color="grey"/>}
+                    // onButtonClick={closeMenu}
+                    modalComponent={<CreateWatchlistModal />}
+                />
+            </div>
             {watchlist_array?.map(el => {
               return (
                 <WatchList key={el.id} watchlist={el}/>
