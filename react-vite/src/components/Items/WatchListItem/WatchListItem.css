@@ -1,12 +1,14 @@
 .watchlist-row {
   padding: 10px 25px 10px 25px;
   width: calc(100% - 50px);
+  /* min-width: 280px; */
   display: grid;
-  grid-template-columns: 1fr 2.2fr 1.2fr;
+  grid-template-columns: 1.2fr 2fr 1fr;
   /* display: flex; */
   /* justify-items:stretch; */
   justify-content: stretch;
   align-items: center;
+  column-gap: auto;
 }
 
 .watchlist-row:last-child {

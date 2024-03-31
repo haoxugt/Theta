@@ -43,7 +43,7 @@ function SmallChart() {
         position: 'top',
         display: false,
       },
-      tooltips: {
+      tooltip: {
         enabled: false,
       },
     },
@@ -58,8 +58,14 @@ function SmallChart() {
         ticks: {
           display: false,
         },
-        suggestedMin: 30,
-        suggestedMax: 70
+        min: function(){
+            return Math.min(...stockTestData.map(el => el.y));
+        },
+        max: function(){
+            return Math.max(...stockTestData.map(el => el.y));
+        },
+        // suggestedMin: 35,
+        // suggestedMax: 110
       },
     },
   };
@@ -76,7 +82,7 @@ function SmallChart() {
         label: 'NET',
         type: "line",
         data: stockTestData,
-        backgroundColor: "black",
+        backgroundColor: "white",
         borderColor: "rgb(10,186,181)",
         borderWidth: 1,
         pointBorderColor: 'rgba(0, 0, 0, 0)',

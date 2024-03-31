@@ -27,6 +27,7 @@
   /* border: 1px solid white; */
   padding: 10px;
   color: white;
+  max-width: 420px;
 }
 
 .positive-num {
@@ -40,8 +41,8 @@
 .lists-container {
   display: flex;
   flex-direction: column;
-  max-width: 350px;
-  min-width: 240px;
+  max-width: 400px;
+  min-width: 250px;
   border: 1px solid var(--grey-border);
   height: auto;
   margin-right: auto;
@@ -52,4 +53,10 @@
 .chart-test {
   width: 100%;
   height: 350px;
+}
+
+.portfolio-chart-container{
+  width: 70vw;
+  max-width: 1100px;
+  min-width: 400px;
 }

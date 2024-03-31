@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Chart from "../../../components/Chart/Chart";
+import LineChart from "../../../components/Chart/LineChart";
 import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
 import { useDispatch, useSelector } from "react-redux";
-import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
+// import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
 
 function HomeLoggedIn() {
   const dispatch = useDispatch();
@@ -30,13 +30,24 @@ function HomeLoggedIn() {
   useEffect(() => {
      dispatch(getCurrentWatchlistsThunk());
      dispatch(getAllStocksHoldThunk());
-  }, [dispatch])
+     const chart = document.querySelector('.line-chart>canvas');
+     const hoverval = document.getElementById('hoverval');
+     chart.addEventListener('mouseout', () => {
+         hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
+     })
+
+  }, [dispatch, amount])
+
+
 
   return (
     <div className="homepage-container">
       <div className="homepage-left-col">
         <div className="portfolio-info-container">
           <h1>
+            {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
+          </h1>
+          <h1 id="hoverval">
             {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
           </h1>
 
@@ -53,13 +64,13 @@ function HomeLoggedIn() {
           </p>
         </div>
         <div className="portfolio-chart-container">
-          <Chart />
+          <LineChart />
 
         </div>
-        <div className='chart-test'>
+        {/* <div className='chart-test'>
           <CandlestickChart />
 
-        </div>
+        </div> */}
 
       </div>
       <div className="homepage-right-col">

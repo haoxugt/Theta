@@ -13,7 +13,7 @@ const getSingleStockAction = (stock) => {
 export const getSingleStockThunk = (stockCode) => async (dispatch) => {
   const response = await fetch(`/api/stockinfo/${stockCode}`);
   const data = await response.json();
-  console.log("data======>", data)
+  // console.log("data======>", data)
 
   dispatch(getSingleStockAction(data.stock));
   return data
