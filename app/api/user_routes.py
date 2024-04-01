@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Watchlist, Portfolio, StockHold
+from app.models import db, User, Watchlist, Portfolio, StockHold
+from app.forms import CreateWatchlistForm
 from sqlalchemy import and_
 
 user_routes = Blueprint('users', __name__)
@@ -76,3 +77,23 @@ def getCurrentUserRetirementPortfolio():
     user_id = current_user.id
     portfolio = Portfolio.query.filter(and_(Portfolio.user_id == user_id, Portfolio.is_retirement == True)).first()
     return {"Retirement": portfolio.to_dict()}
+
+# create a new watchlist belongs to current user
+@user_routes.route("/current/watchlists", methods=["POST"])
+@login_required
+def createWatchlist():
+    user_id = current_user.id
+    form = CreateWatchlistForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_watchlist = Watchlist(name=data['name'],
+                              user_id=user_id)
+        db.session.add(new_watchlist)
+        db.session.commit()
+
+        return new_watchlist.to_dict()
+
+    else:
+
+        return form.errors

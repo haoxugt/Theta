@@ -115,3 +115,8 @@
   color: var(--light-grey-color);
   background-color: var(--blue-color);
 }
+
+.create-button:hover {
+  cursor: pointer;
+  background-color: rgba(6, 207, 201, 0.466);;
+}
