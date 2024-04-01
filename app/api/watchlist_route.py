@@ -3,18 +3,17 @@ from flask_login import login_required, current_user
 from app.models import db, Watchlist
 from app.forms import CreateWatchlistForm
 
-watchlist_routes = Blueprint('watchlist', __name__)
+watchlist_routes = Blueprint('watchlists', __name__)
 
 @watchlist_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def deleteWatchlist(id):
     target_watchlist = Watchlist.query.get(id)
-    user_id = current_user.id
 
     if not target_watchlist:
         return {"errors": {"message": "This watchlist counld not be found" }}, 404
 
-    if user_id != target_watchlist.user_id:
+    if current_user.id != target_watchlist.user_id:
         return {"errors": {"message": "Unauthorized" }}, 403
 
     if target_watchlist:
@@ -30,12 +29,11 @@ def updateWatchlist(id):
     target_watchlist = Watchlist.query.get(id)
     form = CreateWatchlistForm();
     form['csrf_token'].data = request.cookies['csrf_token']
-    user_id = current_user.id
 
     if not target_watchlist:
         return {"errors": {"message": "This watchlist counld not be found" }}, 404
 
-    if user_id != target_watchlist.user_id:
+    if current_user.id != target_watchlist.user_id:
         return {"errors": {"message": "Unauthorized" }}, 403
 
     if form.validate_on_submit():
