@@ -1,0 +1,18 @@
+.watchlist-info-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.watchlist-show-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;;
+}
+
+.watchlist-list-row-title {
+  display: grid;
+  grid-template-columns:  2.5fr 1fr 1fr 1fr 1.2fr 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--grey-border);
+  margin-bottom: 10px;;
+}

@@ -16,6 +16,16 @@
   column-gap: 15px;
 }
 
+.watchlist-name-left {
+  padding: 5px;
+}
+
 .watchlist-name-right {
   column-gap: 25px;
+}
+
+.watchlist-name-left:hover {
+  cursor: pointer;
+  background-color: var(--light-grey-color);
+  border-radius: 3px;
 }

@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomePage from './Pages/Home/HomePage';
 import StockInfo from './Pages/StockInfo/StockInfo';
+import WatchlistShowPage from './Pages/Watchlist/WatchlistShowPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/stockinfo/:stockCode",
         element: <StockInfo />,
+      },
+      {
+        path: "/watchlists/:watchlistId",
+        element: <WatchlistShowPage />,
       },
     ],
   },

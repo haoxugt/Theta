@@ -33,7 +33,7 @@ def login():
         user = User.query.filter(or_(User.email == form.data['credential'], User.username == form.data['credential'])).first()
         login_user(user)
         return user.to_dict()
-    return form.errors, 401
+    return form.errors, 400
 
 
 @auth_routes.route('/logout')
