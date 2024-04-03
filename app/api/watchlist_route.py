@@ -81,3 +81,34 @@ def removeStockInWatchlist(id):
 
     else:
         return {"errors": {"message": "This stock is not included in the watchlist" }}, 400
+
+
+@watchlist_routes.route('/<int:id>/addstock', methods=['PUT'])
+@login_required
+def addStockToWatchlist(id):
+    target_watchlist = Watchlist.query.get(id)
+    print("11111111111111111111111",request.get_json()['stock'])
+    stockCode = request.get_json()['stock']['code']
+    target_stock = StockInfo.query.get(stockCode)
+    # print("11111111111111111111", stockCode)
+
+
+    if not target_stock:
+        return {"errors": {"message": "This stock could not be found" }}, 404
+
+    if not target_watchlist:
+        return {"errors": {"message": "This watchlist could not be found" }}, 404
+
+    if current_user.id != target_watchlist.user_id:
+        return {"errors": {"message": "Unauthorized" }}, 403
+
+
+    # print("33333333333333333333 here", target_watchlist.stocks)
+    if target_stock in target_watchlist.stockinfo_in_watchlist:
+        return {"errors": {"message": "This stock is already included in the watchlist" }}, 400
+
+    else:
+        # return {"errors": {"message": "This stock is not included in the watchlist" }}, 400
+        target_watchlist.stockinfo_in_watchlist.append(target_stock)
+        db.session.commit()
+        return target_watchlist.to_dict()

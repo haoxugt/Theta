@@ -24,8 +24,13 @@
   column-gap: 25px;
 }
 
-.watchlist-name-left:hover {
+.watchlist-name:hover>.watchlist-name-left {
   cursor: pointer;
   background-color: var(--light-grey-color);
   border-radius: 3px;
+}
+
+.watchlist-name:hover>.watchlist-name-right>svg:first-child {
+  cursor: pointer;
+  color: var(--blue-color);
 }

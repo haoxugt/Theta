@@ -10,10 +10,13 @@ def seed_stocks_info():
         long_name='SPDR S&P 500 ETF Trust',
         high_52wk = 524.61,
         low_52wk = 403.74,
+        market_cap= 503321591808,
         pe_ratio = 26.349379,
         high_today = 524.61,
         low_today = 522.7807,
         open_price = 523.21,
+        current_price = 523.07,
+        previous_close_price = 523.17,
         volume = 95383297
     )
 
@@ -24,10 +27,13 @@ def seed_stocks_info():
         long_name='Invesco QQQ Trust',
         high_52wk = 449.34,
         low_52wk = 309.89,
+        market_cap = 254427725824,
         pe_ratio = 36.20614,
         high_today = 445.64,
         low_today = 443.65,
         open_price = 444.81,
+        current_price = 444.01,
+        previous_close_price = 444.83,
         volume = 36409430,
     )
 
@@ -38,10 +44,13 @@ def seed_stocks_info():
         long_name='SPDR Dow Jones Industrial Average ETF Trust',
         high_52wk = 398.82,
         low_52wk = 323.21,
+        market_cap = 33252577280,
         pe_ratio = 23.54014,
         high_today = 398.555,
         low_today = 397.04,
         open_price = 398.06,
+        current_price = 397.76,
+        previous_close_price = 397.56,
         volume = 3153547,
     )
 
@@ -64,6 +73,8 @@ def seed_stocks_info():
         high_today = 172.23,
         low_today = 170.51,
         open_price = 171.7,
+        current_price = 173.31,
+        previous_close_price = 171.48,
         volume = 64574490,
     )
 
@@ -86,6 +97,8 @@ def seed_stocks_info():
         high_today = 912.98,
         low_today = 891.93,
         open_price = 899.78,
+        current_price = 903.56,
+        previous_close_price = 902.50,
         volume = 43138138,
     )
 
@@ -108,6 +121,8 @@ def seed_stocks_info():
         high_today = 179.57,
         low_today = 175.3,
         open_price = 177.459,
+        current_price = 175.79,
+        previous_close_price = 179.83,
         volume = 76893057,
     )
 
@@ -131,6 +146,8 @@ def seed_stocks_info():
         high_today = 124.3999,
         low_today = 119.395,
         open_price = 119.7,
+        current_price = 120.98,
+        previous_close_price = 119.80,
         volume = 2961396,
     )
 
@@ -153,6 +170,8 @@ def seed_stocks_info():
         high_today = 123.74,
         low_today = 121.2,
         open_price = 121.25,
+        current_price = 122.36,
+        previous_close_price = 120.98,
         volume = 15160255,
     )
 
@@ -175,6 +194,8 @@ def seed_stocks_info():
         high_today = 136.8,
         low_today = 135.44,
         open_price = 135.68,
+        current_price = 136.05,
+        previous_close_price = 136.69,
         volume = 9919902,
     )
 
@@ -197,6 +218,8 @@ def seed_stocks_info():
         high_today = 97.6699,
         low_today = 96.1,
         open_price = 96.1,
+        current_price = 96.83,
+        previous_close_price = 96.55,
         volume = 1635121,
     )
 
@@ -219,6 +242,8 @@ def seed_stocks_info():
         high_today = 495.87,
         low_today = 489.3,
         open_price = 495,
+        current_price = 494.70,
+        previous_close_price = 493.10,
         volume = 3805550,
     )
 
@@ -241,6 +266,8 @@ def seed_stocks_info():
         high_today = 283.3799,
         low_today = 281.2525,
         open_price = 282.25,
+        current_price = 281.95,
+        previous_close_price = 282.02,
         volume = 3370364,
     )
 

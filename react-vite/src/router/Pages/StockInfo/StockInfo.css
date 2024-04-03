@@ -1,0 +1,118 @@
+.stockinfopage-container {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  max-width: 1420px;
+  margin: auto;
+}
+
+.order-form{
+  border:1px solid var(--grey-border);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: var(--light-grey-color);
+}
+
+.order-header{
+  display: flex;
+  padding: 20px;
+  flex-direction: row;
+  column-gap: 10px;
+  border-bottom: 1px solid var(--grey-border)
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.form-box label{
+  padding: 10px 20px 10px 20px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-box {
+  background-color: var(--light-grey-color);
+  border-radius: 3px;
+  padding-left: 10px;
+  color: white;
+  height: 35px;
+  border: 1px solid var(--grey-border);
+}
+
+span.share-box{
+  border-radius: 3px;
+  border:1px solid var(--grey-border);
+  padding: 10px 10px 10px 10px;
+  color: white;
+
+}
+
+.share-input {
+  padding: 10px 10px 10px 0px;
+  border-radius: 3px;
+  color: white;
+  background-color: var(--light-grey-color);
+  border: 1px solid var(--grey-border);
+  text-align: right;
+}
+
+
+.market-price{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--grey-border);
+}
+
+.market-price-item {
+  text-align: right;
+}
+
+.estimate-total-price {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-submit-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;;
+  width: calc(100% - 40px);
+  justify-self: center;
+  align-self: center;
+  height: 40px;
+  border-radius: 20px;
+  background-color: var(--blue-color);
+  border: 1px solid var(--blue-color);
+}
+.order-submit-btn:hover {
+  cursor: pointer;
+}
+
+.stock-option-addtolist-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  margin-top: 20px;
+}
+
+.stock-option-addtolist-container button{
+  width: calc(100% - 40px);
+  height: 40px;
+  border-radius: 20px;
+  background-color: black;
+  border: 1px solid var(--blue-color);
+  color: var(--blue-color)
+}
+
+.stock-option-addtolist-container button:hover{
+  cursor: pointer;
+}

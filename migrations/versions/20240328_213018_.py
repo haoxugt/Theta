@@ -49,11 +49,13 @@ def upgrade():
     sa.Column('sector_disp', sa.String(length=50), nullable=True),
     sa.Column('high_52wk', sa.Float(), nullable=False),
     sa.Column('low_52wk', sa.Float(), nullable=False),
-    sa.Column('market_cap', sa.Float(), nullable=True),
+    sa.Column('market_cap', sa.Float(), nullable=False),
     sa.Column('pe_ratio', sa.Float(), nullable=False),
     sa.Column('high_today', sa.Float(), nullable=False),
     sa.Column('low_today', sa.Float(), nullable=False),
     sa.Column('open_price', sa.Float(), nullable=False),
+    sa.Column('current_price', sa.Float(), nullable=False),
+    sa.Column('previous_close_price', sa.Float(), nullable=False),
     sa.Column('volume', sa.Float(), nullable=False),
     sa.PrimaryKeyConstraint('code')
     )
@@ -95,6 +97,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('cash', sa.Float(), nullable=True),
+    sa.Column('total_transfers', sa.Float(), nullable=True),
+    sa.Column('total_assets', sa.Float(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('open_date', sa.DateTime(), nullable=False),
     sa.Column('is_retirement', sa.Boolean(), nullable=True),

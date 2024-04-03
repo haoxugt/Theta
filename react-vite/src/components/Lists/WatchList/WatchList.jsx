@@ -12,8 +12,8 @@ function WatchList({ watchlist }) {
     return (
         <div className="watchlist-container">
 
-            <div className="watchlist-name" onClick={() => navigate(`/watchlists/${watchlist.id}`)}>
-                <div className="watchlist-name-left">
+            <div className="watchlist-name" >
+                <div className="watchlist-name-left" onClick={() => navigate(`/watchlists/${watchlist.id}`)}>
                     <FaLightbulb color="yellow" />
                     <span>{watchlist.name}</span>
                 </div>
@@ -22,7 +22,8 @@ function WatchList({ watchlist }) {
                 </div>
 
             </div>
-            {watchlist.stocks?.map(el => {
+            {/* {console.log("test watchlsit ============", watchlist, watchlist?.stocks)} */}
+            {watchlist?.stocks?.map(el => {
                 return (
                     <WatchListItem key={el.code} stock={el} />
                 )

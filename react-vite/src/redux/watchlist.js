@@ -2,6 +2,7 @@ const GET_CURRENT_WATCHLISTS = 'watchlist/getCurrentWatchlists';
 const CREATE_WATCHLIST = 'watchlist/createWatchlist';
 const GET_SINGLE_WATCHLIST = 'watchlist/getSingleWatchlist';
 const REMOVE_STOCK_IN_WATCHLIST = 'watchlist/removeStockInWatchlist'
+const ADD_STOCK_TO_WATCHLIST = 'watchlist/addStockToWatchlist'
 
 // action
 const getCurrentWatchlistsAction = (watchlists) => {
@@ -31,6 +32,16 @@ const removeStockInWatchlistAction = (watchlist, stockCode) => {
     payload: {
       watchlist,
       stockCode
+    }
+  }
+}
+
+const addStockToWatchlistAction = (watchlist, stock) => {
+  return {
+    type: ADD_STOCK_TO_WATCHLIST,
+    payload: {
+      watchlist,
+      stock
     }
   }
 }
@@ -88,8 +99,25 @@ export const removeStockInWatchlistThunk = (watchlist, stockCode) => async (disp
 
   if (response.ok) {
     const data = await response.json();
-    console.log("data =================>", data)
+    // console.log("data =================>", data)
     dispatch(removeStockInWatchlistAction(data, stockCode));
+    return data;
+  } else {
+    throw response;
+  }
+}
+
+export const addStockToWatchlistThunk = (watchlist, stock) => async (dispatch) => {
+  const response = await fetch(`/api/watchlists/${watchlist.id}/addstock`, {
+    method: "PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ stock })
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    // console.log("data =================>", data)
+    dispatch(addStockToWatchlistAction(data, stock));
     return data;
   } else {
     throw response;
@@ -119,6 +147,20 @@ const watchlistReducer = (state = initialState, action) => {
       return { ...state,
               Watchlists: { ...state.Watchlists, [action.payload.watchlist.id]: updatedWatchlist},
               watchlistShow: { ...action.payload.watchlist}}
+    }
+    case ADD_STOCK_TO_WATCHLIST: {
+      const watchlist = state.Watchlists[action.payload.watchlist.id];
+      let watchlistShow = state.watchlistShow;
+      watchlist.stocks.push(action.payload.stock);
+      const updatedStockArray = watchlist.stocks;
+      const updatedWatchlist = { ...watchlist, stocks: updatedStockArray}
+      if (watchlistShow.id == updatedWatchlist.id) {
+        watchlistShow = {...updatedWatchlist};
+      }
+
+      return { ...state,
+              Watchlists: { ...state.Watchlists, [action.payload.watchlist.id]: updatedWatchlist},
+              watchlistShow: { ...watchlistShow}}
     }
     default:
       return state;

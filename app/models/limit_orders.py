@@ -24,5 +24,5 @@ class LimitOrder(db.Model):
             'limit_price': self.limit_price,
             'trading_type': self.trading_type,
             'expiration': self.expiration,
-            'pending': self.pending
+            'is_pending': self.is_pending
         }

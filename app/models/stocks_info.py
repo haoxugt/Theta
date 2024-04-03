@@ -19,11 +19,13 @@ class StockInfo(db.Model):
     sector_disp = db.Column(db.String(50))
     high_52wk = db.Column(db.Float, nullable=False)
     low_52wk = db.Column(db.Float, nullable=False)
-    market_cap = db.Column(db.Float)
+    market_cap = db.Column(db.Float, nullable=False)
     pe_ratio = db.Column(db.Float, nullable=False)
     high_today = db.Column(db.Float, nullable=False)
     low_today = db.Column(db.Float, nullable=False)
     open_price = db.Column(db.Float, nullable=False)
+    current_price = db.Column(db.Float, nullable=False)
+    previous_close_price = db.Column(db.Float, nullable=False)
     volume = db.Column(db.Float, nullable=False)
 
     order_in_stockinfo = db.relationship('Order', back_populates='stockinfo_in_order')
@@ -48,11 +50,13 @@ class StockInfo(db.Model):
                 'high_52wk': self.high_52wk,
                 'low_52wk': self.low_52wk,
                 'market_cap': self.market_cap,
-                'pe_ratio':self.pe_ratio,
+                'pe_ratio': self.pe_ratio,
                 'high_today': self.high_today,
                 'low_today': self.low_today,
-                'open_price':self.open_price,
-                'volume':self.volume
+                'open_price': self.open_price,
+                'current_price': self.current_price,
+                'previous_close_price': self.previous_close_price,
+                'volume': self.volume
             }
         else:
             return {
@@ -62,9 +66,12 @@ class StockInfo(db.Model):
                 'long_name': self.long_name,
                 'high_52wk': self.high_52wk,
                 'low_52wk': self.low_52wk,
-                'pe_ratio':self.pe_ratio,
+                'market_cap': self.market_cap,
+                'pe_ratio': self.pe_ratio,
                 'high_today': self.high_today,
                 'low_today': self.low_today,
-                'open_price':self.open_price,
-                'volume':self.volume
+                'open_price': self.open_price,
+                'current_price': self.current_price,
+                'previous_close_price': self.previous_close_price,
+                'volume': self.volume
         }

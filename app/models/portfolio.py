@@ -10,6 +10,8 @@ class Portfolio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     cash = db.Column(db.Float, default=0.0)
+    total_transfers = db.Column(db.Float, default=0.0)
+    total_assets = db.Column(db.Float, default=0.0)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     open_date = db.Column(db.DateTime, nullable=False)
     is_retirement = db.Column(db.Boolean, default=False)
@@ -34,6 +36,8 @@ class Portfolio(db.Model):
             'id': self.id,
             'title': self.title,
             'cash': self.cash,
+            'total_transfers': self.total_transfers,
+            'total_assets': self.total_assets,
             'user': self.user,
             'open_date': self.open_date,
             "is_retirement": self.is_retirement

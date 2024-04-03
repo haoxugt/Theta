@@ -25,14 +25,14 @@ class Order(db.Model):
 
     @property
     def order_type(self):
-        if self.isLimit_order:
+        if self.is_limit_order:
             return 'Limit Price Order'
         else:
             return 'Market Price Order'
 
     @property
     def limit_order(self):
-        if self.isLimit_order:
+        if self.is_limit_order:
             return self.limitorder_in_order.to_dict()
         else:
             return None
@@ -43,8 +43,12 @@ class Order(db.Model):
             'id': self.id,
             'stock_info_code': self.stock_info_code,
             'portfolio_id': self.portfolio_id,
-            'expiration': self.expiration,
+            'shares': self.shares,
+            'is_buy': self.is_buy,
+            'is_limit_order': self.is_limit_order,
+            'limit_order_id': self.limit_order_id,
             'transaction_price': self.transaction_price,
             'transaction_date': self.transaction_date,
-            'limit_order': self.limit_order
+            'limit_order': self.limit_order,
+            'created_at': self.created_at
         }
