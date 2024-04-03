@@ -21,7 +21,7 @@ function HomeLoggedIn() {
   const portfolio_array = Object.values(portfolioState?.Portfolios);
 
 
-  let amount = portfolio_array.filter(el => el.is_retirement == false)[0].cash;
+  let amount = portfolio_array.filter(el => el.is_retirement == false)[0]?.cash;
   const open_amount = 61250;
   let change = amount - open_amount;
   change = change.toFixed(2);

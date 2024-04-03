@@ -31,8 +31,13 @@ function StockHoldItem({ stock }) {
                 <SmallChart />
             </div>
             <div className='stockhold-price'>
-               <span>${stockinfo.current_price.toFixed(2)}</span>
-               <span>{((stockinfo.current_price - stockinfo.previous_close_price)/stockinfo.previous_close_price * 100).toFixed(2)}%</span>
+                {stockinfo ?
+                <>
+               <span>${stockinfo?.current_price?.toFixed(2)}</span>
+               <span>{((stockinfo?.current_price - stockinfo?.previous_close_price)/stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
+                </> :
+                <></>
+            }
             </div>
         </div>
     )
