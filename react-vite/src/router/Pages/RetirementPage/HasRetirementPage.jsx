@@ -3,7 +3,7 @@ import LineChart from "../../../components/Chart/LineChart";
 import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
-import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+import { getRetirementStocksHoldThunk } from "../../../redux/stock_hold";
 import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlus } from "react-icons/hi2";
@@ -11,7 +11,7 @@ import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal
 import OpenModalButton from "../../../components/Items/OpenModalButton";
 // import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
 
-function HomeLoggedIn() {
+function HasRetirementPage() {
   const dispatch = useDispatch();
   const watchlists = useSelector(state => state.watchlist);
   const stockshold = useSelector(state => state.stockshold);
@@ -21,8 +21,8 @@ function HomeLoggedIn() {
   const portfolio_array = Object.values(portfolioState?.Portfolios);
 
 
-  let amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_assets;
-  const open_amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_transfers;
+  let amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_assets;
+  const open_amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_transfers;
   let change = amount - open_amount;
   change = change.toFixed(2);
   let change2 = -change;
@@ -35,7 +35,7 @@ function HomeLoggedIn() {
 
   useEffect(() => {
      dispatch(getCurrentWatchlistsThunk());
-     dispatch(getAllStocksHoldThunk());
+     dispatch(getRetirementStocksHoldThunk());
      dispatch(getCurrentPortfoliosThunk());
      const chart = document.querySelector('.line-chart>canvas');
      const hoverval = document.getElementById('hoverval');
@@ -106,4 +106,4 @@ function HomeLoggedIn() {
   )
 }
 
-export default HomeLoggedIn;
+export default HasRetirementPage;

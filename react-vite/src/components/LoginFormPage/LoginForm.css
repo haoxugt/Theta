@@ -1,0 +1,21 @@
+.login-form {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 10px;;
+}
+
+.Demouser-login{
+  color: white;
+  background-color: black;
+  border: none;
+  text-decoration: underline;
+}
+
+.Demouser-login:hover{
+  color: var(--blue-color);
+  cursor: pointer;
+  font-style: italic;
+}

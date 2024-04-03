@@ -78,6 +78,15 @@ def getCurrentUserRetirementPortfolio():
     portfolio = Portfolio.query.filter(and_(Portfolio.user_id == user_id, Portfolio.is_retirement == True)).first()
     return {"Retirement": portfolio.to_dict()}
 
+# get all the current user's stocks under retirement portfolio
+@user_routes.route("/current/portfolios/retirement/stockshold", methods=["GET"])
+@login_required
+def getCurrentUserStocksholdInRetirementPortfolio():
+    user_id = current_user.id
+    portfolio = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == True).first()
+    stocks = [stock.to_dict() for stock in portfolio.stockhold_in_portfolio]
+    return {"Stockshold": stocks}
+
 # create a new watchlist belongs to current user
 @user_routes.route("/current/watchlists", methods=["POST"])
 @login_required

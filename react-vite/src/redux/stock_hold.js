@@ -1,4 +1,5 @@
 const GET_ALL_STOCKS_HOLD = 'stockhold/getAllStocksHold';
+const GET_RETIREMENT_STOCKS_HOLD = 'stockhold/getRetirementStocksHold';
 const BUY_STOCKS_HOLD = 'stockhold/buyStocksHold';
 // const SELL_STOCKS_HOLD = 'stockhold/sellStocksHold';
 
@@ -10,6 +11,12 @@ const getAllStocksHoldAction = (stocks) => {
   }
 }
 
+const getRetirementStocksHoldAction = (stocks) => {
+  return {
+    type: GET_RETIREMENT_STOCKS_HOLD,
+    payload: stocks
+  }
+}
 const buyStocksHoldAction = (stock) => {
   return {
     type: BUY_STOCKS_HOLD,
@@ -31,6 +38,15 @@ export const getAllStocksHoldThunk = () => async (dispatch) => {
   // console.log("data======>", data.Stockshold)
 
   dispatch(getAllStocksHoldAction(data.Stockshold));
+  return data
+}
+
+export const getRetirementStocksHoldThunk = () => async (dispatch) => {
+  const response = await fetch('/api/users/current/portfolios/retirement/stockshold');
+  const data = await response.json();
+  // console.log("data======>", data.Stockshold)
+
+  dispatch(getRetirementStocksHoldAction(data.Stockshold));
   return data
 }
 
@@ -78,6 +94,11 @@ const initialState = { Stockshold: {} };
 const stocksholdReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_STOCKS_HOLD: {
+      const newObj = {};
+      action.payload.forEach(el => newObj[el.id] = { ...el });
+      return { ...state, Stockshold: { ...newObj } };
+    }
+    case GET_RETIREMENT_STOCKS_HOLD: {
       const newObj = {};
       action.payload.forEach(el => newObj[el.id] = { ...el });
       return { ...state, Stockshold: { ...newObj } };

@@ -118,7 +118,7 @@ function LineChart() {
     labels: stockTestData.map(el => el.x),
     datasets: [
       {
-        label: 'NET',
+        // label: 'NET',
         type: "line",
         data: stockTestData,
         backgroundColor: "black",

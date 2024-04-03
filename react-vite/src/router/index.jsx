@@ -4,6 +4,9 @@ import SignupFormPage from '../components/SignupFormPage';
 import HomePage from './Pages/Home/HomePage';
 import StockInfo from './Pages/StockInfo/StockInfo';
 import WatchlistShowPage from './Pages/Watchlist/WatchlistShowPage';
+import RetirementPage from './Pages/RetirementPage/RetirementPage';
+import PortfoliosPage from './Pages/PortfoliosPage/PortfoliosPage';
+import TransferPage from './Pages/TransferPage/TransferPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -29,6 +32,18 @@ export const router = createBrowserRouter([
       {
         path: "/watchlists/:watchlistId",
         element: <WatchlistShowPage />,
+      },
+      {
+        path: "/retirement",
+        element: <RetirementPage />,
+      },
+      {
+        path: "/portfolios/current",
+        element: <PortfoliosPage />,
+      },
+      {
+        path: "/transfer",
+        element: <TransferPage />,
       },
     ],
   },

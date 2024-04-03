@@ -39,12 +39,12 @@ export const getCurrentPortfoliosThunk = () => async (dispatch) => {
 }
 
 export const createPortfolioThunk = (portfolio) => async (dispatch) => {
-  const { title, is_retirement } = portfolio;
+  // const { title, is_retirement } = portfolio;
 
   const response = await fetch('/api/portfolios', {
     method: "POST",
     headers: { "Content-Type": "application/json"},
-    body: JSON.stringify({ title, is_retirement })
+    body: JSON.stringify({ portfolio })
   });
 
   if (response.ok) {

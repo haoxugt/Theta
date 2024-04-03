@@ -58,9 +58,10 @@ function LoginFormPage() {
       <h1>Log In</h1>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <label>
-          Email or username <p>{errors.credential &&
+          Email or username
+          <p>{errors.credential &&
           (<><FaCircleExclamation color="#f15e6c" />
             {" " + errors.credential} </>)}</p>
           <input
@@ -72,7 +73,8 @@ function LoginFormPage() {
         </label>
 
         <label>
-          Password <p>{errors.password && (<>{errors.password}</>)}</p>
+          Password
+          <p>{errors.password && (<><FaCircleExclamation color="#f15e6c" /> {errors.password}</>)}</p>
           <input
             type="password"
             value={password}
@@ -81,7 +83,7 @@ function LoginFormPage() {
           />
         </label>
 
-        <button type="submit">Log In</button>
+        <button className="login-btn" type="submit">Log In</button>
         <button className="Demouser-login" onClick={DemoUserLogin1} type="submit">
           Log in as Robert Crawley
         </button>

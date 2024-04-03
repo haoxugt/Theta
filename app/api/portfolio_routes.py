@@ -17,10 +17,9 @@ def portfolios():
 def createPortfolios():
     portfolio = request.get_json()['portfolio']
     user_id = current_user.id
-
     new_portfolio = Portfolio(title=portfolio['title'],
                               user_id=user_id,
-                              open_date=datetime.now,
+                              open_date=datetime.now(),
                               is_retirement=portfolio['is_retirement'])
     db.session.add(new_portfolio)
     db.session.commit()

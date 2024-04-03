@@ -7,6 +7,8 @@ import { thunkLogout } from "../../redux/session";
 // import SignupFormModal from "../SignupFormModal";
 import { useNavigate } from "react-router-dom";
 
+import './ProfileButton.css'
+
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -51,7 +53,7 @@ function ProfileButton() {
           <button className={navLinkClassName} onClick={() => navigate('/')}>
             Investing
           </button>
-          <button className={navLinkClassName} onClick={() => alert('Retirement')}>
+          <button className={navLinkClassName} onClick={() => navigate('/retirement')}>
             Retirement
           </button>
           <button className={navLinkClassName} onClick={() => alert('Notifications')}>
@@ -65,8 +67,9 @@ function ProfileButton() {
               {user && (
                 <>
                   <p>{user.username}</p>
-                  <p>Profile</p>
-                  <p>Investing</p>
+                  <p onClick={() => alert('Profile page')}>Profile</p>
+                  <p onClick={() => navigate('/portfolios/current')}>Portfolios</p>
+                  <p onClick={() => navigate('/transfer')}>Transfer</p>
                   <p onClick={logout}>Log Out</p>
                 </>
               )}
