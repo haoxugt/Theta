@@ -58,7 +58,7 @@ export const createPortfolioThunk = (portfolio) => async (dispatch) => {
 }
 
 export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatch) => {
-  console.log("44444444444444444444444444", portfolio)
+  // console.log("44444444444444444444444444", portfolio)
   const response = await fetch(`/api/portfolios/${portfolio.id}/makeorder`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },

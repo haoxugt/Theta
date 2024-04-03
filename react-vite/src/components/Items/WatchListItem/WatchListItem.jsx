@@ -13,8 +13,8 @@ function WatchListItem({stock}) {
                <SmallChart />
             </div>
             <div className='watchlist-price'>
-               <span>${stock.open_price.toFixed(2)}</span>
-               <span>{stock.open_price}%</span>
+               <span>${stock.current_price.toFixed(2)}</span>
+               <span>{((stock.current_price - stock.previous_close_price)/stock.previous_close_price * 100).toFixed(2)}%</span>
             </div>
         </div>
     )

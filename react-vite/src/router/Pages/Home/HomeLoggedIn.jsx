@@ -4,6 +4,7 @@ import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlus } from "react-icons/hi2";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
@@ -13,13 +14,15 @@ import OpenModalButton from "../../../components/Items/OpenModalButton";
 function HomeLoggedIn() {
   const dispatch = useDispatch();
   const watchlists = useSelector(state => state.watchlist);
-  const stockshold = useSelector(state => state.stockshold)
+  const stockshold = useSelector(state => state.stockshold);
+  const portfolioState = useSelector(state => state.portfolio);
   const watchlist_array = Object.values(watchlists?.Watchlists);
-  const stockshold_array = Object.values(stockshold?.Stockshold)
+  const stockshold_array = Object.values(stockshold?.Stockshold);
+  const portfolio_array = Object.values(portfolioState?.Portfolios);
 
 
-  let amount = 123456.78;
-  const open_amount = 123000;
+  let amount = portfolio_array.filter(el => el.is_retirement == false)[0].cash;
+  const open_amount = 61250;
   let change = amount - open_amount;
   change = change.toFixed(2);
   let change2 = -change;
@@ -33,6 +36,7 @@ function HomeLoggedIn() {
   useEffect(() => {
      dispatch(getCurrentWatchlistsThunk());
      dispatch(getAllStocksHoldThunk());
+     dispatch(getCurrentPortfoliosThunk());
      const chart = document.querySelector('.line-chart>canvas');
      const hoverval = document.getElementById('hoverval');
      chart.addEventListener('mouseout', () => {

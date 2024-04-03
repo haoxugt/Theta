@@ -39,7 +39,12 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         }
 
         if (!isBuy && shareNum > getHoldShares()) {
-          alert("You cannot sell stocks more than you hold")
+          alert("You cannot sell stocks more than you hold without margin")
+          return null;
+        }
+
+        if (isBuy && stock.current_price * shareNum > portfolios[portfolio].cash) {
+          alert("You cannot buy stocks more than your cash without margin")
           return null;
         }
 
@@ -147,7 +152,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
           Submit Order
         </button>
         <div className="buy-sell-info">
-          {console.log("print ===================>", portfolio, portfolios[portfolio])}
+          {/* {console.log("print ===================>", portfolio, portfolios[portfolio])} */}
           {isBuy ? <>${portfolios[portfolio]?.cash} buying power </>: <>{getHoldShares()} Shares available</>}
         </div>
         <label htmlFor="portfolio"></label>
