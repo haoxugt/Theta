@@ -6,17 +6,17 @@ import { useEffect } from "react";
 // import "./CreateWatchlist.css";
 
 function UpdateWatchlistModal() {
-  const { watchlistId } = useParams();
-  const watchlistState = useSelector(state => state.watchlist);
-  const watchlist = watchlistState?.watchlistShow;
-  const dispatch = useDispatch();
+    const { watchlistId } = useParams();
+    const watchlistState = useSelector(state => state.watchlist);
+    const watchlist = watchlistState?.watchlistShow;
+    const dispatch = useDispatch();
 
-  // const watchlist = { name: ''};
-  useEffect(()=> {
-      dispatch(getSingleWatchlistThunk(watchlistId))
-  }, [dispatch, watchlistId])
+    // const watchlist = { name: ''};
+    useEffect(() => {
+        dispatch(getSingleWatchlistThunk(watchlistId))
+    }, [dispatch, watchlistId])
 
-  return <WatchlistFormModal watchlist={watchlist} formType="Update List" />
+    return <WatchlistFormModal watchlist={watchlist} formType="Update List" />
 }
 
 export default UpdateWatchlistModal;

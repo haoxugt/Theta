@@ -1,6 +1,13 @@
 const GET_SINGLE_STOCK_INFO = 'stockinfo/getSingleStock';
+const GET_ALL_STOCK_INFO = 'stockinfo/getAllStock';
 
 // action
+const getAllStockAction = (stocks) => {
+  return {
+    type: GET_ALL_STOCK_INFO,
+    payload: stocks
+  }
+}
 const getSingleStockAction = (stock) => {
   return {
     type: GET_SINGLE_STOCK_INFO,
@@ -9,6 +16,15 @@ const getSingleStockAction = (stock) => {
 }
 
 // Thunk Creators
+export const getAllStockThunk = () => async (dispatch) => {
+  const response = await fetch(`/api/stockinfo`);
+  const data = await response.json();
+//   console.log("data======>", data)
+
+  dispatch(getAllStockAction(data.stocks));
+  return data
+}
+
 
 export const getSingleStockThunk = (stockCode) => async (dispatch) => {
   const response = await fetch(`/api/stockinfo/${stockCode}`);
@@ -20,12 +36,17 @@ export const getSingleStockThunk = (stockCode) => async (dispatch) => {
 }
 
 // state update
-const initialState = { stock: {} };
+const initialState = { Stocklists: {}, stock: {} };
 
 const stockinfoReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ALL_STOCK_INFO: {
+      const newObj = {};
+      action.payload.forEach(el => newObj[el.code] = { ...el });
+      return { ...state, Stocklists: { ...newObj } };
+    }
     case GET_SINGLE_STOCK_INFO: {
-      return { ... {stock: {...action.payload}}};
+      return { ...state, ... {stock: {...action.payload}}};
     }
     default:
       return state;

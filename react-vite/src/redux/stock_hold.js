@@ -123,7 +123,7 @@ const stocksholdReducer = (state = initialState, action) => {
     case GET_RETIREMENT_STOCKS_HOLD: {
       const newObj = {};
       action.payload.forEach(el => newObj[el.id] = { ...el });
-      return { ...state, Stockshold: { ...newObj } };
+      return { Stockshold: { ...newObj } };
     }
     case BUY_STOCKS_HOLD: {
       return { ...state, Stockshold: {...state.Stockshold, ...{[action.payload.id]: action.payload}} };

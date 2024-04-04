@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import SmallChart from '../../Chart/SmallChart/SmallChart';
-import { getSingleStockThunk } from '../../../redux/stockinfo';
+import { getAllStockThunk } from '../../../redux/stockinfo';
 import './StockHoldItem.css'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,10 +9,12 @@ function StockHoldItem({ stock }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const stockinfoState = useSelector(state => state.stockinfo);
-    const stockinfo = stockinfoState?.stock;
+    // const stockinfo = stockinfoState?.stock;
+    const stocklist = stockinfoState?.Stocklists;
+    const stockinfo = stocklist[stock.stock_info_code];
 
     useEffect(()=>{
-        dispatch(getSingleStockThunk(stock.stock_info_code))
+        dispatch(getAllStockThunk());
     }, [dispatch, stock.stock_info_code])
 
 

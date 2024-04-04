@@ -20,9 +20,10 @@ function HasRetirementPage() {
   const stockshold_array = Object.values(stockshold?.Stockshold);
   const portfolio_array = Object.values(portfolioState?.Portfolios);
 
-
+  let current_portfolio = portfolio_array?.filter(el => el.is_retirement == true)[0];
   let amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_assets;
   const open_amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_transfers;
+  const portfolio_id = portfolio_array?.filter(el => el.is_retirement == true)[0]?.id;
   let change = amount - open_amount;
   change = change.toFixed(2);
   let change2 = -change;
@@ -45,15 +46,17 @@ function HasRetirementPage() {
 
   }, [dispatch, amount])
 
-
+  const figureUpdate = () => {
+    alert("The portfolio chart will be updated")
+  }
 
   return (
     <div className="homepage-container">
       <div className="homepage-left-col">
         <div className="portfolio-info-container">
-          <h1>
+          {/* <h1>
             {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
-          </h1>
+          </h1> */}
           <h1 id="hoverval">
             {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
           </h1>
@@ -74,6 +77,18 @@ function HasRetirementPage() {
           <LineChart />
 
         </div>
+        <div className="time-scale-container" onClick={figureUpdate}>
+            <span>1D</span>
+            <span className="week-scale">1W</span>
+            <span>1M</span>
+            <span>1Y</span>
+            <span>All</span>
+        </div>
+
+        <div className="cash-container">
+            <span>Buying power</span>
+            <span>${current_portfolio.cash}</span>
+        </div>
         {/* <div className='chart-test'>
           <CandlestickChart />
 
@@ -82,7 +97,7 @@ function HasRetirementPage() {
       </div>
       <div className="homepage-right-col">
         <div className="lists-container">
-            <StockHoldList stockholdlist={stockshold_array} />
+            <StockHoldList stockholdlist={stockshold_array.filter(el => el.portfolio_id == portfolio_id)} />
             <div className="watchlist-header">
                 Lists
                 <OpenModalButton

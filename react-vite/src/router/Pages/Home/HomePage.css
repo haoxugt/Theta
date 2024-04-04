@@ -76,3 +76,27 @@
   cursor: pointer;
   background-color: var(--light-grey-color);
 }
+
+.time-scale-container {
+   display: grid;
+   grid-template-columns: 25px 25px 25px 25px 25px;
+   column-gap: 5px;
+   /* justify-content: start; */
+   margin-top: 10px;
+   margin-bottom: 10px;
+
+}
+
+.week-scale {
+    color: var(--blue-color);
+}
+
+.cash-container{
+    display: flex;
+    justify-content: space-between;
+    /* height: 40px; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid var(--grey-border);
+    border-bottom: 1px solid var(--grey-border);
+}

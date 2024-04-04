@@ -68,8 +68,8 @@ function ProfileButton() {
                 <>
                   <p>{user.username}</p>
                   <p onClick={() => alert('Profile page')}>Profile</p>
-                  <p onClick={() => navigate('/portfolios/current')}>Portfolios</p>
-                  <p onClick={() => navigate('/transfer')}>Transfer</p>
+                  <p onClick={() => {navigate('/portfolios/current');closeMenu()}}>Portfolios</p>
+                  <p onClick={() => {navigate('/transfer'); closeMenu()}}>Transfer</p>
                   <p onClick={logout}>Log Out</p>
                 </>
               )}

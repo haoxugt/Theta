@@ -1,3 +1,21 @@
 .errors {
   color: var(--light-red-color)
 }
+
+
+.buy-sell-info{
+    align-self: center;
+}
+
+.portfolio-select-item{
+    height: 35px;
+    /* align-self: center; */
+    text-align:center;
+    color:white;
+    background-color: var(--light-grey-color);
+}
+
+.portfolio-select-item:hover {
+    cursor: pointer;
+    color: var(--blue-color);
+}
