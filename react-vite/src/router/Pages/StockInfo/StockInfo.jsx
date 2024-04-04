@@ -7,19 +7,22 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { HiMinusSm } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
-import LineChart from "../../../components/Chart/LineChart";
+// import LineChart from "../../../components/Chart/LineChart";
 import OrderForm from "../../../components/Forms/OrderForm/OrderForm";
 import OpenModalButton from "../../../components/Items/OpenModalButton";
 import AddStockToWatchlistModal from "../../../components/Items/AddStockToWatchlistModal/AddStockToWatchlistModal";
 import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
-
+// import LineChartTest from "../../../components/Chart/LineChartTest";
+import LineChartTest2 from "../../../components/Chart/LineChartTest2";
 
 
 import './StockInfo.css'
+// import { stockTestData } from "../../../components/Chart/data";
 
 function StockInfo(){
     const { stockCode } = useParams();
     const [isBuy, setIsBuy] = useState(true);
+    // const [datalist, setDatalist] = useState([])
     const stockinfo = useSelector(state => state.stockinfo);
     const watchlistState = useSelector(state => state.watchlist);
     const portfolioState = useSelector(state => state.portfolio);
@@ -30,11 +33,16 @@ function StockInfo(){
     const stockhold = stockholdState?.Stockshold
     // const watchlist_array = Object.values(watchlistState?.Watchlists);
     const dispatch = useDispatch()
+    // let datalist = []
 
     let c = stock.current_price;
     const pc = stock.previous_close_price;
     let change = c - pc;
     change = change.toFixed(2);
+
+    // let datalist2=[];
+    // datalist2=stockTestData
+
 
 
 
@@ -55,6 +63,14 @@ function StockInfo(){
         dispatch(getCurrentPortfoliosThunk());
         dispatch(getCurrentOrdersThunk());
         dispatch(getAllStocksHoldThunk());
+        // dispatch(getSingleStockRealtimeDataThunk(stockCode))
+        // .then((data) => {
+        //     // console.log("333333333333333333333333", data)
+        //     // datalist = data.stockdata
+        //     setDatalist(data.stockdata)
+        //     // console.log("4444444444444444444444444", datalist)
+        // });
+        // data=stockTestData
 
     }, [dispatch, stockCode])
 
@@ -68,11 +84,12 @@ function StockInfo(){
       }
 
    },[c])
+//    console.log("222222222222222222222222222222222", datalist)
 
-   if (!stock) return null;
-    else {
-      if (stock.code != stockCode.toUpperCase()) return null;
-    }
+//    if (!stock) return null;
+//     else {
+//       if (stock.code != stockCode.toUpperCase()) return null;
+//     }
 
     return (
       <div className="stockinfopage-container">
@@ -91,9 +108,19 @@ function StockInfo(){
             </span> Today
 
           </div>
-          <div className="portfolio-chart-container">
-            <LineChart />
-
+          {/* <div className="portfolio-chart-container">
+            <LineChart id={100}/>
+          </div> */}
+          {/* <div>
+            {datalist.length &&
+            <LineChartTest datalist={datalist} />
+            }
+          </div> */}
+        {/* <div className="portfolio-chart-container">
+            <LineChartTest datalist={datalist} />
+          </div> */}
+            <div className="portfolio-chart-container">
+            <LineChartTest2 stockCode={stockCode}/>
           </div>
 
 

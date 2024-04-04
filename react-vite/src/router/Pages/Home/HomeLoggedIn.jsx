@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlus } from "react-icons/hi2";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
 import OpenModalButton from "../../../components/Items/OpenModalButton";
+
+// import LineChartTest from "../../../components/Chart/LineChartTest";
 // import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
 
 function HomeLoggedIn() {
@@ -48,6 +50,8 @@ function HomeLoggedIn() {
   const figureUpdate = () => {
     alert("The portfolio chart will be updated")
   }
+
+//   const datalist = [[1, 10, 20], [2,20,30]]
 
 
   return (
@@ -92,6 +96,9 @@ function HomeLoggedIn() {
         {/* <div className='chart-test'>
           <CandlestickChart />
 
+        </div> */}
+        {/* <div>
+        <LineChartTest datalist={datalist}/>
         </div> */}
 
       </div>

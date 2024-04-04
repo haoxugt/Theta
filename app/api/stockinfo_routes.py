@@ -18,3 +18,16 @@ def getStockInfo(stockCode):
 def getAllStockInfo():
     stocks = StockInfo.query.all();
     return {'stocks': [stock.to_dict() for stock in stocks]}
+
+@stockinfo_routes.route('/<stockCode>/data')
+@login_required
+def getStockDataInfo(stockCode):
+    stock = yf.Ticker(stockCode)
+    todays_data = stock.history(period='1d', interval='5m')
+    date = []
+    price = []
+    for i in range(len(todays_data.index)):
+        date.append(todays_data.index[i])
+        price.append(todays_data['Close'][i])
+
+    return {'stockdata': [date, price]}

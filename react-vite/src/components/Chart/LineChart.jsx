@@ -130,6 +130,21 @@ function LineChart() {
         pointHoverBorderColor: '#000000',
         pointHoverBorderWidth: 4,
         pointHoverRadius: 6,
+      },
+      {
+        // label: 'NET',
+        type: "line",
+        data: [{ x: "2023-01-03", y: 56 } ,{ x: "2024-03-01", y: 56 }],
+        backgroundColor: "black",
+        borderColor: "white",
+        borderDash: [10,5],
+        borderWidth: 1,
+        pointBorderColor: 'rgba(0, 0, 0, 0)',
+        pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+        pointHoverBackgroundColor: 'rgb(10,186,181)',
+        pointHoverBorderColor: '#000000',
+        pointHoverBorderWidth: 4,
+        pointHoverRadius: 1,
       }
     ]
   };
@@ -149,7 +164,7 @@ function LineChart() {
   return (
     <div className='line-chart'>
        {/* =========== test ====================  */}
-      <Line data={data} options={options} plugins={plugins}/>
+      <Line id={20000} data={data}  options={options} plugins={plugins}/>
     </div>
   )
 }

@@ -13,7 +13,7 @@ def seed_stocks_hold():
         stock_info_code='ENPH',
         portfolio_id=3,
         avg_price=119.2,
-        shares=4000
+        shares=3000
     )
 
     db.session.add(stock1)

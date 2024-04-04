@@ -86,6 +86,8 @@ def transferPortfolio(id):
         return {"errors": {"message": "You don't have enough money to transfer out" }}, 400
 
     portfolio.cash += float(transfer['change'])
+    portfolio.total_transfers += float(transfer['change'])
+    portfolio.total_assets += float(transfer['change'])
     db.session.commit()
 
     return portfolio.to_dict()

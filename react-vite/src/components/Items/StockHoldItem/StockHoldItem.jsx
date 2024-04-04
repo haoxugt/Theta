@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import SmallChart from '../../Chart/SmallChart/SmallChart';
+// import SmallChart from '../../Chart/SmallChart/SmallChart';
+import SmallChartTest from '../../Chart/SmallChart/SmallChartTest';
 import { getAllStockThunk } from '../../../redux/stockinfo';
 import './StockHoldItem.css'
 import { useEffect } from 'react';
@@ -13,10 +14,18 @@ function StockHoldItem({ stock }) {
     const stocklist = stockinfoState?.Stocklists;
     const stockinfo = stocklist[stock.stock_info_code];
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getAllStockThunk());
     }, [dispatch, stock.stock_info_code])
 
+    const colorCheck = () => {
+        if (stockinfo) {
+         return stockinfo?.current_price - stockinfo?.previous_close_price >= 0 ?
+                'rgb(10,186,181)' : 'rgb(255, 80, 0)';
+        } else {
+            return 'rgb(10,186,181)';
+        }
+    }
 
     return (
         <div className="stockhold-row"
@@ -30,16 +39,16 @@ function StockHoldItem({ stock }) {
                 </span>
             </div>
             <div className='stockhold-chart'>
-                <SmallChart />
+                <SmallChartTest stockCode={stock.stock_info_code} color={colorCheck()} />
             </div>
             <div className='stockhold-price'>
                 {stockinfo ?
-                <>
-               <span>${stockinfo?.current_price?.toFixed(2)}</span>
-               <span>{((stockinfo?.current_price - stockinfo?.previous_close_price)/stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
-                </> :
-                <></>
-            }
+                    <>
+                        <span>${stockinfo?.current_price?.toFixed(2)}</span>
+                        <span style={{ color: colorCheck() }}>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
+                    </> :
+                    <></>
+                }
             </div>
         </div>
     )

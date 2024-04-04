@@ -45,8 +45,8 @@ function PortfolioItem({ portfolio }) {
            <span>Quantity</span>
            <span>Price</span>
            <span>Unit Cost</span>
-           <span>Day&apos;`s $ Chg</span>
-           <span>Day&apos;`s % Chg</span>
+           <span>Day&apos;s $ Chg</span>
+           <span>Day&apos;s % Chg</span>
         </div>
         <div className="portfolio-details-stockhold">
            {stocks.filter(el => el.portfolio_id == portfolio.id).map(el => {

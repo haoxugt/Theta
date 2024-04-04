@@ -22,7 +22,7 @@ def seed_stocks_info():
 
     QQQ = StockInfo(
         code='QQQ',
-        name='Invesco QQQ Trust, Series 1',
+        name='Invesco QQQ Trust',
         quote_type='ETF',
         long_name='Invesco QQQ Trust',
         high_52wk = 449.34,
@@ -153,7 +153,7 @@ def seed_stocks_info():
 
     DIS = StockInfo(
         code='DIS',
-        name='Walt Disney Company (The)',
+        name='Walt Disney Company',
         quote_type='EQUITY',
         long_name='The Walt Disney Company',
         city='Burbank',
