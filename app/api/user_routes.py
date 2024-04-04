@@ -52,6 +52,17 @@ def getCurrentUserPortfolios():
     portfolios = Portfolio.query.filter(Portfolio.user_id == user_id).all()
     return {"portfolios": [portfolio.to_dict() for portfolio in portfolios]}
 
+# get all thecurrent user's stocks under investing portfolio
+@user_routes.route("/current/portfolios/stockshold", methods=["GET"])
+@login_required
+def getCurrentUserStocksholdPortfolio():
+    user_id = current_user.id
+    portfolio1 = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == False).first()
+    stocks1 = [stock.to_dict() for stock in portfolio1.stockhold_in_portfolio]
+    portfolio2 = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == True).first()
+    stocks2 = [stock.to_dict() for stock in portfolio2.stockhold_in_portfolio]
+    stocks = stocks1 + stocks2
+    return {"Stockshold": stocks}
 
 # get all the investing portfolio belongs to current user
 @user_routes.route("/current/portfolios/investing", methods=["GET"])
@@ -105,4 +116,4 @@ def createWatchlist():
 
     else:
 
-        return form.errors
+        return form.errors, 400

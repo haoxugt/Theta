@@ -1,6 +1,8 @@
 const GET_CURRENT_PORTFOLIOS = 'portfolio/getCurrentPortfolios';
 const CREATE_PORTFOLIO = 'portfolio/createPortfolio';
 const BUY_SELL_STOCK_IN_PORTFOLIO = 'portfolio/buySellStockInPortfolio';
+const DELETE_PORTFOLIO = 'portfolio/deletePortfolio';
+const TRANSFER_IN_PORTFOLIO = 'portfolio/transferInPortfolio'
 
 // action
 const getCurrentPortfoliosAction = (portfolios) => {
@@ -21,6 +23,20 @@ const buySellStockInPortfolioAction = (portfolio) => {
   return {
     type: BUY_SELL_STOCK_IN_PORTFOLIO,
     payload: portfolio
+  }
+}
+
+const transferInPortfolioAction = (portfolio) => {
+  return {
+    type: TRANSFER_IN_PORTFOLIO,
+    payload: portfolio
+  }
+}
+
+const deletePortfolioAction = (portfolioId) => {
+  return {
+    type: DELETE_PORTFOLIO,
+    payload: portfolioId
   }
 }
 
@@ -57,6 +73,23 @@ export const createPortfolioThunk = (portfolio) => async (dispatch) => {
 
 }
 
+export const deletePortfolioThunk = (portfolioId) => async (dispatch) => {
+  // const { title, is_retirement } = portfolio;
+
+  const response = await fetch(`/api/portfolios/${portfolioId}`, {
+    method: "DELETE"
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deletePortfolioAction(portfolioId));
+    return data;
+  } else {
+    throw response;
+  }
+
+}
+
 export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatch) => {
   // console.log("44444444444444444444444444", portfolio)
   const response = await fetch(`/api/portfolios/${portfolio.id}/makeorder`, {
@@ -69,6 +102,24 @@ export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatc
     const data = await response.json();
     // console.log("data =================>", data)
     dispatch(buySellStockInPortfolioAction(data));
+    return data;
+  } else {
+    throw response;
+  }
+}
+
+export const transferInPortfolioThunk = (portfolio, transfer) => async (dispatch) => {
+  // console.log("44444444444444444444444444", portfolio)
+  const response = await fetch(`/api/portfolios/${portfolio.id}/transfer`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ transfer })
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    // console.log("data =================>", data)
+    dispatch(transferInPortfolioAction(data));
     return data;
   } else {
     throw response;
@@ -90,6 +141,15 @@ const portfolioReducer = (state = initialState, action) => {
     }
     case BUY_SELL_STOCK_IN_PORTFOLIO: {
       return { ...state, Portfolios: {...state.Portfolios, ...{[action.payload.id]: action.payload}}}
+    }
+    case TRANSFER_IN_PORTFOLIO: {
+      return { ...state, Portfolios: {...state.Portfolios, ...{[action.payload.id]: action.payload}}}
+    }
+    case DELETE_PORTFOLIO: {
+      const newState = { ...state };
+      delete newState.Portfolios[action.payload];
+      return newState
+      // return { ...state, Portfolios: {...state.Portfolios, ...{[action.payload.id]: action.payload}}}
     }
     // case GET_SINGLE_WATCHLIST: {
     //   return { ...state, watchlistShow: {...action.payload }}

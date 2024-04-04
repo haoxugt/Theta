@@ -70,7 +70,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
           return
         })
         .catch((res) => {
-          console.log("res errors =======>", res)
+          // console.log("res errors =======>", res)
           if (res.errors) {
             setErrors(res.errors);
             alert("Errors happens")
@@ -87,11 +87,11 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
     }
 
     const getHoldShares = () => {
-      console.log("66666666666666666666666666666666",stockhold,stock.code, portfolio)
+      // console.log("66666666666666666666666666666666",stockhold,stock.code, portfolio)
       let target_stock = Object.values(stockhold).filter(el => {
         return el.stock_info_code == stock.code && el.portfolio_id == portfolio;
       })
-      console.log("77777777777777777777777", target_stock)
+      // console.log("77777777777777777777777", target_stock)
       if (target_stock.length) return target_stock[0].shares;
       else return 0;
     }

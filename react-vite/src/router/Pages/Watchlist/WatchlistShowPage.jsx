@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getSingleWatchlistThunk, getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { HiOutlinePlus } from "react-icons/hi2";
@@ -10,6 +10,9 @@ import OpenModalButton from "../../../components/Items/OpenModalButton";
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
 import WatchlistItemInShowPage from "./WatchlistItemInShowPage";
+import OpenModalMenuItem from "../../../components/Navigation/OpenModalMenuItem";
+import UpdateWatchlistModal from "../../../components/Items/UpdateWatchlistModal/UpdateWatchlistModal";
+import DeleteWatchlistModal from "../../../components/Items/DeleteWatchlistModal/DeleteWatchlistModal";
 import { useDispatch, useSelector } from "react-redux";
 
 import './WatchlistShowPage.css'
@@ -21,13 +24,40 @@ function WatchlistShowPage(){
     const stockshold = useSelector(state => state.stockshold)
     const watchlist_array = Object.values(watchlistState?.Watchlists);
     const stockshold_array = Object.values(stockshold?.Stockshold)
-    const dispatch = useDispatch()
 
+    const [showMenu, setShowMenu] = useState(false);
+    const dispatch = useDispatch()
+    // const navigate = useNavigate()
+    // const ulRef = useRef
+    const toggleMenu = (e) => {
+      e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+      document.body.click()
+
+      setShowMenu(!showMenu);
+
+  }
     useEffect(() => {
         dispatch(getCurrentWatchlistsThunk());
         dispatch(getAllStocksHoldThunk());
         dispatch(getSingleWatchlistThunk(watchlistId));
     }, [dispatch, watchlistId])
+
+    useEffect(() => {
+      if (!showMenu) return;
+
+      // const closeMenu = (e) => {
+      //     // console.log("22222222222222222222", ulRef.current, e.target)
+      //     if (ulRef.current && !ulRef.current.contains(e.target)) {
+      //         setShowMenu(false);
+      //     }
+      // };
+
+      document.addEventListener("click", closeMenu);
+
+      return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+    const closeMenu = () => setShowMenu(false);
 
     if (!watchlist) return null;
     // else {
@@ -46,7 +76,25 @@ function WatchlistShowPage(){
               <span>{watchlist.name}</span>
               <span>{watchlist.stocks?.length} items</span>
             </div>
-            <IoEllipsisHorizontal />
+            <div className="edit-wahtchlist-btn" onClick={toggleMenu}>
+              <IoEllipsisHorizontal />
+            </div>
+
+            {showMenu && (
+            <div className="edit-wahtchlist-menu">
+              <OpenModalMenuItem
+              itemText="Edit List"
+              onItemClick={closeMenu}
+              modalComponent={<UpdateWatchlistModal />}
+              />
+
+              <OpenModalMenuItem
+              itemText="Delete List"
+              onItemClick={closeMenu}
+              modalComponent={<DeleteWatchlistModal watchlist={watchlist}/>}
+              />
+
+            </div>)}
           </div>
           <div className='watchlist-list-container'>
               <div className="watchlist-list-row-title">

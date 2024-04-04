@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
 import { FaLightbulb } from "react-icons/fa6";
 import { useModal } from "../../../context/Modal";
-import { createWatchlistThunk } from "../../../redux/watchlist";
+import { createWatchlistThunk, updateWatchlistThunk } from "../../../redux/watchlist";
 
 function WatchlistFormModal({ watchlist, formType }) {
   const [name, setName] = useState(watchlist?.name);
@@ -20,7 +20,9 @@ function WatchlistFormModal({ watchlist, formType }) {
       name
     }
 
-    if (formType === 'Edit List') {
+    if (formType === 'Update List') {
+      dispatch(updateWatchlistThunk(watchlist))
+      .then(() => closeModal())
       return
     } else if (formType === 'Create List') {
 

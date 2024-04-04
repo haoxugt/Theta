@@ -1,0 +1,25 @@
+.portfolio-info_container {
+  padding: 10px;
+  border: 1px solid var(--grey-border);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-header {
+  display: grid;
+  grid-template-columns: 100px 100px 150px 150px;
+}
+
+.closeaccount-btn {
+  background-color: var(--bg-grey-color);
+  color: black;
+  border-radius: 3px;
+}
+
+.portfolio-details-header,
+.portfolio-details-stockhold {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 5px;
+}

@@ -1,5 +1,6 @@
 const GET_CURRENT_WATCHLISTS = 'watchlist/getCurrentWatchlists';
 const CREATE_WATCHLIST = 'watchlist/createWatchlist';
+const DELETE_WATCHLIST = 'watchlist/deleteWatchlist';
 const GET_SINGLE_WATCHLIST = 'watchlist/getSingleWatchlist';
 const REMOVE_STOCK_IN_WATCHLIST = 'watchlist/removeStockInWatchlist'
 const ADD_STOCK_TO_WATCHLIST = 'watchlist/addStockToWatchlist'
@@ -16,6 +17,13 @@ const createWatchlistAction = (watchlist) => {
   return {
     type: CREATE_WATCHLIST,
     payload: watchlist
+  }
+}
+
+const deleteWatchlistAction = (watchlistId) => {
+  return {
+    type: DELETE_WATCHLIST,
+    payload: watchlistId
   }
 }
 
@@ -78,8 +86,41 @@ export const createWatchlistThunk = (watchlist) => async (dispatch) => {
 
 }
 
+export const deleteWatchlistThunk = (watchlistId) => async (dispatch) => {
+
+  const response = await fetch(`/api/watchlists/${watchlistId}`, {
+    method: "DELETE"
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteWatchlistAction(watchlistId));
+    return data;
+  } else {
+    throw response;
+  }
+
+}
+
 export const getSingleWatchlistThunk = (watchlistId) => async (dispatch) => {
   const response = await fetch(`/api/watchlists/${watchlistId}`)
+
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(getSingleWatchlistAction(data))
+    return data
+  } else {
+    throw response;
+  }
+}
+
+export const updateWatchlistThunk = (watchlist) => async (dispatch) => {
+  const { name } = watchlist;
+  const response = await fetch(`/api/watchlists/${watchlist.id}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json"},
+    body: JSON.stringify({ name })
+  })
 
   if (response.ok) {
     const data = await response.json()
@@ -136,6 +177,12 @@ const watchlistReducer = (state = initialState, action) => {
     }
     case CREATE_WATCHLIST: {
       return { ...state, Watchlists: {...state.Watchlists, ...{[action.payload.id]: action.payload}}}
+    }
+    case DELETE_WATCHLIST: {
+      const newState = { ...state };
+      delete newState.Watchlists[action.payload];
+      return newState
+      // return { ...state, Portfolios: {...state.Portfolios, ...{[action.payload.id]: action.payload}}}
     }
     case GET_SINGLE_WATCHLIST: {
       return { ...state, watchlistShow: {...action.payload }}

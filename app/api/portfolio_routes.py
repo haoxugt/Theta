@@ -40,9 +40,9 @@ def buysellStockInPortfolio(id):
         return {"errors": {"message": "Unauthorized" }}, 403
 
     if order['is_buy']:
-        portfolio.cash -= order['transaction_price'] * order['shares']
+        portfolio.cash -= float(order['transaction_price']) * float(order['shares'])
     else:
-        portfolio.cash += order['transaction_price'] * order['shares']
+        portfolio.cash += float(order['transaction_price']) * float(order['shares'])
 
     db.session.commit()
 
@@ -67,3 +67,25 @@ def deletePortfolio(id):
     db.session.commit()
 
     return {"message": "Successfully delete the portfolio"}
+
+
+@portfolio_routes.route('/<int:id>/transfer', methods=["POST"])
+@login_required
+def transferPortfolio(id):
+    transfer = request.get_json()['transfer']
+    user_id = current_user.id
+    portfolio = Portfolio.query.get(id)
+
+    if not portfolio:
+        return {"errors": {"message": "This portfolio counld not be found" }}, 404
+
+    if user_id != portfolio.user_id:
+        return {"errors": {"message": "Unauthorized" }}, 403
+
+    if float(transfer['change']) + portfolio.cash < 0:
+        return {"errors": {"message": "You don't have enough money to transfer out" }}, 400
+
+    portfolio.cash += float(transfer['change'])
+    db.session.commit()
+
+    return portfolio.to_dict()
