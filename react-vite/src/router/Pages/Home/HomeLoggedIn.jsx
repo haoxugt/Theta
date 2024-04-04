@@ -87,7 +87,7 @@ function HomeLoggedIn() {
 
         <div className="cash-container">
             <span>Buying power</span>
-            <span>${current_portfolio.cash}</span>
+            <span>${current_portfolio?.cash}</span>
         </div>
         {/* <div className='chart-test'>
           <CandlestickChart />
