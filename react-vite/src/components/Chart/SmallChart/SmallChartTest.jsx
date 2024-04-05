@@ -60,6 +60,8 @@ function SmallChartTest({ stockCode, color }) {
         const fetchData = async () => {
             const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
 
+            const previousClosePrice = res.info['previous_close_price'];
+
             setPlotdata({
                 labels: res.stockdata[0],
                 datasets: [
@@ -73,10 +75,21 @@ function SmallChartTest({ stockCode, color }) {
                     pointBorderColor: 'rgba(0, 0, 0, 0)',
                     pointBackgroundColor: 'rgba(0, 0, 0, 0)',
                   },
+                  {
+                    // label: stockCode,
+                    type: "line",
+                    data: res.stockdata[1].map(() => previousClosePrice),
+                    backgroundColor: "white",
+                    borderColor: "white",
+                    borderDash: [2,2],
+                    borderWidth: 1,
+                    pointBorderColor: 'rgba(0, 0, 0, 0)',
+                    pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+                  },
                 ]
             });
 
-            setYdataset(res.stockdata[1]);
+            setYdataset([...res.stockdata[1], previousClosePrice]);
         }
         fetchData();
       }, [dispatch, stockCode, color])

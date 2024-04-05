@@ -55,6 +55,13 @@ def getStockDataInfo(stockCode):
     # now = datetime.now()
     # local_now = now.astimezone()
     # local_tz = local_now.tzinfo
+    target_stock = StockInfo.query.get(stockCode.upper())
+    if target_stock:
+        current_price = stock.info.get('currentPrice', stock.history(period='2d', interval='1d')['Close'].iloc[-1])
+        previous_close_price = stock.info['previousClose']
+        target_stock.current_price = current_price
+
+        db.session.commit()
 
     date = []
     price = []
@@ -63,4 +70,4 @@ def getStockDataInfo(stockCode):
         # date.append(str(todays_data.index[i].tz_convert(local_tz)))
         price.append(todays_data['Close'][i])
 
-    return {'stockdata': [date, price], }
+    return {"stockdata": [date, price], "info": {"current_price": current_price, "previous_close_price": previous_close_price}}

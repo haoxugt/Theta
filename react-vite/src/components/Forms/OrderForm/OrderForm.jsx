@@ -121,7 +121,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 {/* {errors.shareNum && <span className="errors">{errors.shareNum}</span>} */}
                 <label className="market-price">
                     <span>Market Price</span>
-                    <span className="market-price-item"> ${stock.current_price}</span>
+                    <span className="market-price-item"> ${stock.current_price.toFixed(2)}</span>
                 </label>
                 <div className="estimate-total-price">
                     <span>Estimated Cost</span>
@@ -140,7 +140,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 {/* {errors.shareNum && <span className="errors">{errors.shareNum}</span>} */}
                 <label className="market-price">
                     <span>Market Price</span>
-                    <span className="market-price-item">${stock.current_price}</span>
+                    <span className="market-price-item">${stock.current_price.toFixed(2)}</span>
                 </label>
                 <div className="estimate-total-price">
                     <span>Estimated Credit</span>

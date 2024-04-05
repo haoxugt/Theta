@@ -134,7 +134,7 @@ function LineChart() {
       {
         // label: 'NET',
         type: "line",
-        data: [{ x: "2023-01-03", y: 56 } ,{ x: "2024-03-01", y: 56 }],
+        data: stockTestData.map((el) => {return {x: el.x, y: 56}}),
         backgroundColor: "black",
         borderColor: "white",
         borderDash: [10,5],
