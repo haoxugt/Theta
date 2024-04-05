@@ -45,7 +45,7 @@ function LineChartTest2({stockCode}) {
       {
         label: 'NET',
         type: "line",
-        data: [0,1],
+        data: [0,0],
         backgroundColor: "black",
         borderColor: "rgb(10,186,181)",
         borderWidth: 3,

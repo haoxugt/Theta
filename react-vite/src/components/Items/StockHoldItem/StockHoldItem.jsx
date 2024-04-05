@@ -23,7 +23,7 @@ function StockHoldItem({ stock }) {
          return stockinfo?.current_price - stockinfo?.previous_close_price >= 0 ?
                 'rgb(10,186,181)' : 'rgb(255, 80, 0)';
         } else {
-            return 'rgb(10,186,181)';
+            return 'rgb(255, 255, 255)';
         }
     }
 

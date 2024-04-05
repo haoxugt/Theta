@@ -7,6 +7,7 @@ import WatchlistShowPage from './Pages/Watchlist/WatchlistShowPage';
 import RetirementPage from './Pages/RetirementPage/RetirementPage';
 import PortfoliosPage from './Pages/PortfoliosPage/PortfoliosPage';
 import TransferPage from './Pages/TransferPage/TransferPage';
+import StocksPage from './Pages/StocksPage/StocksPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "/retirement",
         element: <RetirementPage />,
+      },
+      {
+        path: "/stocks",
+        element: <StocksPage />,
       },
       {
         path: "/portfolios/current",
