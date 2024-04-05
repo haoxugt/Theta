@@ -48,6 +48,7 @@
     color: white;
     height: 35px;
     border: 1px solid var(--grey-border);
+    /* width: 155px; */
 }
 
 span.share-box {
@@ -55,6 +56,9 @@ span.share-box {
     border: 1px solid var(--grey-border);
     padding: 10px 10px 10px 10px;
     color: white;
+    font-size: 14px;
+    font-weight: 500;
+    /* width: 155px; */
 
 }
 
@@ -65,6 +69,8 @@ span.share-box {
     background-color: var(--light-grey-color);
     border: 1px solid var(--grey-border);
     text-align: right;
+    width: 94%;
+    /* width: 155px; */
 }
 
 

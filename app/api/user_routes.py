@@ -62,7 +62,10 @@ def getCurrentUserStocksholdPortfolio():
     portfolio1 = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == False).first()
     stocks1 = [stock.to_dict() for stock in portfolio1.stockhold_in_portfolio]
     portfolio2 = Portfolio.query.filter(Portfolio.user_id == user_id).filter(Portfolio.is_retirement == True).first()
-    stocks2 = [stock.to_dict() for stock in portfolio2.stockhold_in_portfolio]
+
+    stocks2 = []
+    if portfolio2:
+        stocks2 = [stock.to_dict() for stock in portfolio2.stockhold_in_portfolio]
     stocks = stocks1 + stocks2
     return {"Stockshold": stocks}
 

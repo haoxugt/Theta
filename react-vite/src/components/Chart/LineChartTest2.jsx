@@ -30,7 +30,7 @@ import { getSingleStockRealtimeDataThunk } from '../../redux/stockinfo';
 // import { stockTestData } from './data';
 // import { useParams } from 'react-router-dom';
 
-function LineChartTest2({stockCode}) {
+function LineChartTest2({stockCode }) {
     // const { stockCode } = useParams();
   // const [plotData, setPlotData] = useState([]);
   // ============ row data format ======================================
@@ -39,8 +39,9 @@ function LineChartTest2({stockCode}) {
   //   { x: 15, y: 20 },
   //   { x: 20, y: 15 }
   // ]
+  const [pc, setPc] = useState(1);
   const [plotdata, setPlotdata] = useState({
-    labels: [0,1],
+    labels: [0,pc],
     datasets: [
       {
         label: 'NET',
@@ -91,6 +92,8 @@ function LineChartTest2({stockCode}) {
         }
 
         const previousClosePrice = res.info['previous_close_price'];
+        setPc(previousClosePrice);
+        const color = res.info['current_price'] - res.info['previous_close_price'] >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)';
 
         setPlotdata({
             labels: dataSet1,
@@ -100,14 +103,15 @@ function LineChartTest2({stockCode}) {
                 type: "line",
                 data: res.stockdata[1],
                 backgroundColor: "black",
-                borderColor: "rgb(10,186,181)",
+                // borderColor: 'rgb(10,186,181)',
+                borderColor: color,
                 borderWidth: 3,
                 pointBorderColor: 'rgba(0, 0, 0, 0)',
                 pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-                pointHoverBackgroundColor: 'rgb(10,186,181)',
+                pointHoverBackgroundColor: color,
                 pointHoverBorderColor: '#000000',
-                pointHoverBorderWidth: 4,
-                pointHoverRadius: 6,
+                pointHoverBorderWidth: 3,
+                pointHoverRadius: 5,
               },
               {
                 // label: 'NET',
@@ -121,7 +125,7 @@ function LineChartTest2({stockCode}) {
                 pointBackgroundColor: 'rgba(0, 0, 0, 0)',
                 pointHoverBackgroundColor: 'rgb(10,186,181)',
                 pointHoverBorderColor: '#000000',
-                pointHoverBorderWidth: 4,
+                pointHoverBorderWidth: 2,
                 pointHoverRadius: 1,
               }
             ]
@@ -179,7 +183,13 @@ function LineChartTest2({stockCode}) {
         callbacks: {
           afterFooter: function(chart) {
             const hoverval = document.getElementById("hoverval");
+            // const hoverval2 = document.getElementById("hoverval2");
             hoverval.innerText=`$${chart[0].parsed.y.toFixed(2)}`;
+            // const c = chart[0].parsed.y;
+            // const change = c - pc;
+        //     hoverval2.innerText = `${change >= 0 ? +change.toFixed(2) : change.toFixed(2)}` + " " +
+        //     `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
+        //     hoverval2.className= change>=0 ? " positive-num": " negative-num";
           }
         }
       },

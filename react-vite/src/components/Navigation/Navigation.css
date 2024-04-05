@@ -42,6 +42,7 @@ a.homepage-logo-sec:hover .logo-title{
 
 
 
+
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -56,7 +57,7 @@ a.homepage-logo-sec:hover .logo-title{
 
 .profile-btn {
     display: flex;
-    column-gap: 10px;
+    column-gap: 15px;
     align-items: center;
 }
 
@@ -90,7 +91,7 @@ a.homepage-logo-sec:hover .logo-title{
 .nav-links {
     background-color: black;
     color: white;
-    width: 70px;
+    width: auto;
     height: 44px;
     border: none;
     font-weight: 550;

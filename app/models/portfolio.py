@@ -19,9 +19,9 @@ class Portfolio(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     user_in_portfolio = db.relationship('User', back_populates='portfolio_in_user')
-    order_in_portfolio = db.relationship('Order', back_populates='portfolio_in_order')
+    order_in_portfolio = db.relationship('Order', back_populates='portfolio_in_order', cascade="all, delete")
     stockhold_in_portfolio = db.relationship('StockHold', back_populates='portfolio_in_stockhold')
-    transfer_in_portfolio = db.relationship('Transfer', back_populates='portfolio_in_transfer')
+    transfer_in_portfolio = db.relationship('Transfer', back_populates='portfolio_in_transfer', cascade="all, delete")
 
     @property
     def user(self):

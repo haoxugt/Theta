@@ -38,7 +38,8 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             return null;
         }
 
-        if (!isBuy && shareNum > getHoldShares()) {
+        if (!isBuy && shareNum > getHoldShares(portfolio)) {
+            // console.log("222222222222222222222", shareNum, getHoldShares(portfolio))
             alert("You cannot sell stocks more than you hold without margin")
             return null;
         }
@@ -54,7 +55,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             shares: shareNum,
             is_buy: isBuy,
             is_limit_order: isLimitOrder,
-            transaction_price: stock.current_price
+            transaction_price: stock.current_price.toFixed(2)
         }
 
         dispatch(createOrderThunk(order))
@@ -86,12 +87,12 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         alert("Feature coming soon")
     }
 
-    const getHoldShares = () => {
+    const getHoldShares = (portfolio) => {
         // console.log("66666666666666666666666666666666",stockhold,stock.code, portfolio)
         let target_stock = Object.values(stockhold).filter(el => {
             return el.stock_info_code == stock.code && el.portfolio_id == portfolio;
         })
-        // console.log("77777777777777777777777", target_stock)
+        console.log("77777777777777777777777", target_stock, Object.values(stockhold))
         if (target_stock.length) return target_stock[0].shares;
         else return 0;
     }
@@ -121,7 +122,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 {/* {errors.shareNum && <span className="errors">{errors.shareNum}</span>} */}
                 <label className="market-price">
                     <span>Market Price</span>
-                    <span className="market-price-item"> ${stock.current_price.toFixed(2)}</span>
+                    <span className="market-price-item"> ${stock.current_price?.toFixed(2)}</span>
                 </label>
                 <div className="estimate-total-price">
                     <span>Estimated Cost</span>
@@ -140,7 +141,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 {/* {errors.shareNum && <span className="errors">{errors.shareNum}</span>} */}
                 <label className="market-price">
                     <span>Market Price</span>
-                    <span className="market-price-item">${stock.current_price.toFixed(2)}</span>
+                    <span className="market-price-item">${stock.current_price?.toFixed(2)}</span>
                 </label>
                 <div className="estimate-total-price">
                     <span>Estimated Credit</span>
@@ -153,7 +154,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         </button>
         <div className="buy-sell-info">
             {/* {console.log("print ===================>", portfolio, portfolios[portfolio])} */}
-            {isBuy ? <>${portfolios[portfolio]?.cash} buying power </> : <>{getHoldShares()} Shares available</>}
+            {isBuy ? <>${portfolios[portfolio]?.cash.toFixed(2)} buying power available</> : <>{getHoldShares(portfolio)} Shares available</>}
         </div>
         <label htmlFor="portfolio"></label>
         <select

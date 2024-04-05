@@ -4,6 +4,7 @@ import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+import { getAllStockThunk } from "../../../redux/stockinfo";
 import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlus } from "react-icons/hi2";
@@ -18,12 +19,16 @@ function HomeLoggedIn() {
   const watchlists = useSelector(state => state.watchlist);
   const stockshold = useSelector(state => state.stockshold);
   const portfolioState = useSelector(state => state.portfolio);
+  const stockinfoState = useSelector(state => state.stockinfo);
   const watchlist_array = Object.values(watchlists?.Watchlists);
   const stockshold_array = Object.values(stockshold?.Stockshold);
   const portfolio_array = Object.values(portfolioState?.Portfolios);
+  const stockinfo_array = Object.values(stockinfoState?.Stocklists);
 
   let current_portfolio = portfolio_array?.filter(el => el.is_retirement == false)[0];
-  let amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_assets;
+  let amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.cash + stockshold_array?.reduce((acc, curr) => {
+    return acc +  stockinfo_array?.find( el => el.code == curr.stock_info_code)?.current_price * curr?.shares;
+  }, 0);
   const open_amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_transfers;
   let change = amount - open_amount;
   change = change.toFixed(2);
@@ -36,14 +41,18 @@ function HomeLoggedIn() {
 
 
   useEffect(() => {
-     dispatch(getCurrentWatchlistsThunk());
-     dispatch(getAllStocksHoldThunk());
-     dispatch(getCurrentPortfoliosThunk());
-     const chart = document.querySelector('.line-chart>canvas');
-     const hoverval = document.getElementById('hoverval');
-     chart.addEventListener('mouseout', () => {
-         hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
-     })
+    const fetchData = async() => {
+      dispatch(getCurrentWatchlistsThunk());
+      dispatch(getAllStocksHoldThunk());
+      dispatch(getCurrentPortfoliosThunk());
+      dispatch(getAllStockThunk())
+    }
+    fetchData();
+    const chart = document.querySelector('.line-chart>canvas');
+    const hoverval = document.getElementById('hoverval');
+    chart.addEventListener('mouseout', () => {
+      hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
+    })
 
   }, [dispatch, amount])
 

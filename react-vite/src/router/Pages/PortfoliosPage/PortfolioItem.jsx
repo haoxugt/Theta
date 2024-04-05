@@ -1,72 +1,86 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 // import { getAllThunk } from '../../../redux/stock_hold'
-import { getAllThunk } from '../../../redux/stock_hold'
+// import { getAllThunk } from '../../../redux/stock_hold'
 import { deletePortfolioThunk } from '../../../redux/portfolio'
 import './PortfolioItem.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-function PortfolioItem({ portfolio }) {
-  const stockholdState = useSelector(state => state.stockshold);
-  // console.log("============= stockholdState", stockholdState, portfolio)
-  const stocks = Object.values(stockholdState?.Stockshold);
-  // console.log("============= stocks", stocks)
-  const dispatch = useDispatch()
+function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
+    //   const stockholdState = useSelector(state => state.stockshold);
+    // console.log("============= stockholdState", stockholdState, portfolio)
+    //   const stocks = Object.values(stockholdState?.Stockshold);
+    // console.log("============= stocks", stocks)
+      const dispatch = useDispatch()
 
 
-  useEffect(()=> {
-    dispatch(getAllThunk())
-  }, [dispatch])
+    //   useEffect(()=> {
+    //     dispatch(getAllThunk())
+    //   }, [dispatch])
 
-  const closeAccount = async () => {
-    if (!portfolio.is_retirement) {
-      alert("You cannot close default investing account")
-    } else {
-      if (portfolio.total_assets > 0) {
-        alert("You need to cash out first")
-      } else {
-        await dispatch(deletePortfolioThunk(portfolio.id))
-      }
+    // console.log("00000000000000000000000000000", stockholdlist, stockinfolist)
+
+    const closeAccount = async () => {
+        if (!portfolio.is_retirement) {
+            alert("You cannot close default investing account")
+        } else {
+            if (portfolio.total_assets > 0) {
+                alert("You need to cash out first")
+            } else {
+                await dispatch(deletePortfolioThunk(portfolio.id));
+                alert("You successfully delete your retirement account.")
+            }
+        }
+
     }
 
-  }
 
-  return (
-    <div className="portfolio-info_container">
-      <div className="portfolio-header">
-        <span>Portfolio: </span>
-        <span>{portfolio.title}</span>
-        <span>total: ${portfolio.total_assets}</span>
-        <span className="closeaccount-btn" onClick={closeAccount}>Close this account</span>
-      </div>
-      <div className="portfolio-details-container">
-        <div className="portfolio-details-header">
-           <span>Symbol</span>
-           <span>Description</span>
-           <span>Quantity</span>
-           <span>Price</span>
-           <span>Unit Cost</span>
-           <span>Day&apos;s $ Chg</span>
-           <span>Day&apos;s % Chg</span>
-        </div>
-        <div className="portfolio-details-stockhold">
-           {stocks.filter(el => el.portfolio_id == portfolio.id).map(el => {
-            return (
-            <>
-            <span>{el.stock_info_code}</span>
-            <span></span>
-            <span>{el.shares}</span>
-            <span></span>
-            <span>${el.avg_price}</span>
-            <span></span>
-            <span></span>
-            </>
-            )
-           })}
-        </div>
+    return (
+        <div className="portfolio-info_container">
+            <div className="portfolio-header">
+                <span>Portfolio: {portfolio.title}</span>
 
-      </div>
-    </div>
-  )
+                <span>Total: ${portfolio.total_assets.toFixed(2)}</span>
+                <span>Cash : ${portfolio.cash.toFixed(2)}</span>
+                <span className="closeaccount-btn" onClick={closeAccount}>Close account</span>
+            </div>
+            <div className="portfolio-details-container">
+                <div className="portfolio-details-header">
+                    <span className='first-line-stockhold-row'>Symbol</span>
+                    <span className='second-line-stockhold-row'>Description</span>
+                    <span>Quantity</span>
+                    <span>Price</span>
+                    <span>Unit Cost</span>
+                    <span>Value</span>
+                    <span>Day&apos;s $ Chg</span>
+                    <span>Day&apos;s % Chg</span>
+                    <span>Total $ Chg</span>
+                    <span>Total % Chg</span>
+                </div>
+                <div className="portfolio-details-stockhold">
+                    {stockholdlist?.filter(el => el.portfolio_id == portfolio.id).map(el => {
+                        const stockinfo = stockinfolist?.find(ele => ele.code == el.stock_info_code)
+                        return (
+                            <div className='stockholdlist-row' key={el.code}>
+                                {stockinfo && <>
+                                    <span style={{ color: 'rgb(10,186,181)' }} className='first-line-stockhold-row'>{el.stock_info_code}</span>
+                                    <span className='second-line-stockhold-row'>{stockinfo?.name}</span>
+                                    <span className='third-line-stockhold-row'>{el.shares}</span>
+                                    <span>${stockinfo?.current_price}</span>
+                                    <span>${el.avg_price}</span>
+                                    <span>${(stockinfo?.current_price * el.shares).toFixed(2)} </span>
+                                    <span>{(stockinfo?.current_price - stockinfo?.previous_close_price).toFixed(2)} </span>
+                                    <span>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
+                                    <span>{((stockinfo?.current_price - el.avg_price) * el.shares).toFixed(2)}</span>
+                                    <span>{((stockinfo?.current_price - el.avg_price) / el.avg_price * 100).toFixed(2)}</span>
+                                </>}
+                            </div>
+                        )
+                    })}
+                </div>
+
+            </div>
+        </div>
+    )
 }
 
 export default PortfolioItem;

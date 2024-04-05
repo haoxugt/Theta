@@ -1,8 +1,9 @@
 .watchlist-list-item-row{
   display: grid;
   grid-template-columns:  2.5fr 1fr 1fr 1fr 1.2fr 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;;
 }
 
 .remove-stock-btn:hover{

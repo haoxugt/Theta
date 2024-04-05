@@ -8,6 +8,7 @@ import RetirementPage from './Pages/RetirementPage/RetirementPage';
 import PortfoliosPage from './Pages/PortfoliosPage/PortfoliosPage';
 import TransferPage from './Pages/TransferPage/TransferPage';
 import StocksPage from './Pages/StocksPage/StocksPage';
+import FAQPage from './Pages/FAQPage/FAQPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/transfer",
         element: <TransferPage />,
+      },
+      {
+        path: "/faq",
+        element: <FAQPage />,
       },
     ],
   },

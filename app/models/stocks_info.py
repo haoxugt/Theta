@@ -24,7 +24,7 @@ class StockInfo(db.Model):
     high_today = db.Column(db.Float, nullable=False)
     low_today = db.Column(db.Float, nullable=False)
     open_price = db.Column(db.Float, nullable=False)
-    current_price = db.Column(db.Float, nullable=False)
+    current_price = db.Column(db.Float(2), nullable=False)
     previous_close_price = db.Column(db.Float, nullable=False)
     volume = db.Column(db.Float, nullable=False)
 

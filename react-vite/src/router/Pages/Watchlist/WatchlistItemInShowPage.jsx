@@ -1,6 +1,8 @@
 import { MdClose } from "react-icons/md";
 import { removeStockInWatchlistThunk } from "../../../redux/watchlist";
 import './WatchlistItemInShowPage.css'
+import { RxTriangleDown } from "react-icons/rx";
+import { RxTriangleUp } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 
 function WatchlistItemInShowPage({ watchlist, stock }) {
@@ -10,12 +12,18 @@ function WatchlistItemInShowPage({ watchlist, stock }) {
     // console.log("test============>",watchlist.id, stock.code)
     await dispatch(removeStockInWatchlistThunk(watchlist, stock.code))
   }
+
+  const percentageChange =  (( stock.current_price - stock.previous_close_price ) / stock.previous_close_price * 100).toFixed(2);
+
   return (
     <>
       <span>{stock.name}</span>
       <span>{stock.code}</span>
-      <span>{stock.open_price}</span>
-      <span>{stock.open_price}</span>
+      <span>${stock.current_price.toFixed(2)}</span>
+      <span className="fourth-line">{percentageChange >= 0 ?
+          <><RxTriangleUp color='rgb(10,186,181)' size={20}/>{percentageChange}</> :
+          <><RxTriangleDown color='rgb(255, 80, 0)' size={20}/>{Math.abs(percentageChange)}</>}%
+      </span>
       <span>{(stock.market_cap/1000000000).toFixed(2)}B</span>
       <span className="remove-stock-btn" onClick={removeStock}><MdClose /></span>
     </>

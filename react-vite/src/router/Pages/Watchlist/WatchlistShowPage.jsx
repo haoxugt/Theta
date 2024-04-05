@@ -15,6 +15,8 @@ import UpdateWatchlistModal from "../../../components/Items/UpdateWatchlistModal
 import DeleteWatchlistModal from "../../../components/Items/DeleteWatchlistModal/DeleteWatchlistModal";
 import { useDispatch, useSelector } from "react-redux";
 
+
+
 import './WatchlistShowPage.css'
 
 function WatchlistShowPage(){

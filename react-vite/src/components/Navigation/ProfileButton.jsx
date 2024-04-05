@@ -65,11 +65,14 @@ function ProfileButton() {
           <button className={navLinkClassName} onClick={toggleMenu}>
             Account
           </button>
+          <button className={navLinkClassName} onClick={() => navigate('/faq')}>
+            Help
+          </button>
           {showMenu && (
             <ul className={"profile-dropdown"} ref={ulRef}>
               {user && (
                 <>
-                  <p>{user.username}</p>
+                  <p>{user.first_name} {user.last_name}</p>
                   <p onClick={() => alert('Profile page')}>Profile</p>
                   <p onClick={() => {navigate('/portfolios/current');closeMenu()}}>Portfolios</p>
                   <p onClick={() => {navigate('/transfer'); closeMenu()}}>Transfer</p>

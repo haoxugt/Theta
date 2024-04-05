@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { getSingleStockThunk } from "../../../redux/stockinfo";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getCurrentOrdersThunk } from "../../../redux/order";
-import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+import { getAllThunk } from "../../../redux/stock_hold";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { HiMinusSm } from "react-icons/hi";
@@ -40,13 +40,6 @@ function StockInfo(){
     let change = c - pc;
     change = change.toFixed(2);
 
-    // let datalist2=[];
-    // datalist2=stockTestData
-
-
-
-
-
 
     const positiveOrNegativeClassName = (num) => {
       if (num >= 0) return " positive-num";
@@ -62,26 +55,25 @@ function StockInfo(){
         dispatch(getCurrentWatchlistsThunk());
         dispatch(getCurrentPortfoliosThunk());
         dispatch(getCurrentOrdersThunk());
-        dispatch(getAllStocksHoldThunk());
-        // dispatch(getSingleStockRealtimeDataThunk(stockCode))
-        // .then((data) => {
-        //     // console.log("333333333333333333333333", data)
-        //     // datalist = data.stockdata
-        //     setDatalist(data.stockdata)
-        //     // console.log("4444444444444444444444444", datalist)
-        // });
-        // data=stockTestData
+        // dispatch(getAllStocksHoldThunk());
+        dispatch(getAllThunk());
 
     }, [dispatch, stockCode])
 
     useEffect(() => {
       const chart = document.querySelector('.line-chart>canvas');
       const hoverval = document.getElementById('hoverval');
+    //   const hoverval2 = document.getElementById('hoverval2');
       if (hoverval) {
         chart.addEventListener('mouseout', () => {
             hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(c)}`;
+            // hoverval2.innerText = `${change >= 0 ? +change : change}` + " " + `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
+            // hoverval2.className= change>=0 ? " positive-num": " negative-num";
         })
       }
+    //   if (hoverval2) {
+
+    //   }
 
    },[c])
 //    console.log("222222222222222222222222222222222", datalist)
@@ -100,7 +92,7 @@ function StockInfo(){
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(c)}
             </h1>
 
-            <span className={positiveOrNegativeClassName(change)}>
+            <span id="hoverval2" className={positiveOrNegativeClassName(change)}>
               {change >= 0 ? (<>+{change}</>) : (<>{change}</>)}
               {" "}
               ({change >= 0 ? (<>+{(change / c * 100).toFixed(2) + "%"}</>) : <>{(change / c * 100).toFixed(2) + "%"}</>})
@@ -120,7 +112,7 @@ function StockInfo(){
             <LineChartTest datalist={datalist} />
           </div> */}
             <div className="portfolio-chart-container">
-            <LineChartTest2 stockCode={stockCode}/>
+            <LineChartTest2 stockCode={stockCode} />
           </div>
 
 

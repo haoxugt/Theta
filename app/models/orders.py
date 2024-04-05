@@ -9,7 +9,7 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     stock_info_code = db.Column(db.String(5), db.ForeignKey(add_prefix_for_prod('stocks_info.code')), nullable=False)
-    portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolios.id')), nullable = False )
+    portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolios.id'), ondelete="CASCADE"), nullable = False )
     shares = db.Column(db.Integer, default=0)
     is_buy = db.Column(db.Boolean, default=True)
     is_limit_order = db.Column(db.Boolean, default=False)
