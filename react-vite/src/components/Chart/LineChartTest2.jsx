@@ -80,8 +80,17 @@ function LineChartTest2({stockCode}) {
     const fetchData = async () => {
         const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
         // console.log("9999999999999999999999999999 res ===>",stockCode, res.stockdata[0])
+        let dataSet1 = [];
+        let localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+        for (let i = 0; i < res.stockdata[0].length; i++) {
+            let localTime = (new Date(res.stockdata[0][i])).toLocaleString("en-US", {timeZone: localTimezone});
+            // let localTime = res.stockdata[0][i].substring(0,19);
+            dataSet1.push(localTime.toString())
+            // console.log(" =========== time ================", typeof(res.stockdata[0][i]), localTimezone, res.stockdata[0][i].toLocaleString("en-US", {timeZone: 'PST'}),dataSet1[0],res.stockdata[0][i].toLocaleString("en-US", {timeZone: localTimezone}))
+            // tz_convert(local_tz)
+        }
         setPlotdata({
-            labels: res.stockdata[0],
+            labels: dataSet1,
             datasets: [
               {
                 // label: stockCode,
@@ -116,7 +125,7 @@ function LineChartTest2({stockCode}) {
         });
     }
     fetchData();
-  }, [dispatch])
+  }, [dispatch, stockCode])
 
   const hoverLine = {
     id: 'hoverLine',

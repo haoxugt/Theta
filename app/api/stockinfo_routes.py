@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import StockInfo
 import yfinance as yf
 import pandas as pd
+from datetime import datetime
 
 
 stockinfo_routes = Blueprint('stockinfo', __name__)
@@ -24,10 +25,14 @@ def getAllStockInfo():
 def getStockDataInfo(stockCode):
     stock = yf.Ticker(stockCode)
     todays_data = stock.history(period='1d', interval='5m')
+    now = datetime.now()
+    local_now = now.astimezone()
+    local_tz = local_now.tzinfo
     date = []
     price = []
     for i in range(len(todays_data.index)):
         date.append(todays_data.index[i])
+        # date.append(str(todays_data.index[i].tz_convert(local_tz)))
         price.append(todays_data['Close'][i])
 
     return {'stockdata': [date, price]}

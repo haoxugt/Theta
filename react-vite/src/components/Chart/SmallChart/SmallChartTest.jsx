@@ -79,7 +79,7 @@ function SmallChartTest({ stockCode, color }) {
             setYdataset(res.stockdata[1]);
         }
         fetchData();
-      }, [dispatch])
+      }, [dispatch, stockCode, color])
 
     const options = {
         responsive: true,
