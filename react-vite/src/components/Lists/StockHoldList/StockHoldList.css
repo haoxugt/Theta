@@ -1,6 +1,28 @@
 .stockhold-header {
     border-bottom: 1px solid var(--grey-border);
-    padding: 20px 25px 20px 30px;
+    padding: 20px 25px 20px 25px;
     display: flex;
     justify-content: space-between;
+    position: relative;
+}
+
+span.menu-btn:hover{
+    cursor: pointer;
+    color: var(--blue-color);
+}
+
+.stocks-dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    background-color: var(--light-grey-color);
+    border: 1px solid var(--grey-border);
+    border-radius: 5px;
+    padding: 10px;
+    /* z-index: 1; */
+}
+
+.stocks-dropdown-menu p:hover{
+    cursor: pointer;
+    color: var(--blue-color);
 }

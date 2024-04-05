@@ -18,7 +18,7 @@ function WatchList({ watchlist }) {
                     <span>{watchlist.name}</span>
                 </div>
                 <div className="watchlist-name-right">
-                    <IoEllipsisHorizontal /> <FaAngleDown />
+                    <IoEllipsisHorizontal onClick={() => alert("Not sure if it is needed")}/> <FaAngleDown />
                 </div>
 
             </div>

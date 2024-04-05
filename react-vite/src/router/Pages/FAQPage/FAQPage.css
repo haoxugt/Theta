@@ -1,5 +1,24 @@
-.FAQ-wrapper{
+.FAQ-wrapper {
     max-width: 1200px;
     margin: auto;
-    padding-left: 20px;;
+    padding-left: 20px;
+}
+
+.FAQ-wrapper>h1 {
+    margin-bottom: 10px;
+
+}
+
+.FAQ-issue {
+    margin-bottom: 10px;
+}
+
+.FAQ-issue a {
+    text-decoration: underline;
+    color: rgb(172, 239, 248);
+    font-style: italic;
+}
+
+.FAQ-issue p {
+    margin: 5px 0px;
 }

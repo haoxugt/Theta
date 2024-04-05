@@ -1,0 +1,26 @@
+.transfer-page-container{
+    max-width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    margin-top: 25px;
+}
+
+.transfer-page-container select{
+    width: 100%;
+}
+
+.transfer-page-container input{
+    width: calc(100% - 3.2px);
+    margin-top: 8px;
+}
+
+.transfer-btn{
+    width: 130px;
+    align-self: center;
+    margin-top: 8px;
+    border-radius: 15px;
+    background-color: var(--blue-color);
+    height: 30px;
+}

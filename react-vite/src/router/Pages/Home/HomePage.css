@@ -100,3 +100,13 @@
     border-top: 1px solid var(--grey-border);
     border-bottom: 1px solid var(--grey-border);
 }
+
+.loading-figure-container {
+    display: flex;
+    flex-direction: column;
+}
+.loading-figure-container>h2{
+  background-color: transparent;
+  width: auto;
+  margin: auto;
+}

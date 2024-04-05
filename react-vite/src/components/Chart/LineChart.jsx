@@ -131,21 +131,21 @@ function LineChart() {
         pointHoverBorderWidth: 4,
         pointHoverRadius: 6,
       },
-      {
-        // label: 'NET',
-        type: "line",
-        data: stockTestData.map((el) => {return {x: el.x, y: 56}}),
-        backgroundColor: "black",
-        borderColor: "white",
-        borderDash: [10,5],
-        borderWidth: 1,
-        pointBorderColor: 'rgba(0, 0, 0, 0)',
-        pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-        pointHoverBackgroundColor: 'rgb(10,186,181)',
-        pointHoverBorderColor: '#000000',
-        pointHoverBorderWidth: 4,
-        pointHoverRadius: 1,
-      }
+    //   {
+    //     // label: 'NET',
+    //     type: "line",
+    //     data: stockTestData.map((el) => {return {x: el.x, y: 56}}),
+    //     backgroundColor: "black",
+    //     borderColor: "white",
+    //     borderDash: [10,5],
+    //     borderWidth: 1,
+    //     pointBorderColor: 'rgba(0, 0, 0, 0)',
+    //     pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+    //     pointHoverBackgroundColor: 'rgb(10,186,181)',
+    //     pointHoverBorderColor: '#000000',
+    //     pointHoverBorderWidth: 4,
+    //     pointHoverRadius: 1,
+    //   }
     ]
   };
 

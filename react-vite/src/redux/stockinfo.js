@@ -47,7 +47,7 @@ export const getSingleStockThunk = (stockCode) => async (dispatch) => {
 export const getSingleStockRealtimeDataThunk = (stockCode) => async (dispatch) => {
     const response = await fetch(`/api/stockinfo/${stockCode}/data`);
     const data = await response.json();
-    console.log("data======>", data)
+    // console.log("data======>", data)
 
     // dispatch(getSingleStockAction(data.stock));
     dispatch(getSingleStockRealtimeDataAction(data))

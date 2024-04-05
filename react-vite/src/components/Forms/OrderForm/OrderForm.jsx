@@ -12,10 +12,9 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
     const [shareNum, setShareNum] = useState(0)
     const [errors, setErrors] = useState({})
     const portfolios_array = Object.values(portfolios);
-    console.log(" portfolios =============> ", portfolios)
-    // console.log(" print id ==============> ", portfolios_array.filter(el => !el.is_retirement)[0]?.id)
+
     const [portfolio, setPortfolio] = useState(portfolios_array.filter(el => !el.is_retirement)[0]?.id)
-    console.log(" print portfolio =================>", portfolio)
+
     const dispatch = useDispatch();
 
     useEffect(() => {

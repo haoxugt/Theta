@@ -1,10 +1,13 @@
 .login-form {
-  width: 800px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  row-gap: 10px;;
+  row-gap: 15px;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .Demouser-login{
@@ -18,4 +21,36 @@
   color: var(--blue-color);
   cursor: pointer;
   font-style: italic;
+}
+
+.loginpage-wrapper {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginpage-wrapper >h1 {
+    width: auto;
+    margin: 30px auto 30px auto;
+
+}
+
+.login-form-label{
+   display: flex;
+   flex-direction: column;
+   row-gap: 5px;
+}
+
+.loginform-input{
+    width: 300px;
+    height: 30px;
+    background-color: black;
+    border-radius: 5px;
+    border:1px solid var(--grey-border);
+    padding-left: 10px;
+}
+
+.login-form > button {
+    align-self: center;
 }

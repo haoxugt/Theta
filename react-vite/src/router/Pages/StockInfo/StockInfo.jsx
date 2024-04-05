@@ -69,6 +69,7 @@ function StockInfo(){
             hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(c)}`;
             // hoverval2.innerText = `${change >= 0 ? +change : change}` + " " + `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
             // hoverval2.className= change>=0 ? " positive-num": " negative-num";
+            return true;
         })
       }
     //   if (hoverval2) {
@@ -82,6 +83,9 @@ function StockInfo(){
 //     else {
 //       if (stock.code != stockCode.toUpperCase()) return null;
 //     }
+const figureUpdate = () => {
+    alert("The portfolio chart will be updated")
+}
 
     return (
       <div className="stockinfopage-container">
@@ -113,6 +117,13 @@ function StockInfo(){
           </div> */}
             <div className="portfolio-chart-container">
             <LineChartTest2 stockCode={stockCode} />
+          </div>
+          <div className="time-scale-container" onClick={figureUpdate}>
+                    <span style={{color:'rgb(10,186,181)'}}>1D</span>
+                    <span>1W</span>
+                    <span>1M</span>
+                    <span>1Y</span>
+                    <span>All</span>
           </div>
 
 

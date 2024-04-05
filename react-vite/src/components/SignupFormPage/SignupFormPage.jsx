@@ -148,7 +148,7 @@ function SignupFormPage() {
         />
         {hasSubmitted && errors.confirmPassword && <p><FaCircleExclamation color="#f15e6c" />{" " + errors.confirmPassword}</p>}
 
-        <button className="signup-btn" type="submit">Sign Up</button>
+        <button className="signup-form-btn" type="submit">Sign Up</button>
       </form>
     </div>
   );
