@@ -9,13 +9,13 @@ import { useDispatch } from "react-redux";
 function AddStockToWatchlistModal({ watchlists, stock }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
-  console.log("stock add =====================>",stock)
+//   console.log("stock add =====================>",stock)
 
   const watchlist_array = Object.values(watchlists);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const checkboxs = document.querySelectorAll('.addstocktowatchlist-from label input');
-    console.log("checkboxs ======> ", checkboxs[0].id.slice(10))
+    // console.log("checkboxs ======> ", checkboxs[0].id.slice(10))
     for (let i = 0; i< checkboxs.length; i++) {
       let watchlist = watchlists[checkboxs[i].id.slice(10)];
 

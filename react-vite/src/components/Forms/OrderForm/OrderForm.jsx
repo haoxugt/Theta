@@ -58,14 +58,14 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         }
 
         dispatch(createOrderThunk(order))
-            .then((res) => {
+            .then(async(res) => {
                 if (isBuy) {
-                    dispatch(buyStocksHoldThunk(res));
+                    await dispatch(buyStocksHoldThunk(res));
                 } else {
-                    dispatch(sellStocksHoldThunk(res));
+                    await dispatch(sellStocksHoldThunk(res));
                 }
                 // console.log("5555555555555555555555",portfolios, portfolio)
-                dispatch(buySellStockInPortfolioThunk(portfolios[portfolio], res))
+                await dispatch(buySellStockInPortfolioThunk(portfolios[portfolio], res))
                 alert("You have successfully submit orders!")
                 return
             })
@@ -91,9 +91,11 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         let target_stock = Object.values(stockhold).filter(el => {
             return el.stock_info_code == stock.code && el.portfolio_id == portfolio;
         })
-        console.log("77777777777777777777777", target_stock, Object.values(stockhold))
+        // console.log("77777777777777777777777", target_stock, Object.values(stockhold))
         if (target_stock.length) return target_stock[0].shares;
-        else return 0;
+        else {
+            return 0;
+        }
     }
 
 

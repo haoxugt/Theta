@@ -43,7 +43,7 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
                     return acc + stockinfolist?.find(el => el.code == curr.stock_info_code)?.current_price * curr?.shares;
                 }, 0)).toFixed(2)}</span>
                 <span>Cash : ${portfolio.cash.toFixed(2)}</span>
-                <span className="closeaccount-btn" onClick={closeAccount}>Close account</span>
+                {portfolio.is_retirement && <span className="closeaccount-btn" onClick={closeAccount}>Close account</span>}
             </div>
             <div className="portfolio-details-container">
                 <div className="portfolio-details-header">

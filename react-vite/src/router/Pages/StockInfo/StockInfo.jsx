@@ -51,24 +51,27 @@ function StockInfo(){
     }
 
     useEffect(() => {
-        dispatch(getSingleStockThunk(stockCode));
-        dispatch(getCurrentWatchlistsThunk());
-        dispatch(getCurrentPortfoliosThunk());
-        dispatch(getCurrentOrdersThunk());
-        // dispatch(getAllStocksHoldThunk());
-        dispatch(getAllThunk());
+        const fetchData = async() => {
+            await dispatch(getSingleStockThunk(stockCode));
+            await dispatch(getCurrentWatchlistsThunk());
+            await dispatch(getCurrentPortfoliosThunk());
+            await dispatch(getCurrentOrdersThunk());
+            // dispatch(getAllStocksHoldThunk());
+            await dispatch(getAllThunk());
+        }
+        fetchData();
 
     }, [dispatch, stockCode])
 
     useEffect(() => {
       const chart = document.querySelector('.line-chart>canvas');
       const hoverval = document.getElementById('hoverval');
-    //   const hoverval2 = document.getElementById('hoverval2');
-      if (hoverval) {
+      const hoverval2 = document.getElementById('hoverval2');
+    if (chart && hoverval && hoverval2) {
         chart.addEventListener('mouseout', () => {
             hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(c)}`;
-            // hoverval2.innerText = `${change >= 0 ? +change : change}` + " " + `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
-            // hoverval2.className= change>=0 ? " positive-num": " negative-num";
+            hoverval2.innerText = `${change >= 0 ? +change : change}` + " " + `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
+            hoverval2.className= change>=0 ? " positive-num": " negative-num";
             return true;
         })
       }

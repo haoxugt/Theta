@@ -51,7 +51,7 @@ function StocksPage() {
             </div>
             {stockinfolist_array.map((stock) => {
               return (
-                  <StocklistItemInShowPage stock={stock} key={stock.code}/>
+                  <StocklistItemInShowPage stock={stock} key={`stocklist-${stock.code}`}/>
               )
             })}
           </div>
@@ -73,7 +73,7 @@ function StocksPage() {
             </div>
             {watchlist_array?.map(el => {
               return (
-                <WatchList key={el.id} watchlist={el}/>
+                <WatchList key={`watchlist-${el.id}`} watchlist={el}/>
               )
             })}
 

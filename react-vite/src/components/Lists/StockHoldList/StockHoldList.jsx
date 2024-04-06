@@ -37,7 +37,7 @@ function StockHoldList({ stockholdlist }) {
             </div>
             {stockholdlist?.map(el => {
                 return (
-                    <StockHoldItem key={el.stock_info_code} stock={el} />
+                    <StockHoldItem key={`stockhold-${el.portfolio_id}-${el.stock_info_code}`} stock={el} />
                 )
             })}
         </div>

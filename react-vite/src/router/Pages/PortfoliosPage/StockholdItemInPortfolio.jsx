@@ -6,8 +6,8 @@ function StockholdItemInPortfolio() {
            <span>Quantity</span>
            <span>Price</span>
            <span>Unit Cost</span>
-           <span>Day&apos;`s $ Chg</span>
-           <span>Day&apos;`s % Chg</span>
+           <span>Day&apos;s $ Chg</span>
+           <span>Day&apos;s % Chg</span>
       </div>
     )
 }

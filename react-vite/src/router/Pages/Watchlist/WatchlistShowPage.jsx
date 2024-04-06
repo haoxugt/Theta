@@ -39,9 +39,12 @@ function WatchlistShowPage(){
 
   }
     useEffect(() => {
-        dispatch(getCurrentWatchlistsThunk());
-        dispatch(getAllStocksHoldThunk());
-        dispatch(getSingleWatchlistThunk(watchlistId));
+        const fetchData = async () => {
+            await dispatch(getCurrentWatchlistsThunk());
+            await dispatch(getAllStocksHoldThunk());
+            await dispatch(getSingleWatchlistThunk(watchlistId));
+        }
+        fetchData();
     }, [dispatch, watchlistId])
 
     useEffect(() => {

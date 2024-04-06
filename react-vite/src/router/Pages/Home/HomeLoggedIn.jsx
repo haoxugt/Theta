@@ -38,7 +38,7 @@ function HomeLoggedIn() {
         }
     } catch (e) {
         console.log("errors====>", e.massage);
-        setErrors({"message": e.message});
+        setErrors({ "message": e.message });
     }
     const open_amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_transfers;
     let change = amount - open_amount;
@@ -47,18 +47,20 @@ function HomeLoggedIn() {
 
     useEffect(() => {
         const fetchData = async () => {
-            dispatch(getCurrentWatchlistsThunk());
-            dispatch(getAllStocksHoldThunk());
-            dispatch(getCurrentPortfoliosThunk());
-            dispatch(getAllStockThunk())
+            await dispatch(getCurrentWatchlistsThunk());
+            await dispatch(getAllStocksHoldThunk());
+            await dispatch(getCurrentPortfoliosThunk());
+            await dispatch(getAllStockThunk())
         }
         fetchData();
         const chart = document.querySelector('.line-chart>canvas');
         const hoverval = document.getElementById('hoverval');
-        chart.addEventListener('mouseout', () => {
-            hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
-            return true;
-        })
+        if (chart && hoverval) {
+            chart.addEventListener('mouseout', () => {
+                hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
+                return true;
+            })
+        }
 
     }, [dispatch, amount])
 

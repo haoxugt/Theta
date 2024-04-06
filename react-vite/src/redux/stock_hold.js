@@ -97,7 +97,7 @@ export const sellStocksHoldThunk = (order) => async (dispatch) => {
 
   if (response.ok) {
     // const data = await response.json();
-    const data = dispatch(getAllStocksHoldThunk());
+    const data = dispatch(getAllThunk());
     return data;
   } else {
     throw response;

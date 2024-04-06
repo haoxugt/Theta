@@ -183,13 +183,17 @@ function LineChartTest2({stockCode }) {
         callbacks: {
           afterFooter: function(chart) {
             const hoverval = document.getElementById("hoverval");
-            // const hoverval2 = document.getElementById("hoverval2");
-            hoverval.innerText=`$${chart[0].parsed.y.toFixed(2)}`;
-            // const c = chart[0].parsed.y;
-            // const change = c - pc;
-        //     hoverval2.innerText = `${change >= 0 ? +change.toFixed(2) : change.toFixed(2)}` + " " +
-        //     `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
-        //     hoverval2.className= change>=0 ? " positive-num": " negative-num";
+            const hoverval2 = document.getElementById("hoverval2");
+            if (hoverval) {
+                hoverval.innerText=`$${chart[0].parsed.y.toFixed(2)}`;
+            }
+            if (hoverval2) {
+                const c = chart[0].parsed.y;
+                const change = c - pc;
+                hoverval2.innerText = `${change >= 0 ? +change.toFixed(2) : change.toFixed(2)}` + " " +
+                `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
+                hoverval2.className= change>=0 ? " positive-num": " negative-num";
+            }
           }
         }
       },

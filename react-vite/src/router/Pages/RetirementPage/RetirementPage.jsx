@@ -5,10 +5,10 @@ import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
 import NoRetirementPage from "./NoRetirementPage";
 import HasRetirementPage from "./HasRetirementPage";
 
-import './RetirementPage.css'
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import './RetirementPage.css'
 
 function RetirementPage() {
   const sessionUser = useSelector(state => state.session.user);
@@ -19,7 +19,10 @@ function RetirementPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getCurrentPortfoliosThunk());
+    const fetchData = async () => {
+        await dispatch(getCurrentPortfoliosThunk());
+    }
+    fetchData();
 
   }, [dispatch])
   // console.log(" retirementPlan 1111111111111111111111111", retirementPlan)

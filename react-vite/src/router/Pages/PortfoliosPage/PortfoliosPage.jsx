@@ -23,9 +23,9 @@ function PortfoliosPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-        dispatch(getCurrentPortfoliosThunk());
-        dispatch(getAllThunk());
-        dispatch(getAllStockThunk());
+        await dispatch(getCurrentPortfoliosThunk());
+        await dispatch(getAllThunk());
+        await dispatch(getAllStockThunk());
     }
     fetchData();
     // dispatch(getAllThunk())

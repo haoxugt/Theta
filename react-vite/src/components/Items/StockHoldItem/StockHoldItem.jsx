@@ -15,7 +15,10 @@ function StockHoldItem({ stock }) {
     const stockinfo = stocklist[stock.stock_info_code];
 
     useEffect(() => {
-        dispatch(getAllStockThunk());
+        const fetchData = async() => {
+            dispatch(getAllStockThunk());
+        }
+        fetchData();
     }, [dispatch, stock.stock_info_code])
 
     const colorCheck = () => {

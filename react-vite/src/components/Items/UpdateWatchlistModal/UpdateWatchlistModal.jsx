@@ -13,7 +13,10 @@ function UpdateWatchlistModal() {
 
     // const watchlist = { name: ''};
     useEffect(() => {
-        dispatch(getSingleWatchlistThunk(watchlistId))
+        const fetchData = async () => {
+            dispatch(getSingleWatchlistThunk(watchlistId))
+        }
+        fetchData()
     }, [dispatch, watchlistId])
 
     return <WatchlistFormModal watchlist={watchlist} formType="Update List" />

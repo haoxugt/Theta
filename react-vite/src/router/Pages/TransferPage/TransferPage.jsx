@@ -15,7 +15,10 @@ function TransferPage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCurrentPortfoliosThunk());
+        const fetchData = async() => {
+            await dispatch(getCurrentPortfoliosThunk());
+        }
+        fetchData();
     }, [dispatch]);
 
     const transferSubmit = async (e) => {
