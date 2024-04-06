@@ -1,6 +1,7 @@
 .profile-btn {
   position: relative;
-
+  display: flex;
+  align-items: centeer;
 }
 
 .profile-dropdown {
@@ -40,4 +41,15 @@
 
 .profile-dropdown p:last-child {
   border-top: 1px solid var(--grey-border);
+}
+
+.nav-btn-container {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.nav-links-container-wrapper {
+    display: flex;
+    align-items: centeer;
 }

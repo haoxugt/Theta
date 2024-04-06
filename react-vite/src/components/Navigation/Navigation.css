@@ -52,7 +52,7 @@ a.homepage-logo-sec:hover .logo-title{
     height: 64px;
 }
 
-.profile-btn {
+.navlinks-container {
     display: flex;
     column-gap: 15px;
     align-items: center;

@@ -40,6 +40,7 @@ function LineChartTest2({stockCode }) {
   //   { x: 20, y: 15 }
   // ]
   const [pc, setPc] = useState(1);
+  const [errors, setErrors] = useState({});
   const [plotdata, setPlotdata] = useState({
     labels: [0,pc],
     datasets: [
@@ -79,6 +80,7 @@ function LineChartTest2({stockCode }) {
 
   useEffect(() => {
     const fetchData = async () => {
+        try {
         const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
         // console.log("9999999999999999999999999999 res ===>",stockCode, res.stockdata[0])
         let dataSet1 = [];
@@ -99,7 +101,7 @@ function LineChartTest2({stockCode }) {
             labels: dataSet1,
             datasets: [
               {
-                // label: stockCode,
+                label: 'c',
                 type: "line",
                 data: res.stockdata[1],
                 backgroundColor: "black",
@@ -114,7 +116,7 @@ function LineChartTest2({stockCode }) {
                 pointHoverRadius: 5,
               },
               {
-                // label: 'NET',
+                label: 'o',
                 type: "line",
                 data: res.stockdata[1].map(() => previousClosePrice),
                 backgroundColor: "black",
@@ -130,6 +132,9 @@ function LineChartTest2({stockCode }) {
               }
             ]
         });
+    } catch(e) {
+        setErrors({"message": e.message});
+    }
     }
     fetchData();
   }, [dispatch, stockCode])
@@ -268,6 +273,10 @@ function LineChartTest2({stockCode }) {
         xAlign: 'center',
         yAlign: 'bottom'
       }
+  }
+
+  if (Object.values(errors).length) {
+    return <h2>{errors.message}</h2>
   }
 
   return (

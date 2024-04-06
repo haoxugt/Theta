@@ -62,19 +62,19 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
                     {stockholdlist?.filter(el => el.portfolio_id == portfolio.id).map(el => {
                         const stockinfo = stockinfolist?.find(ele => ele.code == el.stock_info_code)
                         return (
-                            <div className='stockholdlist-row' key={`${el.stock_info_code}`}>
-                                {stockinfo && <>
+                            <div className='stockholdlist-row-container' key={`${el.stock_info_code}`}>
+                                {stockinfo && <span className='stockholdlist-row'>
                                     <span style={{ color: 'rgb(10,186,181)' }} className='first-line-stockhold-row'>{el.stock_info_code}</span>
                                     <span className='second-line-stockhold-row'>{stockinfo?.name}</span>
                                     <span className='third-line-stockhold-row'>{el.shares}</span>
-                                    <span>${stockinfo?.current_price}</span>
-                                    <span>${el.avg_price}</span>
+                                    <span>${stockinfo?.current_price.toFixed(2)}</span>
+                                    <span>${el.avg_price.toFixed(2)}</span>
                                     <span>${(stockinfo?.current_price * el.shares).toFixed(2)} </span>
                                     <span>{(stockinfo?.current_price - stockinfo?.previous_close_price).toFixed(2)} </span>
                                     <span>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
                                     <span>{((stockinfo?.current_price - el.avg_price) * el.shares).toFixed(2)}</span>
                                     <span>{((stockinfo?.current_price - el.avg_price) / el.avg_price * 100).toFixed(2)}</span>
-                                </>}
+                                </span>}
                             </div>
                         )
                     })}

@@ -9,7 +9,7 @@ function AddStockToWatchlistItem({watchlist, stock}){
     }
 
     return (
-        <>
+        <div>
             <input type="checkbox"
             value={watchlist.id}
             id={"watchlist-" + watchlist.id}
@@ -17,7 +17,7 @@ function AddStockToWatchlistItem({watchlist, stock}){
             onChange={handleChange}
             /> <FaLightbulb color="yellow" size={20}/>
                 {watchlist.name}
-        </>
+        </div>
     )
 }
 

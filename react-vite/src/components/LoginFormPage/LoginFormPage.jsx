@@ -64,8 +64,8 @@ function LoginFormPage() {
                     <label className="login-form-label">
                         Email or username
                         <p>{errors.credential &&
-                            (<><FaCircleExclamation color="#f15e6c" />
-                                {" " + errors.credential} </>)}</p>
+                            (<span><FaCircleExclamation color="#f15e6c" />
+                                {" " + errors.credential} </span>)}</p>
                         <input
                             type="text"
                             value={credential}
@@ -78,7 +78,7 @@ function LoginFormPage() {
 
                     <label className="login-form-label">
                         Password
-                        <p>{errors.password && (<><FaCircleExclamation color="#f15e6c" /> {errors.password}</>)}</p>
+                        <p>{errors.password && (<span><FaCircleExclamation color="#f15e6c" /> {errors.password}</span>)}</p>
                         <input
                             type="password"
                             value={password}

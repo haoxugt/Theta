@@ -3,10 +3,16 @@
   grid-template-columns:  2.5fr 1fr 1fr 1fr 1.2fr 15px;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 14px;;
+  font-size: 14px;
+  align-items: center;
 }
 
 .remove-stock-btn:hover{
   cursor: pointer;
   color: var(--blue-color);
+}
+
+.fourth-line > span {
+    display: flex;
+    align-items: center;
 }

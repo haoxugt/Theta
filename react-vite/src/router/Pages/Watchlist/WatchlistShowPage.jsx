@@ -112,7 +112,7 @@ function WatchlistShowPage(){
             </div>
             {watchlist.stocks?.map((stock) => {
               return (
-                <div className="watchlist-list-item-row" key={stock.code}>
+                <div className="watchlist-list-item-row-container" key={stock.code}>
                   <WatchlistItemInShowPage watchlist={watchlist} stock={stock} />
                 </div>
               )

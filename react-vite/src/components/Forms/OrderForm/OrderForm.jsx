@@ -110,7 +110,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             </select>
         </label>
         {isBuy ?
-            (<>
+            (<div>
                 <label>
                     <span>Buy in</span>
                     <span className="share-box" onClick={newFeature}>Shares</span>
@@ -129,7 +129,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                     <span>Estimated Cost</span>
                     <span>${(stock.current_price * shareNum).toFixed(2)}</span>
                 </div>
-            </>) : (<>
+            </div>) : (<div>
                 <label>
                     <span>Sell in</span>
                     <span className="share-box" onClick={newFeature}>Shares</span>
@@ -148,14 +148,14 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                     <span>Estimated Credit</span>
                     <span>${(stock.current_price * shareNum).toFixed(2)}</span>
                 </div>
-            </>)
+            </div>)
         }
         <button type="submit" className="order-submit-btn">
             Submit Order
         </button>
         <div className="buy-sell-info">
             {/* {console.log("print ===================>", portfolio, portfolios[portfolio])} */}
-            {isBuy ? <>${portfolios[portfolio]?.cash.toFixed(2)} buying power available</> : <>{getHoldShares(portfolio)} Shares available</>}
+            {isBuy ? <span>${portfolios[portfolio]?.cash.toFixed(2)} buying power available</span> : <span>{getHoldShares(portfolio)} Shares available</span>}
         </div>
         <label htmlFor="portfolio"></label>
         <select

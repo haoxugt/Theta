@@ -38,9 +38,9 @@ function ProfileButton() {
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(thunkLogout());
+    await dispatch(thunkLogout());
     closeMenu();
     navigate('/');
   };
@@ -48,9 +48,9 @@ function ProfileButton() {
   const navLinkClassName = "nav-links";
 
   return (
-    <>
+    <div className="nav-links-container-wrapper">
       {user ?
-        <>
+        <div className="navlinks-container">
           <button className={navLinkClassName} onClick={() => navigate('/')}>
             Investing
           </button>
@@ -72,26 +72,26 @@ function ProfileButton() {
           {showMenu && (
             <ul className={"profile-dropdown"} ref={ulRef}>
               {user && (
-                <>
+                <div>
                   <p>{user.first_name} {user.last_name}</p>
                   <p onClick={() => alert('Profile page')}>Profile</p>
                   <p onClick={() => {navigate('/portfolios/current');closeMenu()}}>Portfolios</p>
                   <p onClick={() => {navigate('/transfer'); closeMenu()}}>Transfer</p>
                   <p onClick={logout}>Log Out</p>
-                </>
+                </div>
               )}
             </ul>
           )}
-        </>
+        </div>
         : (
-          <>
+          <div className="nav-btn-container">
             <button className="login-btn" onClick={() => navigate('/login')}>Log in</button>
             <button className="signup-btn" onClick={() => navigate('/signup')}>Sign up</button>
-          </>
+          </div>
         )
       }
 
-    </>
+    </div>
   );
 }
 

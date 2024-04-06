@@ -100,9 +100,9 @@ const figureUpdate = () => {
             </h1>
 
             <span id="hoverval2" className={positiveOrNegativeClassName(change)}>
-              {change >= 0 ? (<>+{change}</>) : (<>{change}</>)}
+              {change >= 0 ? (<span>+{change}</span>) : (<span>{change}</span>)}
               {" "}
-              ({change >= 0 ? (<>+{(change / c * 100).toFixed(2) + "%"}</>) : <>{(change / c * 100).toFixed(2) + "%"}</>})
+              ({change >= 0 ? (<span>+{(change / c * 100).toFixed(2) + "%"}</span>) : <span>{(change / c * 100).toFixed(2) + "%"}</span>})
 
             </span> Today
 
@@ -148,7 +148,7 @@ const figureUpdate = () => {
                  </div>
                  {Object.values(portfolios).length ?
                 <OrderForm portfolios={portfolios} stock={stock} isBuy={isBuy} stockhold={stockhold}/> :
-                 <></>
+                 <span></span>
                  }
               </div>
 
@@ -157,7 +157,7 @@ const figureUpdate = () => {
                     Trade {stock.code} Options
                   </button>
                   <OpenModalButton
-                    buttonText={<><AiOutlinePlus /> <span>Add to Lists</span></>}
+                    buttonText={<span><AiOutlinePlus /> <span>Add to Lists</span></span>}
                     // onButtonClick={closeMenu}
                     modalComponent={<AddStockToWatchlistModal watchlists={watchlists} stock={stock} />}
                 />

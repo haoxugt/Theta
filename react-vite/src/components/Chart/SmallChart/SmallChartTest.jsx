@@ -66,7 +66,7 @@ function SmallChartTest({ stockCode, color }) {
                 labels: res.stockdata[0],
                 datasets: [
                   {
-                    // label: stockCode,
+                    // label: 'c',
                     type: "line",
                     data: res.stockdata[1],
                     backgroundColor: "white",
@@ -76,7 +76,7 @@ function SmallChartTest({ stockCode, color }) {
                     pointBackgroundColor: 'rgba(0, 0, 0, 0)',
                   },
                   {
-                    // label: stockCode,
+                    // label: 'o',
                     type: "line",
                     data: res.stockdata[1].map(() => previousClosePrice),
                     backgroundColor: "white",

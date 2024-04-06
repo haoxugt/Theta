@@ -82,24 +82,18 @@ function HomeLoggedIn() {
         <div className="homepage-container">
             <div className="homepage-left-col">
                 <div className="portfolio-info-container">
-                    {/* <h1>
-            {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
-          </h1> */}
+
                     <h1 id="hoverval">
                         {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
                     </h1>
 
                     <p className={positiveOrNegativeClassName(change)}>
-                        {change >= 0 ? (<>+{change}</>) : (<>{change}</>)}
+                        {change >= 0 ? (<span>+{change}</span>) : (<span>{change}</span>)}
 
                         ({(change / amount * 100).toFixed(2) + "%"})
                     </p>
 
-                    {/* <p className={positiveOrNegativeClassName(change2)}>
-            {change2 >= 0 ? (<>+{change2}</>) : (<>{change2}</>)}
 
-            ({(change2 / amount * 100).toFixed(2) + "%"})
-          </p> */}
                 </div>
                 <div className="portfolio-chart-container">
                     <LineChart />
@@ -117,13 +111,7 @@ function HomeLoggedIn() {
                     <span>Buying power</span>
                     <span>${current_portfolio?.cash}</span>
                 </div>
-                {/* <div className='chart-test'>
-          <CandlestickChart />
 
-        </div> */}
-                {/* <div>
-        <LineChartTest datalist={datalist}/>
-        </div> */}
 
             </div>
             <div className="homepage-right-col">

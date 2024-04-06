@@ -16,7 +16,7 @@ function StockHoldItem({ stock }) {
 
     useEffect(() => {
         const fetchData = async() => {
-            dispatch(getAllStockThunk());
+            await dispatch(getAllStockThunk());
         }
         fetchData();
     }, [dispatch, stock.stock_info_code])
@@ -44,13 +44,13 @@ function StockHoldItem({ stock }) {
             <div className='stockhold-chart'>
                 <SmallChartTest stockCode={stock.stock_info_code} color={colorCheck()} />
             </div>
-            <div className='stockhold-price'>
+            <div className='stockhold-price-container'>
                 {stockinfo ?
-                    <>
+                    <span className='stockhold-price'>
                         <span>${stockinfo?.current_price?.toFixed(2)}</span>
                         <span style={{ color: colorCheck() }}>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
-                    </> :
-                    <></>
+                    </span> :
+                    <span></span>
                 }
             </div>
         </div>

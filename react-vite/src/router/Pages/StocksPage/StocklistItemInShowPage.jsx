@@ -13,8 +13,8 @@ function StocklistItemInShowPage({ stock }) {
             <span>{stock.code}</span>
             <span>${stock.current_price.toFixed(2)}</span>
             <span className="fourth-line">{percentageChange >= 0 ?
-                <><RxTriangleUp color='rgb(10,186,181)' size={20}/>{percentageChange}</> :
-                <><RxTriangleDown color='rgb(255, 80, 0)' size={20}/>{Math.abs(percentageChange)}</>}%
+                <span><RxTriangleUp color='rgb(10,186,181)' size={20}/>{percentageChange}</span> :
+                <span><RxTriangleDown color='rgb(255, 80, 0)' size={20}/>{Math.abs(percentageChange)}</span>}%
             </span>
             <span>{(stock.market_cap / 1000000000).toFixed(2)}B</span>
         </div>

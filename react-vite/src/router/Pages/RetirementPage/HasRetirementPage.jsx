@@ -67,13 +67,13 @@ function HasRetirementPage() {
                     </h1>
 
                     <p className={positiveOrNegativeClassName(change)}>
-                        {change >= 0 ? (<>+{change}</>) : (<>{change}</>)}
+                        {change >= 0 ? (<span>+{change}</span>) : (<span>{change}</span>)}
 
                         ({(change / amount * 100).toFixed(2) + "%"})
                     </p>
 
                     <p className={positiveOrNegativeClassName(change2)}>
-                        {change2 >= 0 ? (<>+{change2}</>) : (<>{change2}</>)}
+                        {change2 >= 0 ? (<span>+{change2}</span>) : (<span>{change2}</span>)}
 
                         ({(change2 / amount * 100).toFixed(2) + "%"})
                     </p>
@@ -92,7 +92,7 @@ function HasRetirementPage() {
 
                 <div className="cash-container">
                     <span>Buying power</span>
-                    <span>${current_portfolio.cash}</span>
+                    <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(current_portfolio.cash.toFixed(2))}</span>
                 </div>
                 {/* <div className='chart-test'>
           <CandlestickChart />
