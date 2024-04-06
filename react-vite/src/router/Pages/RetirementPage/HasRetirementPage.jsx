@@ -26,7 +26,7 @@ function HasRetirementPage() {
     const portfolio_id = portfolio_array?.filter(el => el.is_retirement == true)[0]?.id;
     let change = amount - open_amount;
     change = change.toFixed(2);
-    let change2 = -change;
+
 
     const positiveOrNegativeClassName = (num) => {
         if (num >= 0) return " positive-num";
@@ -59,9 +59,7 @@ function HasRetirementPage() {
         <div className="homepage-container">
             <div className="homepage-left-col">
                 <div className="portfolio-info-container">
-                    {/* <h1>
-            {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
-          </h1> */}
+
                     <h1 id="hoverval">
                         {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
                     </h1>
@@ -72,11 +70,6 @@ function HasRetirementPage() {
                         ({(change / amount * 100).toFixed(2) + "%"})
                     </p>
 
-                    <p className={positiveOrNegativeClassName(change2)}>
-                        {change2 >= 0 ? (<span>+{change2}</span>) : (<span>{change2}</span>)}
-
-                        ({(change2 / amount * 100).toFixed(2) + "%"})
-                    </p>
                 </div>
                 <div className="portfolio-chart-container">
                     <LineChart />

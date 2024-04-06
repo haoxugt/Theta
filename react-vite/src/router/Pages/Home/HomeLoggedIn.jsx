@@ -28,7 +28,7 @@ function HomeLoggedIn() {
 
 
     let current_portfolio = portfolio_array?.filter(el => el.is_retirement == false)[0];
-    let amount = 0;
+    let amount = -1;
 
     try {
         if (portfolio_array.length) {
@@ -41,6 +41,7 @@ function HomeLoggedIn() {
         setErrors({ "message": e.message });
     }
     const open_amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_transfers;
+    const portfolio_id = portfolio_array?.filter(el => el.is_retirement == false)[0]?.id;
     let change = amount - open_amount;
     change = change.toFixed(2);
     //   let change2 = -change;
@@ -76,6 +77,7 @@ function HomeLoggedIn() {
 
     if (Object.values(errors).length) return <h1>Oops: {errors.message}</h1>
     //   const datalist = [[1, 10, 20], [2,20,30]]
+    if (isNaN(amount) || amount == -1) return <>Loading...</>;
 
 
     return (
@@ -116,7 +118,7 @@ function HomeLoggedIn() {
             </div>
             <div className="homepage-right-col">
                 <div className="lists-container">
-                    <StockHoldList stockholdlist={stockshold_array} />
+                    <StockHoldList stockholdlist={stockshold_array.filter(el => el.portfolio_id == portfolio_id)} />
                     <div className="watchlist-header">
                         Lists
                         <OpenModalButton

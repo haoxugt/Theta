@@ -14,6 +14,7 @@
 .watchlist-name-right {
   display: flex;
   column-gap: 15px;
+  /* align-items: center; */
 }
 
 .watchlist-name-left {
@@ -24,13 +25,34 @@
   column-gap: 25px;
 }
 
-.watchlist-name:hover>.watchlist-name-left {
-  cursor: pointer;
+.watchlist-name:hover {
+    cursor: pointer;
+}
+
+.watchlist-name-left:hover {
   background-color: var(--light-grey-color);
   border-radius: 3px;
 }
 
-.watchlist-name:hover>.watchlist-name-right>svg:first-child {
-  cursor: pointer;
-  color: var(--blue-color);
+.watchlist-name-right>svg:first-child {
+    padding: 4px;
+    align-self: flex-start;
+    visibility: hidden;
 }
+
+.watchlist-name:hover>.watchlist-name-right>svg:first-child{
+    visibility: visible;
+}
+
+.watchlist-name-right>svg:hover {
+  background-color: var(--light-grey-color);
+  border-radius: 3px;
+}
+
+.watchlist-name-right>span {
+    align-self: flex-end;
+}
+
+.watchlist-name:hover>.watchlist-name-right>span {
+    color: var(--blue-color);
+  }

@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getAllThunk } from "../../../redux/stock_hold";
+// import { getAllThunk } from "../../../redux/stock_hold";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
-import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+// import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+import { getAllStockThunk } from "../../../redux/stockinfo";
 import StocklistItemInShowPage from "./StocklistItemInShowPage";
-import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
+// import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
 import OpenModalButton from "../../../components/Items/OpenModalButton";
-import WatchList from "../../../components/Lists/WatchList/WatchList";
+// import WatchList from "../../../components/Lists/WatchList/WatchList";
+import WatchListTitle from "./WatchlistTitle";
 import { HiOutlinePlus } from "react-icons/hi2";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
 import { useEffect } from "react";
@@ -16,18 +18,18 @@ import './StocksPage.css'
 function StocksPage() {
     const stockinfoState = useSelector(state => state.stockinfo);
     const watchlistState = useSelector(state => state.watchlist)
-    const stockshold = useSelector(state => state.stockshold)
+    // const stockshold = useSelector(state => state.stockshold)
     // const watchlist = watchlistState?.watchlistShow;
     const watchlist_array = Object.values(watchlistState?.Watchlists);
     const stockinfolist_array = Object.values(stockinfoState?.Stocklists);
-    const stockshold_array = Object.values(stockshold?.Stockshold)
+    // const stockshold_array = Object.values(stockshold?.Stockshold)
     const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getAllThunk());
+            // await dispatch(getAllThunk());
             await dispatch(getCurrentWatchlistsThunk())
-            await dispatch(getAllStocksHoldThunk())
+            await dispatch(getAllStockThunk())
         }
         fetchData();
     }, [dispatch])
@@ -49,7 +51,8 @@ function StocksPage() {
                     <span>Today</span>
                     <span className="fifth-col">Market Cap</span>
             </div>
-            {stockinfolist_array.map((stock) => {
+            {/* {console.log("======= stockinfolist_array =====", stockinfolist_array[0])} */}
+            {stockinfolist_array.sort((a, b)=> { return a.code > b.code ? 1 : -1}).map((stock) => {
               return (
                   <StocklistItemInShowPage stock={stock} key={`stocklist-${stock.code}`}/>
               )
@@ -62,7 +65,6 @@ function StocksPage() {
       </div>
       <div className="homepage-right-col">
         <div className="lists-container">
-            <StockHoldList stockholdlist={stockshold_array} />
             <div className="watchlist-header">
                 Lists
                 <OpenModalButton
@@ -73,7 +75,7 @@ function StocksPage() {
             </div>
             {watchlist_array?.map(el => {
               return (
-                <WatchList key={`watchlist-${el.id}`} watchlist={el}/>
+                <WatchListTitle key={`watchlisttitle-${el.id}`} watchlist={el}/>
               )
             })}
 

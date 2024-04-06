@@ -6,24 +6,52 @@ import { useNavigate } from "react-router-dom";
 
 
 import './WatchList.css'
+import { useState } from "react";
 
 function WatchList({ watchlist }) {
+    const [showStock, setShowStock]=useState(false)
     const navigate = useNavigate()
+
+    const toggleStock = (e) => {
+        e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+        document.body.click()
+        setShowStock(!showStock);
+        const icon = document.getElementById(`faAngle-icon-${watchlist.id}`);
+        if (!showStock) {
+        icon.style.transform='rotate(0.5turn)';
+        icon.style.transitionDuration= '700ms';
+        } else {
+            icon.style.transform='rotate(0turn)';
+            icon.style.transitionDuration= '700ms';
+        }
+
+    }
+
+    // useEffect(() => {
+    //     if (!showStock) return;
+    //     document.addEventListener("click", closeStock);
+    //     return () => document.removeEventListener("click", closeStock);
+    // }, [showStock]);
+
+    // const closeStock = () => setShowStock(false);
+
     return (
         <div className="watchlist-container">
 
-            <div className="watchlist-name" >
+            <div className="watchlist-name"  onClick={toggleStock}>
                 <div className="watchlist-name-left" onClick={() => navigate(`/watchlists/${watchlist.id}`)}>
                     <FaLightbulb color="yellow" />
                     <span>{watchlist.name}</span>
                 </div>
                 <div className="watchlist-name-right">
-                    <IoEllipsisHorizontal onClick={() => alert("Not sure if it is needed")}/> <FaAngleDown />
+                    <IoEllipsisHorizontal onClick={(e) => {e.stopPropagation(); alert("Not sure if it is needed")}}/>
+                    {/* <span>{showStock ? <FaAngleUp style={{transform: 'rotate(0.5turn)', transitionDuration: '1000ms'}}/> : <FaAngleUp style={{transform: 'rotate(0.5turn)', transitionDuration: '1000ms'}} /> }</span> */}
+                    <span><FaAngleDown id={`faAngle-icon-${watchlist.id}`}/> </span>
                 </div>
 
             </div>
             {/* {console.log("test watchlsit ============", watchlist, watchlist?.stocks)} */}
-            {watchlist?.stocks?.map(el => {
+            {showStock && watchlist?.stocks?.map(el => {
                 return (
                     <WatchListItem key={`watchlist-${watchlist.id}-${el.code}`} stock={el} />
                 )
