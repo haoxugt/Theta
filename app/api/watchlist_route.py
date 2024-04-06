@@ -11,6 +11,10 @@ def getSingleWatchlist(id):
     target_watchlist = Watchlist.query.get(id)
     if not target_watchlist:
         return {"errors": {"message": "This watchlist counld not be found" }}, 404
+
+    if current_user.id != target_watchlist.user_id:
+        return {"errors": {"message": "Unauthorized" }}, 403
+
     return target_watchlist.to_dict()
 
 @watchlist_routes.route('/<int:id>', methods=['DELETE'])

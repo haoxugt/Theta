@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import './WatchlistShowPage.css'
 
-function WatchlistShowPage(){
+function WatchlistShowPage() {
     const { watchlistId } = useParams();
     const watchlistState = useSelector(state => state.watchlist)
     const watchlist = watchlistState?.watchlistShow;
@@ -28,39 +28,44 @@ function WatchlistShowPage(){
     const stockshold_array = Object.values(stockshold?.Stockshold)
 
     const [showMenu, setShowMenu] = useState(false);
+    const [errors, setErrors] = useState({})
     const dispatch = useDispatch()
     // const navigate = useNavigate()
     // const ulRef = useRef
     const toggleMenu = (e) => {
-      e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
-      document.body.click()
+        e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+        document.body.click()
 
-      setShowMenu(!showMenu);
+        setShowMenu(!showMenu);
 
-  }
+    }
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getCurrentWatchlistsThunk());
-            await dispatch(getAllStocksHoldThunk());
-            await dispatch(getSingleWatchlistThunk(watchlistId));
+            try {
+                await dispatch(getCurrentWatchlistsThunk());
+                await dispatch(getAllStocksHoldThunk());
+                await dispatch(getSingleWatchlistThunk(watchlistId));
+            } catch (e) {
+                setErrors(e);
+            }
         }
         fetchData();
     }, [dispatch, watchlistId])
 
     useEffect(() => {
-      if (!showMenu) return;
+        if (!showMenu) return;
 
-      // const closeMenu = (e) => {
-      //     // console.log("22222222222222222222", ulRef.current, e.target)
-      //     if (ulRef.current && !ulRef.current.contains(e.target)) {
-      //         setShowMenu(false);
-      //     }
-      // };
+        // const closeMenu = (e) => {
+        //     // console.log("22222222222222222222", ulRef.current, e.target)
+        //     if (ulRef.current && !ulRef.current.contains(e.target)) {
+        //         setShowMenu(false);
+        //     }
+        // };
 
-      document.addEventListener("click", closeMenu);
+        document.addEventListener("click", closeMenu);
 
-      return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
 
     const closeMenu = () => setShowMenu(false);
 
@@ -68,84 +73,90 @@ function WatchlistShowPage(){
     // else {
     //   if (stock.code != stockCode.toUpperCase()) return null;
     // }
-    // console.log("1111111111111111", watchlist.stocks)
+
+    if (Object.values(errors).length) {
+
+        return (<div>{Object.values(errors).map((el, index) => {
+            return (<h2 key={`title-${index}`}>{el.message}</h2>)
+        })}</div>)
+    }
     return (
-      <div className="homepage-container">
-      <div className="homepage-left-col">
-        <div className="watchlist-info-container">
-          <h1>
-          <FaLightbulb color="yellow" size={35} />
-          </h1>
-          <div className="watchlist-show-header">
-            <div className="watchlist-info-header">
-              <span>{watchlist.name}</span>
-              <span>{watchlist.stocks?.length} items</span>
-            </div>
-            <div className="edit-wahtchlist-btn" onClick={toggleMenu}>
-              <IoEllipsisHorizontal />
-            </div>
+        <div className="homepage-container">
+            <div className="homepage-left-col">
+                <div className="watchlist-info-container">
+                    <h1>
+                        <FaLightbulb color="yellow" size={35} />
+                    </h1>
+                    <div className="watchlist-show-header">
+                        <div className="watchlist-info-header">
+                            <span>{watchlist.name}</span>
+                            <span>{watchlist.stocks?.length} items</span>
+                        </div>
+                        <div className="edit-wahtchlist-btn" onClick={toggleMenu}>
+                            <IoEllipsisHorizontal />
+                        </div>
 
-            {showMenu && (
-            <div className="edit-wahtchlist-menu">
-              <OpenModalMenuItem
-              itemText="Edit List"
-              onItemClick={closeMenu}
-              modalComponent={<UpdateWatchlistModal />}
-              />
+                        {showMenu && (
+                            <div className="edit-wahtchlist-menu">
+                                <OpenModalMenuItem
+                                    itemText="Edit List"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<UpdateWatchlistModal />}
+                                />
 
-              <OpenModalMenuItem
-              itemText="Delete List"
-              onItemClick={closeMenu}
-              modalComponent={<DeleteWatchlistModal watchlist={watchlist}/>}
-              />
+                                <OpenModalMenuItem
+                                    itemText="Delete List"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<DeleteWatchlistModal watchlist={watchlist} />}
+                                />
 
-            </div>)}
-          </div>
-          <div className='watchlist-list-container'>
-              <div className="watchlist-list-row-title">
-                    <span className="first-col">Name</span>
-                    <span>Symbol</span>
-                    <span>Price</span>
-                    <span>Today</span>
-                    <span className="fifth-col">Market Cap</span>
-                    <span></span>
-            </div>
-            {watchlist.stocks?.map((stock) => {
-              return (
-                <div className="watchlist-list-item-row-container" key={stock.code}>
-                  <WatchlistItemInShowPage watchlist={watchlist} stock={stock} />
+                            </div>)}
+                    </div>
+                    <div className='watchlist-list-container'>
+                        <div className="watchlist-list-row-title">
+                            <span className="first-col">Name</span>
+                            <span>Symbol</span>
+                            <span>Price</span>
+                            <span>Today</span>
+                            <span className="fifth-col">Market Cap</span>
+                            <span></span>
+                        </div>
+                        {watchlist.stocks?.map((stock) => {
+                            return (
+                                <div className="watchlist-list-item-row-container" key={stock.code}>
+                                    <WatchlistItemInShowPage watchlist={watchlist} stock={stock} />
+                                </div>
+                            )
+                        })}
+                    </div>
+
                 </div>
-              )
-            })}
-          </div>
-
-        </div>
 
 
-      </div>
-      <div className="homepage-right-col">
-        <div className="lists-container">
-            <StockHoldList stockholdlist={stockshold_array} />
-            <div className="watchlist-header">
-                Lists
-                <OpenModalButton
-                    buttonText={<HiOutlinePlus size={20} color="grey"/>}
-                    // onButtonClick={closeMenu}
-                    modalComponent={<CreateWatchlistModal />}
-                />
             </div>
-            {watchlist_array?.map(el => {
-              return (
-                <WatchList key={el.id} watchlist={el}/>
-              )
-            })}
+            <div className="homepage-right-col">
+                <div className="lists-container">
+                    <StockHoldList stockholdlist={stockshold_array} />
+                    <div className="watchlist-header">
+                        Lists
+                        <OpenModalButton
+                            buttonText={<HiOutlinePlus size={20} color="grey" />}
+                            // onButtonClick={closeMenu}
+                            modalComponent={<CreateWatchlistModal />}
+                        />
+                    </div>
+                    {watchlist_array?.map(el => {
+                        return (
+                            <WatchList key={el.id} watchlist={el} />
+                        )
+                    })}
 
+                </div>
+
+
+
+            </div>
         </div>
-
-
-
-      </div>
-    </div>
     )
 }
 

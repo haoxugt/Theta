@@ -76,11 +76,14 @@ function LineChartTest2({stockCode }) {
     ]
 });
   const dispatch = useDispatch();
-//   console.log("============= stockCode ============", stockCode)
+  let plugins = []
 
+  let options = {}
+//   console.log("============= stockCode ============", stockCode)
+try {
   useEffect(() => {
     const fetchData = async () => {
-        try {
+
         const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
         // console.log("9999999999999999999999999999 res ===>",stockCode, res.stockdata[0])
         let dataSet1 = [];
@@ -132,9 +135,7 @@ function LineChartTest2({stockCode }) {
               }
             ]
         });
-    } catch(e) {
-        setErrors({"message": e.message});
-    }
+
     }
     fetchData();
   }, [dispatch, stockCode])
@@ -163,9 +164,9 @@ function LineChartTest2({stockCode }) {
             }
     }
   }
-  const plugins = [hoverLine]
+  plugins = [hoverLine]
 
-  const options = {
+  options = {
     responsive: true,
     maintainAspectRatio: false,
     // tooltip: {
@@ -278,7 +279,10 @@ function LineChartTest2({stockCode }) {
   if (Object.values(errors).length) {
     return <h2>{errors.message}</h2>
   }
-
+} catch(e) {
+    console.log(e)
+    setErrors({"message": e.message});
+}
   return (
     <div className='line-chart'>
        {/* =========== test ====================  */}

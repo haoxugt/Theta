@@ -14,6 +14,7 @@ import AddStockToWatchlistModal from "../../../components/Items/AddStockToWatchl
 import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
 // import LineChartTest from "../../../components/Chart/LineChartTest";
 import LineChartTest2 from "../../../components/Chart/LineChartTest2";
+// import { IoConstructOutline } from "react-icons/io5";
 
 
 import './StockInfo.css'
@@ -90,6 +91,10 @@ const figureUpdate = () => {
     alert("The portfolio chart will be updated")
 }
 
+if(stockCode.toUpperCase() != stock.code) {
+    console.log("code ==============> ", stockCode, stock.code)
+    return <h2>Loading...</h2>;
+}
     return (
       <div className="stockinfopage-container">
         <div className="stockinfopage-left-col">

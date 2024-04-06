@@ -104,13 +104,13 @@ export const deleteWatchlistThunk = (watchlistId) => async (dispatch) => {
 
 export const getSingleWatchlistThunk = (watchlistId) => async (dispatch) => {
   const response = await fetch(`/api/watchlists/${watchlistId}`)
+  const data = await response.json()
 
   if (response.ok) {
-    const data = await response.json()
     dispatch(getSingleWatchlistAction(data))
     return data
   } else {
-    throw response;
+    throw data;
   }
 }
 

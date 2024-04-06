@@ -53,9 +53,11 @@ function SmallChartTest({ stockCode, color }) {
         ]
     });
     const [ydataset, setYdataset] = useState([])
+    const [errors, setErrors] = useState({});
 
     const dispatch = useDispatch();
-
+    let options = {}
+try{
     useEffect(() => {
         const fetchData = async () => {
             const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
@@ -94,7 +96,7 @@ function SmallChartTest({ stockCode, color }) {
         fetchData();
       }, [dispatch, stockCode, color])
 
-    const options = {
+    options = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -131,7 +133,13 @@ function SmallChartTest({ stockCode, color }) {
 
 
 
-
+} catch(e) {
+    console.log(e)
+    setErrors({"message": e.message});
+}
+if(Object.values(errors).length) {
+    return <h2>{errors.message}</h2>
+}
 
     return (
         <div className='small-line-chart'>
