@@ -116,7 +116,7 @@ function HomeLoggedIn() {
 
                 <div className="cash-container">
                     <span>Buying power</span>
-                    <span>${current_portfolio?.cash}</span>
+                    <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(current_portfolio?.cash)}</span>
                 </div>
 
 

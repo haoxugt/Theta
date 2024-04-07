@@ -155,7 +155,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         </button>
         <div className="buy-sell-info">
             {/* {console.log("print ===================>", portfolio, portfolios[portfolio])} */}
-            {isBuy ? <span>${portfolios[portfolio]?.cash.toFixed(2)} buying power available</span> : <span>{getHoldShares(portfolio)} Shares available</span>}
+            {isBuy ? <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(portfolios[portfolio]?.cash)} buying power available</span> : <span>{getHoldShares(portfolio)} Shares available</span>}
         </div>
         <label htmlFor="portfolio"></label>
         <select
