@@ -121,7 +121,7 @@ try {
               {
                 label: 'o',
                 type: "line",
-                data: res.stockdata[1].map(() => previousClosePrice),
+                data: res.stockdata[1]?.map(() => previousClosePrice),
                 backgroundColor: "black",
                 borderColor: "white",
                 borderDash: [10,5],
@@ -183,7 +183,7 @@ try {
       //   intersect: false,
       // },
       tooltip: {
-        position: 'top',
+        // position: 'top',
         mode: "index",
         intersect: true,
         callbacks: {
@@ -213,7 +213,7 @@ try {
       },
       y: {
         ticks: {
-          display: false,
+          display: true,
         },
     //     min: function(){
     //         return Math.min(....map(el => el.y));
@@ -265,16 +265,16 @@ try {
 //   };
 
 
-  Tooltip.positioners.top = function(elements, eventPosition) {
-      // console.log(this)
-      // const { chartArea: { top, bottom } } = this.chart;
-      return {
-        x:eventPosition.x,
-        y: 0,
-        xAlign: 'center',
-        yAlign: 'bottom'
-      }
-  }
+//   Tooltip.positioners.top = function(elements, eventPosition) {
+//       // console.log(this)
+//       // const { chartArea: { top, bottom } } = this.chart;
+//       return {
+//         x:eventPosition.x,
+//         y: 0,
+//         xAlign: 'center',
+//         yAlign: 'bottom'
+//       }
+//   }
 
   if (Object.values(errors).length) {
     return <h2>{errors.message}</h2>

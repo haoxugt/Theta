@@ -9,6 +9,7 @@ import PortfoliosPage from './Pages/PortfoliosPage/PortfoliosPage';
 import TransferPage from './Pages/TransferPage/TransferPage';
 import StocksPage from './Pages/StocksPage/StocksPage';
 import FAQPage from './Pages/FAQPage/FAQPage';
+import ManagePage from './Pages/ManagePage/ManagePage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/faq",
         element: <FAQPage />,
+      },
+      {
+        path: "/manage",
+        element: <ManagePage />,
       },
     ],
   },

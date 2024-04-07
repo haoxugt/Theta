@@ -29,6 +29,7 @@ werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 yfinance = "*"
 zipp = "==3.17.0"
+matplotlib = "*"
 
 [dev-packages]
 

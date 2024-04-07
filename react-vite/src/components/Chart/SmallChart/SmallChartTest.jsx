@@ -80,7 +80,7 @@ try{
                   {
                     // label: 'o',
                     type: "line",
-                    data: res.stockdata[1].map(() => previousClosePrice),
+                    data: res.stockdata[1]?.map(() => previousClosePrice),
                     backgroundColor: "white",
                     borderColor: "white",
                     borderDash: [2,2],

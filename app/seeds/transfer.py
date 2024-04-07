@@ -12,7 +12,7 @@ def seed_transfers():
     transfer2 = Transfer(
         portfolio_id = 2,
         amount=6000.0,
-        transfer_date=datetime(2024,1,1,9,30,0)
+        transfer_date=datetime(2024,1,2,9,30,0)
     )
     transfer3 = Transfer(
         portfolio_id = 3,
@@ -50,7 +50,7 @@ def seed_transfers():
     transfer9 = Transfer(
         portfolio_id = 4,
         amount=6500.0,
-        transfer_date=datetime(2024,1,1,9,30,0)
+        transfer_date=datetime(2024,1,2,9,30,0)
     )
 
     db.session.add(transfer1)

@@ -80,7 +80,7 @@ function StockInfo(){
 
     //   }
 
-   },[c])
+   },[c, change])
 //    console.log("222222222222222222222222222222222", datalist)
 
 //    if (!stock) return null;

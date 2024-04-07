@@ -49,6 +49,7 @@
     border-radius: 5px;
     border:1px solid var(--grey-border);
     padding-left: 10px;
+    color: white;
 }
 
 .login-form > button {

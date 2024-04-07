@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import LineChart from "../../../components/Chart/LineChart";
+// import LineChart from "../../../components/Chart/LineChart";
+import LineChartTest3 from "../../../components/Chart/LineChartTest3";
 import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
@@ -90,23 +91,27 @@ function HomeLoggedIn() {
                     </h1>
 
                     <p className={positiveOrNegativeClassName(change)}>
-                        {change >= 0 ? (<span>+{change}</span>) : (<span>{change}</span>)}
+                        {/* {change >= 0 ? (<span>+{change}</span>) : (<span>{change}</span>)}
 
-                        ({(change / amount * 100).toFixed(2) + "%"})
+                        ({(change / amount * 100).toFixed(2) + "%"}) */}
                     </p>
 
 
                 </div>
-                <div className="portfolio-chart-container">
+                {/* <div className="portfolio-chart-container">
                     <LineChart />
+
+                </div> */}
+                <div className="portfolio-chart-container">
+                    <LineChartTest3 portfolio={current_portfolio} amount={amount} />
 
                 </div>
                 <div className="time-scale-container" onClick={figureUpdate}>
                     <span>1D</span>
-                    <span className="week-scale">1W</span>
+                    <span >1W</span>
                     <span>1M</span>
                     <span>1Y</span>
-                    <span>All</span>
+                    <span className="week-scale">All</span>
                 </div>
 
                 <div className="cash-container">

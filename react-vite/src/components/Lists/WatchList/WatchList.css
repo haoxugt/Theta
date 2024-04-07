@@ -27,10 +27,11 @@
 
 .watchlist-name:hover {
     cursor: pointer;
+    background-color: var(--light-grey-color);
 }
 
 .watchlist-name-left:hover {
-  background-color: var(--light-grey-color);
+  background-color: rgb(17, 17, 17);
   border-radius: 3px;
 }
 
@@ -45,7 +46,7 @@
 }
 
 .watchlist-name-right>svg:hover {
-  background-color: var(--light-grey-color);
+  background-color: var(--grey-border);
   border-radius: 3px;
 }
 
