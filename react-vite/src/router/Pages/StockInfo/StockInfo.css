@@ -3,6 +3,15 @@
     grid-template-columns: 7fr 3fr;
     max-width: 1420px;
     margin: auto;
+    margin-top: 25px;
+}
+
+.stockinfopage-info-container {
+    margin-bottom: 25px;
+}
+
+.stockinfopage-info-container>h1 {
+    font-size: 25px;
 }
 
 .order-form {

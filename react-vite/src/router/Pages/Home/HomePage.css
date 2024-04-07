@@ -12,6 +12,7 @@
 
 .homepage-left-col {
   padding: 20px;
+  padding-top: 0;
 }
 
 .homepage-container {
@@ -19,6 +20,7 @@
   grid-template-columns: 7fr 3fr;
   max-width: 1420px;
   margin: auto;
+  margin-top: 25px;
 }
 
 .homepage-right-col {
@@ -55,9 +57,13 @@
   height: 350px;
 }
 
+.portfolio-info-container {
+    margin-bottom: 25px;
+}
+
 .portfolio-chart-container{
   width: 70vw;
-  max-width: 1100px;
+  max-width: 1050px;
   min-width: 400px;
 }
 
@@ -109,4 +115,102 @@
   background-color: transparent;
   width: auto;
   margin: auto;
+}
+
+.index-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.index-header{
+    align-self: flex-start;
+    margin-bottom: 15px;
+}
+
+.index-info-container{
+    width: 100%;
+    /* padding: 20px 0; */
+    border-top: 1px solid var(--grey-border);
+    border-bottom: 1px solid var(--grey-border);
+}
+
+.index-info{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--light-grey-color);
+    /* width: 100%; */
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 5px;
+    /* padding: 40 0px; */
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: white;
+}
+
+.single-index {
+    display: flex;
+    flex-direction: row;
+    column-gap: 7px;
+    justify-content: center;
+    width: 100%
+}
+
+.single-index > span{
+    font-size: 15px;
+}
+
+.single-index.middle {
+    border-left: 1px solid var(--grey-border);
+    border-right: 1px solid var(--grey-border);
+}
+
+.recommand-stocks-container{
+    margin-top: 35px;;
+}
+
+.recommand-stocks-header {
+    display: flex;
+    flex-direction: column;
+   margin-bottom: 15px;
+}
+
+
+
+.recommand-stocks-title{
+    align-self: flex-start;
+    color: white;
+}
+
+.stocks-daily{
+    /* align-self: stretch; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.stocks-daily-intro{
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.showmore-btn{
+    color: var(--blue-color);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.showmore-btn:hover{
+    cursor: pointer;
+}
+
+.recommand-stock-list {
+    display: grid;
+    grid-template-columns: calc(20% - 8px) calc(20% - 8px) calc(20% - 8px) calc(20% - 8px) calc(20% - 8px);
+    column-gap: 8px;
 }

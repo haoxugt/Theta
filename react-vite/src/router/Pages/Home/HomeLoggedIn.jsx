@@ -8,7 +8,9 @@ import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
 import { getAllStockThunk } from "../../../redux/stockinfo";
 import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { HiOutlinePlus } from "react-icons/hi2";
+import StockCardItem from "../../../components/Items/StockCardItem/StockCarditem";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
 import OpenModalButton from "../../../components/Items/OpenModalButton";
 
@@ -26,6 +28,7 @@ function HomeLoggedIn() {
     const portfolio_array = Object.values(portfolioState?.Portfolios);
     const stockinfo_array = Object.values(stockinfoState?.Stocklists);
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
 
 
     let current_portfolio = portfolio_array?.filter(el => el.is_retirement == false)[0];
@@ -118,6 +121,53 @@ function HomeLoggedIn() {
                     <span>Buying power</span>
                     <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(current_portfolio?.cash)}</span>
                 </div>
+
+                <div className="index-container">
+                    <div className="index-header">
+                        <span>Index</span>
+                    </div>
+                    <div className="index-info-container">
+                        <div className="index-info">
+                            <div className="single-index">
+                                <span>S&P 500</span>
+                                <span>{new Intl.NumberFormat('en-US',).format(5204)}</span>
+                                <span>1.11%</span>
+                            </div>
+                            <div className="single-index middle">
+                                <span>Nasdaq</span>
+                                <span>{new Intl.NumberFormat('en-US',).format(16248.52)}</span>
+                                <span>1.11%</span>
+                            </div>
+                            <div className="single-index">
+                                <span>Dow Johns</span>
+                                <span>{new Intl.NumberFormat('en-US',).format(38904.04)}</span>
+                                <span>1.11%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="recommand-stocks-container">
+                    <div className="recommand-stocks-header">
+                        <span className="recommand-stocks-title">Stocks</span>
+                        <div className="stocks-daily">
+                            <span className="stocks-daily-intro">Stocks recommanded for today.</span>
+                            <span className='showmore-btn' onClick={() => navigate(`/stocks`)}>Show more</span>
+                        </div>
+                    </div>
+                    <div className="recommand-stocks-list-container">
+                        <div className="recommand-stock-list">
+                           {stockinfo_array.slice(0,5).map(el => {
+                            return (
+                                <StockCardItem key={`stock-rem-${el.code}`} stock={el} />
+                            )
+                           })}
+                        </div>
+
+                    </div>
+                </div>
+
 
 
             </div>
