@@ -4,7 +4,7 @@ from app.models import db, User, Portfolio, StockHold, Order, Transfer
 from datetime import datetime
 import yfinance as yf
 import pandas as pd
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 import json
 
 
