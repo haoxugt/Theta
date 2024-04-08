@@ -1,0 +1,23 @@
+.delete-watchlist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 5px;
+    background-color: var(--light-grey-color);
+    padding: 25px;
+    border-radius: 7px;
+}
+
+.delete-watchlist-container>form {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-button.yes-button {
+    margin-top: 15px;
+    width: 160px;
+    height: 35px;
+    background-color: var(--blue-color);
+    border-radius: 17px;
+    border: 1px solid var(--blue-color);
+}

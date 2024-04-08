@@ -27,12 +27,23 @@
   right: 0px;
   background-color: black;
   border: 1px solid var(--grey-border);
-  width: 100px;
-  padding: 10px;
+  width: 120px;
+
   display: flex;
   flex-direction: column;
-  row-gap: 7px;
+  /* row-gap: 7px; */
   border-radius: 3px;
+}
+
+.edit-wahtchlist-menu>p {
+    padding: 10px 15px 7px 15px;
+    width: calc(100% - 30px);
+
+}
+.edit-wahtchlist-menu>p:hover {
+    cursor: pointer;
+    background-color: var(--light-grey-color);
+
 }
 
 .watchlist-list-row-title {

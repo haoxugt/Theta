@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { deleteWatchlistThunk } from "../../../redux/watchlist";
 import { useNavigate } from "react-router-dom";
+import './DeleteWatchlistModal.css'
 // import { getSpotById } from "../../../store/spot";
 // import './DeleteSpotModal.css'
 
