@@ -83,14 +83,14 @@ export const createPortfolioJSONThunk = (portfolio) => async () => {
     // body: JSON.stringify({ portfolio })
   });
   const data = await response.json();
-  console.log("data ==================>", data)
+
 
   if (response.ok) {
-      console.log("response.ok ==================>")
+
       // dispatch(createPortfolioAction(data));
       return data;
     } else {
-      console.log("response. not ok ==================>")
+
     throw data;
   }
 
