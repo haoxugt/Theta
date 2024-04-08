@@ -70,8 +70,12 @@ function LineChartTest3({ portfolio, amount }) {
                 setErrors({"message": "Portfolio data does not exist for a new user"})
                 return;
             }
-
-            datapoints.time.push((new Date()).toJSON().slice(0, 10))
+            let now = new Date();
+            let year = now.toLocaleString("default", {year: "numeric"});
+            let month = now.toLocaleString("default", {month: "2-digit"});
+            let day = now.toLocaleString("default", {day: "2-digit"});
+            let today = year + "-" + month + "-" + day
+            datapoints.time.push(today)
             datapoints.assets.push(amount)
 
             setPlotdata({
@@ -146,7 +150,7 @@ function LineChartTest3({ portfolio, amount }) {
                 callbacks: {
                   afterFooter: function(chart) {
                     const hoverval = document.getElementById("hoverval");
-                    hoverval.innerText=`$${chart[0].parsed.y.toFixed(2)}`;
+                    hoverval.innerText=`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(chart[0].parsed.y)}`;
                   }
                 }
             },

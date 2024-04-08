@@ -183,7 +183,7 @@ def seed_stocks_info():
         city='Hsinchu City',
         state='',
         country='Taiwan',
-        employees=1,
+        employees=73090,
         CEO='Dr. C. C.  Wei',
         industry='Semiconductors',
         sector_disp='Technology',

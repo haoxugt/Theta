@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
 import { createPortfolioThunk } from "../../redux/portfolio";
+import { createPortfolioJSONThunk } from "../../redux/portfolio";
 
 import './SignupForm.css'
 import { FaCircleExclamation } from "react-icons/fa6";
@@ -53,7 +54,14 @@ function SignupFormPage() {
     } else {
       let portfolio = {title: "investing", is_retirement: false};
       dispatch(createPortfolioThunk(portfolio))
+      .then(async(res) => {return await dispatch(createPortfolioJSONThunk(res))})
+      .then(() => alert(`As a new user, an regular investing account is automatically created for you with 0 balance. You need to transfer money into your new account to start invest.
+        You can still create a retirement plan account, and later delete it. `))
       .then(navigate("/"))
+      .catch((e)=>{
+        console.log(e);
+        setErrors(e)
+      })
     }
   };
 

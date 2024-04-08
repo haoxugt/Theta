@@ -191,3 +191,15 @@ def updatePortfolio():
 
 
     return {"message": "Mission complete"}
+
+@portfolio_routes.route('/<int:id>/create', methods=["POST"])
+# @login_required
+def createPortfolioJSON(id):
+    # portfolio = Portfolio.query.get(id)
+    print("==============================")
+    print(" id = ", id)
+    print("================================")
+    with open(f'./react-vite/public/csvs/portfolio-{id}-2.json', 'w') as file:
+        file.write(json.dumps({"time": [str(datetime.now().date())], "assets": [0]}))
+
+    return {"message": "Mission complete"}

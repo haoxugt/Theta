@@ -3,8 +3,8 @@ import { useModal } from "../../../context/Modal";
 import { MdClose } from "react-icons/md";
 import AddStockToWatchlistItem from "../AddStockToWatchlistItem/AddStockToWatchlistItem";
 import { addStockToWatchlistThunk, removeStockInWatchlistThunk } from "../../../redux/watchlist";
-import "./AddStockToWatchlist.css";
 import { useDispatch } from "react-redux";
+import "./AddStockToWatchlist.css";
 
 function AddStockToWatchlistModal({ watchlists, stock }) {
   const { closeModal } = useModal();

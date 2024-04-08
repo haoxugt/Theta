@@ -138,3 +138,44 @@ span.share-box {
 .stock-option-addtolist-container button:hover {
     cursor: pointer;
 }
+
+.about-container {
+    margin-top: 25px;
+    border-top: 1px solid var(--grey-border);
+    color: white;
+}
+
+.about-header {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--grey-border);
+    font-size: 22px;
+}
+
+.about-description{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 500;;
+}
+
+.about-company-info {
+    display: grid;
+    grid-template-columns: calc(25% - 8px) calc(25% - 8px) calc(25% - 8px) calc(25% - 8px);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.about-company-info-item-title {
+    font-weight: 600;
+}
+
+.about-company-info-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    column-gap: 4px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}

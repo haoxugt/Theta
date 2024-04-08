@@ -1,5 +1,6 @@
 const GET_CURRENT_PORTFOLIOS = 'portfolio/getCurrentPortfolios';
 const CREATE_PORTFOLIO = 'portfolio/createPortfolio';
+// const CREATE_PORTFOLIO_JSON = 'portfolio/createPortfolioJSON';
 const BUY_SELL_STOCK_IN_PORTFOLIO = 'portfolio/buySellStockInPortfolio';
 const DELETE_PORTFOLIO = 'portfolio/deletePortfolio';
 const TRANSFER_IN_PORTFOLIO = 'portfolio/transferInPortfolio'
@@ -51,7 +52,7 @@ export const getCurrentPortfoliosThunk = () => async (dispatch) => {
     dispatch(getCurrentPortfoliosAction(data.portfolios));
     return data
   }
-  throw response;
+  throw data;
 }
 
 export const createPortfolioThunk = (portfolio) => async (dispatch) => {
@@ -63,12 +64,34 @@ export const createPortfolioThunk = (portfolio) => async (dispatch) => {
     body: JSON.stringify({ portfolio })
   });
 
+  const data = await response.json();
   if (response.ok) {
-    const data = await response.json();
     dispatch(createPortfolioAction(data));
     return data;
   } else {
-    throw response;
+    throw data;
+  }
+
+}
+
+export const createPortfolioJSONThunk = (portfolio) => async () => {
+  // const { title, is_retirement } = portfolio;
+
+  const response = await fetch(`/api/portfolios/${portfolio.id}/create`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json"},
+    // body: JSON.stringify({ portfolio })
+  });
+  const data = await response.json();
+  console.log("data ==================>", data)
+
+  if (response.ok) {
+      console.log("response.ok ==================>")
+      // dispatch(createPortfolioAction(data));
+      return data;
+    } else {
+      console.log("response. not ok ==================>")
+    throw data;
   }
 
 }
@@ -80,12 +103,12 @@ export const deletePortfolioThunk = (portfolioId) => async (dispatch) => {
     method: "DELETE"
   });
 
+  const data = await response.json();
   if (response.ok) {
-    const data = await response.json();
     dispatch(deletePortfolioAction(portfolioId));
     return data;
   } else {
-    throw response;
+    throw data;
   }
 
 }
@@ -98,13 +121,13 @@ export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatc
     body: JSON.stringify({ order })
   })
 
+  const data = await response.json();
   if (response.ok) {
-    const data = await response.json();
     // console.log("data =================>", data)
     dispatch(buySellStockInPortfolioAction(data));
     return data;
   } else {
-    throw response;
+    throw data;
   }
 }
 
@@ -116,13 +139,13 @@ export const transferInPortfolioThunk = (portfolio, transfer) => async (dispatch
     body: JSON.stringify({ transfer })
   })
 
+  const data = await response.json();
   if (response.ok) {
-    const data = await response.json();
     // console.log("data =================>", data)
     dispatch(transferInPortfolioAction(data));
     return data;
   } else {
-    throw response;
+    throw data;
   }
 }
 
@@ -149,33 +172,8 @@ const portfolioReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState.Portfolios[action.payload];
       return newState
-      // return { ...state, Portfolios: {...state.Portfolios, ...{[action.payload.id]: action.payload}}}
     }
-    // case GET_SINGLE_WATCHLIST: {
-    //   return { ...state, watchlistShow: {...action.payload }}
-    // }
-    // case REMOVE_STOCK_IN_WATCHLIST: {
-    //   const watchlist = state.Watchlists[action.payload.watchlist.id];
-    //   const updatedStockArray = watchlist.stocks.filter(stock => stock.code !== action.payload.stockCode);
-    //   const updatedWatchlist = { ...watchlist, stocks: updatedStockArray}
-    //   return { ...state,
-    //           Watchlists: { ...state.Watchlists, [action.payload.watchlist.id]: updatedWatchlist},
-    //           watchlistShow: { ...action.payload.watchlist}}
-    // }
-    // case ADD_STOCK_TO_WATCHLIST: {
-    //   const watchlist = state.Watchlists[action.payload.watchlist.id];
-    //   let watchlistShow = state.watchlistShow;
-    //   watchlist.stocks.push(action.payload.stock);
-    //   const updatedStockArray = watchlist.stocks;
-    //   const updatedWatchlist = { ...watchlist, stocks: updatedStockArray}
-    //   if (watchlistShow.id == updatedWatchlist.id) {
-    //     watchlistShow = {...updatedWatchlist};
-    //   }
 
-    //   return { ...state,
-    //           Watchlists: { ...state.Watchlists, [action.payload.watchlist.id]: updatedWatchlist},
-    //           watchlistShow: { ...watchlistShow}}
-    // }
     default:
       return state;
   }

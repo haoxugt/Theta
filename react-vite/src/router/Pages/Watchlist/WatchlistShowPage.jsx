@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import { getSingleWatchlistThunk, getCurrentWatchlistsThunk } from "../../../redux/watchlist";
-import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
+// import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
 import { useEffect, useState } from "react";
 import { FaLightbulb } from "react-icons/fa";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { HiOutlinePlus } from "react-icons/hi2";
-import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
+// import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList";
+import WatchListTitle from "../StocksPage/WatchlistTitle";
 import OpenModalButton from "../../../components/Items/OpenModalButton";
-import WatchList from "../../../components/Lists/WatchList/WatchList";
+// import WatchList from "../../../components/Lists/WatchList/WatchList";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
 import WatchlistItemInShowPage from "./WatchlistItemInShowPage";
 import OpenModalMenuItem from "../../../components/Navigation/OpenModalMenuItem";
@@ -23,9 +24,9 @@ function WatchlistShowPage() {
     const { watchlistId } = useParams();
     const watchlistState = useSelector(state => state.watchlist)
     const watchlist = watchlistState?.watchlistShow;
-    const stockshold = useSelector(state => state.stockshold)
+    // const stockshold = useSelector(state => state.stockshold)
     const watchlist_array = Object.values(watchlistState?.Watchlists);
-    const stockshold_array = Object.values(stockshold?.Stockshold)
+    // const stockshold_array = Object.values(stockshold?.Stockshold)
 
     const [showMenu, setShowMenu] = useState(false);
     const [errors, setErrors] = useState({})
@@ -43,7 +44,7 @@ function WatchlistShowPage() {
         const fetchData = async () => {
             try {
                 await dispatch(getCurrentWatchlistsThunk());
-                await dispatch(getAllStocksHoldThunk());
+                // await dispatch(getAllStocksHoldThunk());
                 await dispatch(getSingleWatchlistThunk(watchlistId));
             } catch (e) {
                 setErrors(e);
@@ -136,7 +137,7 @@ function WatchlistShowPage() {
             </div>
             <div className="homepage-right-col">
                 <div className="lists-container">
-                    <StockHoldList stockholdlist={stockshold_array} />
+
                     <div className="watchlist-header">
                         Lists
                         <OpenModalButton
@@ -147,7 +148,8 @@ function WatchlistShowPage() {
                     </div>
                     {watchlist_array?.map(el => {
                         return (
-                            <WatchList key={el.id} watchlist={el} />
+                            // <WatchList key={el.id} watchlist={el} />
+                            <WatchListTitle key={`watchlisttitle-${el.id}`} watchlist={el}/>
                         )
                     })}
 
