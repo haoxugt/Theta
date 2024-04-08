@@ -62,8 +62,10 @@ function LineChartTest3({ portfolio, amount }) {
             setErrors({});
             const url = `./csvs/portfolio-${portfolio.id}-2.json`
             const response = await fetch(url);
+            console.log("reponse file fetch ====>", response )
             let datapoints;
             if (response.ok) {
+                console.log("The file exists");
                datapoints = await response.json();
             } else {
                 console.log("The file does not exist");
