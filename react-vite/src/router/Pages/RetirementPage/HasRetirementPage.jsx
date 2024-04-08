@@ -6,10 +6,13 @@ import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getRetirementStocksHoldThunk } from "../../../redux/stock_hold";
 import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
+import { getAllStockThunk } from "../../../redux/stockinfo";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlus } from "react-icons/hi2";
+import StockCardItem from "../../../components/Items/StockCardItem/StockCarditem";
 import CreateWatchlistModal from "../../../components/Items/CreateWatchlistModal/CreateWatchlistModal";
 import OpenModalButton from "../../../components/Items/OpenModalButton";
+import { useNavigate} from 'react-router-dom'
 // import CandlestickChart from "../../../components/Chart/CandlestickChart/CandlestickChart";
 
 function HasRetirementPage() {
@@ -17,9 +20,12 @@ function HasRetirementPage() {
     const watchlists = useSelector(state => state.watchlist);
     const stockshold = useSelector(state => state.stockshold);
     const portfolioState = useSelector(state => state.portfolio);
+    const stockinfoState = useSelector(state => state.stockinfo);
     const watchlist_array = Object.values(watchlists?.Watchlists);
     const stockshold_array = Object.values(stockshold?.Stockshold);
     const portfolio_array = Object.values(portfolioState?.Portfolios);
+    const stockinfo_array = Object.values(stockinfoState?.Stocklists);
+    const navigate = useNavigate();
 
     let current_portfolio = portfolio_array?.filter(el => el.is_retirement == true)[0];
     let amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_assets;
@@ -40,17 +46,18 @@ function HasRetirementPage() {
             await dispatch(getCurrentWatchlistsThunk());
             await dispatch(getRetirementStocksHoldThunk());
             await dispatch(getCurrentPortfoliosThunk());
+            await dispatch(getAllStockThunk())
         }
         fetchData();
-        const chart = document.querySelector('.line-chart>canvas');
-        const hoverval = document.getElementById('hoverval');
-        if (chart && hoverval) {
-            chart.addEventListener('mouseout', () => {
-                hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
-            })
-        }
+        // const chart = document.querySelector('.line-chart>canvas');
+        // const hoverval = document.getElementById('hoverval');
+        // if (chart && hoverval) {
+        //     chart.addEventListener('mouseout', () => {
+        //         hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
+        //     })
+        // }
 
-    }, [dispatch, amount])
+    }, [dispatch])
 
     const figureUpdate = () => {
         alert("The portfolio chart will be updated")
@@ -77,7 +84,7 @@ function HasRetirementPage() {
 
                 </div> */}
                 <div className="portfolio-chart-container">
-                    <LineChartTest3 portfolio={current_portfolio} />
+                    <LineChartTest3 portfolio={current_portfolio} amount={amount}/>
 
                 </div>
                 <div className="time-scale-container" onClick={figureUpdate}>
@@ -91,6 +98,26 @@ function HasRetirementPage() {
                 <div className="cash-container">
                     <span>Buying power</span>
                     <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(current_portfolio.cash.toFixed(2))}</span>
+                </div>
+
+                <div className="recommand-stocks-container">
+                    <div className="recommand-stocks-header">
+                        <span className="recommand-stocks-title">Stocks</span>
+                        <div className="stocks-daily">
+                            <span className="stocks-daily-intro">Stocks recommanded for today.</span>
+                            <span className='showmore-btn' onClick={() => navigate(`/stocks`)}>Show more</span>
+                        </div>
+                    </div>
+                    <div className="recommand-stocks-list-container">
+                        <div className="recommand-stock-list">
+                           {stockinfo_array.slice(0,5).map(el => {
+                            return (
+                                <StockCardItem key={`stock-rem-${el.code}`} stock={el} />
+                            )
+                           })}
+                        </div>
+
+                    </div>
                 </div>
                 {/* <div className='chart-test'>
           <CandlestickChart />

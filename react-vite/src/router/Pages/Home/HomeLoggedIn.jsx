@@ -58,14 +58,14 @@ function HomeLoggedIn() {
             await dispatch(getAllStockThunk())
         }
         fetchData();
-        const chart = document.querySelector('.line-chart>canvas');
-        const hoverval = document.getElementById('hoverval');
-        if (chart && hoverval) {
-            chart.addEventListener('mouseout', () => {
-                hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
-                return true;
-            })
-        }
+        // const chart = document.querySelector('.line-chart>canvas');
+        // const hoverval = document.getElementById('hoverval');
+        // if (chart && hoverval) {
+        //     chart.addEventListener('mouseout', () => {
+        //         hoverval.innerText = `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}`;
+        //         return true;
+        //     })
+        // }
 
     }, [dispatch, amount])
 

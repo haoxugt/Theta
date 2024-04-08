@@ -47,12 +47,12 @@ function LineChartTest3({ portfolio, amount }) {
             backgroundColor: "black",
             borderColor: "rgb(10,186,181)",
             borderWidth: 3,
-            pointBorderColor: 'rgba(0, 0, 0, 0)',
-            pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-            pointHoverBackgroundColor: 'rgb(10,186,181)',
-            pointHoverBorderColor: '#000000',
-            pointHoverBorderWidth: 4,
-            pointHoverRadius: 6,
+            // pointBorderColor: 'rgba(0, 0, 0, 0)',
+            // pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+            // pointHoverBackgroundColor: 'rgb(10,186,181)',
+            // pointHoverBorderColor: '#000000',
+            // pointHoverBorderWidth: 4,
+            // pointHoverRadius: 6,
           },
         ]
     })
@@ -101,31 +101,31 @@ function LineChartTest3({ portfolio, amount }) {
         fetchData();
     },[portfolio.id, amount]);
 
-    const hoverLine = {
-        id: 'hoverLine',
-        afterDatasetsDraw(chart) {
-            const { ctx,
-                tooltip,
-                chartArea: {
-                    top, bottom
-                },
-                scales: { x }
-            } = chart;
-            if (tooltip._active.length > 0) {
-                const xCoor = x.getPixelForValue(tooltip.dataPoints[0].dataIndex);
-                // const yCoor = tooltip.dataPoints[0].parsed.y;
-                ctx.save();
-                ctx.beginPath();
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = 'rgba(66, 73, 77, 1)';
-                ctx.moveTo(xCoor, top);
-                ctx.lineTo(xCoor, bottom);
-                ctx.stroke();
-                ctx.closePath();
-            }
-        }
-    }
-    const plugins = [hoverLine]
+    // const hoverLine = {
+    //     id: 'hoverLine',
+    //     afterDatasetsDraw(chart) {
+    //         const { ctx,
+    //             tooltip,
+    //             chartArea: {
+    //                 top, bottom
+    //             },
+    //             scales: { x }
+    //         } = chart;
+    //         if (tooltip._active.length > 0) {
+    //             const xCoor = x.getPixelForValue(tooltip.dataPoints[0].dataIndex);
+    //             // const yCoor = tooltip.dataPoints[0].parsed.y;
+    //             ctx.save();
+    //             ctx.beginPath();
+    //             ctx.lineWidth = 2;
+    //             ctx.strokeStyle = 'rgba(66, 73, 77, 1)';
+    //             ctx.moveTo(xCoor, top);
+    //             ctx.lineTo(xCoor, bottom);
+    //             ctx.stroke();
+    //             ctx.closePath();
+    //         }
+    //     }
+    // }
+    // const plugins = [hoverLine]
 
     const options = {
         responsive: true,
@@ -145,14 +145,14 @@ function LineChartTest3({ portfolio, amount }) {
             // },
             tooltip: {
                 // position: 'top',
-                mode: "index",
-                intersect: true,
-                callbacks: {
-                  afterFooter: function(chart) {
-                    const hoverval = document.getElementById("hoverval");
-                    hoverval.innerText=`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(chart[0].parsed.y)}`;
-                  }
-                }
+                // mode: "index",
+                intersect: false,
+                // callbacks: {
+                //   afterFooter: function(chart) {
+                //     const hoverval = document.getElementById("hoverval");
+                //     hoverval.innerText=`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(chart[0].parsed.y)}`;
+                //   }
+                // }
             },
         },
         scales: {
@@ -196,7 +196,8 @@ function LineChartTest3({ portfolio, amount }) {
     return (
         <div className='line-chart'>
             {/* =========== test ====================  */}
-            <Line data={plotdata} options={options} plugins={plugins}/>
+            {/* <Line data={plotdata} options={options} plugins={plugins}/> */}
+            <Line data={plotdata} options={options} />
         </div>
     )
 }

@@ -45,34 +45,19 @@ function LineChartTest2({stockCode }) {
     labels: [0,pc],
     datasets: [
       {
-        label: 'NET',
+        // label: 'NET',
         type: "line",
         data: [0,0],
         backgroundColor: "black",
         borderColor: "rgb(10,186,181)",
         borderWidth: 3,
-        pointBorderColor: 'rgba(0, 0, 0, 0)',
-        pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-        pointHoverBackgroundColor: 'rgb(10,186,181)',
-        pointHoverBorderColor: '#000000',
-        pointHoverBorderWidth: 4,
-        pointHoverRadius: 6,
+        // pointBorderColor: 'rgba(0, 0, 0, 0)',
+        // pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+        // pointHoverBackgroundColor: 'rgb(10,186,181)',
+        // pointHoverBorderColor: '#000000',
+        // pointHoverBorderWidth: 4,
+        // pointHoverRadius: 6,
       },
-    // //   {
-    // //     // label: 'NET',
-    // //     type: "line",
-    // //     data: [0],
-    // //     backgroundColor: "black",
-    // //     borderColor: "white",
-    // //     borderDash: [10,5],
-    // //     borderWidth: 1,
-    // //     pointBorderColor: 'rgba(0, 0, 0, 0)',
-    // //     pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-    // //     pointHoverBackgroundColor: 'rgb(10,186,181)',
-    // //     pointHoverBorderColor: '#000000',
-    // //     pointHoverBorderWidth: 4,
-    // //     pointHoverRadius: 1,
-    // //   }
     ]
 });
   const dispatch = useDispatch();
@@ -128,10 +113,10 @@ try {
                 borderWidth: 1,
                 pointBorderColor: 'rgba(0, 0, 0, 0)',
                 pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-                pointHoverBackgroundColor: 'rgb(10,186,181)',
-                pointHoverBorderColor: '#000000',
-                pointHoverBorderWidth: 2,
-                pointHoverRadius: 1,
+                // pointHoverBackgroundColor: 'rgb(10,186,181)',
+                // pointHoverBorderColor: '#000000',
+                // pointHoverBorderWidth: 2,
+                // pointHoverRadius: 1,
               }
             ]
         });
@@ -184,8 +169,8 @@ try {
       // },
       tooltip: {
         // position: 'top',
-        mode: "index",
-        intersect: true,
+        // mode: "index",
+        intersect: false,
         // callbacks: {
         //   afterFooter: function(chart) {
         //     const hoverval = document.getElementById("hoverval");

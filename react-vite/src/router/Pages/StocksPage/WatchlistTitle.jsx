@@ -17,7 +17,7 @@ function WatchListTitle({ watchlist }) {
                     <span>{watchlist.name}</span>
                 </div>
                 <div className="watchlist-name-right">
-                    <IoEllipsisHorizontal onClick={() => alert("Not sure if it is needed")}/>
+                    <IoEllipsisHorizontal onClick={() => alert("Feature comming soon")}/>
                 </div>
 
             </div>

@@ -110,6 +110,9 @@ def updatePortfolio():
 
         base_data = base_ticker.history(interval='1d', start=open_date)
         time_array = [time.date() for time in base_data.index]
+        if not time_array:
+            time_array = [datetime.now().date()]
+
         zeros = [0] * len(time_array)
         cash_history = [0] * len(time_array)
         tol_assets = [time_array, [0] * len(time_array)]
@@ -183,7 +186,7 @@ def updatePortfolio():
         # dict ={'date': time_array, 'asset': tol_assets[1]}
         df = pd.DataFrame(data={'assets': tol_assets[1]}, index=time_array)
         df.index.name = "date"
-        df.to_csv(f'./react-vite/public/csvs/portfolio-{portfolio.id}.csv', index=True)
+        # df.to_csv(f'./react-vite/public/csvs/portfolio-{portfolio.id}.csv', index=True)
         # plt.plot(df)
         # plt.show()
         with open(f'./react-vite/public/csvs/portfolio-{portfolio.id}-2.json', 'w') as file:
@@ -196,9 +199,9 @@ def updatePortfolio():
 # @login_required
 def createPortfolioJSON(id):
     # portfolio = Portfolio.query.get(id)
-    print("==============================")
-    print(" id = ", id)
-    print("================================")
+    # print("==============================")
+    # print(" id = ", id)
+    # print("================================")
     with open(f'./react-vite/public/csvs/portfolio-{id}-2.json', 'w') as file:
         file.write(json.dumps({"time": [str(datetime.now().date())], "assets": [0]}))
 

@@ -7,6 +7,7 @@
 
 .stock-item-card-container:hover{
     cursor: pointer;
+    background-color: var(--light-grey-color);
 }
 
 .stock-item-card {
