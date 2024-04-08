@@ -27,11 +27,13 @@
 
 .profile-dropdown p:hover {
   cursor: pointer;
+  background-color: var(--grey-border);
 
 }
 
 .profile-dropdown p:first-child {
   cursor: default;
+  background-color: var(--light-grey-color);
 
 }
 

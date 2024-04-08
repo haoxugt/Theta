@@ -1,12 +1,30 @@
 import { useDispatch } from "react-redux";
 import { createPortfolioThunk } from "../../../redux/portfolio";
+import { createPortfolioJSONThunk } from "../../../redux/portfolio";
+import {useNavigate} from 'react-router-dom'
+import { useState } from "react";
 
 function NoRetirementPage() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
 
-    const createRetirementPlan = async () => {
+    const createRetirementPlan = async (e) => {
+        e.preventDefault();
+        setErrors({})
         let portfolio = { title: "IRS", is_retirement: true }
-        await dispatch(createPortfolioThunk(portfolio))
+        dispatch(createPortfolioThunk(portfolio))
+            .then(async (res) => { return await dispatch(createPortfolioJSONThunk(res)) })
+            .then(() => alert(`Your retirement plan account has been created.`))
+            .then(navigate("/portfolios/current"))
+            .catch((e) => {
+                console.log(e);
+                setErrors(e)
+            })
+    }
+    if(Object.values(errors).length) {
+        console.log("errors ====> ", errors);
+        return <h2>{errors.message}</h2>
     }
 
     return <div className="noretirementpage-container">

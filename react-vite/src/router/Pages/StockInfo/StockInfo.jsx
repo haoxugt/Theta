@@ -86,7 +86,7 @@ function StockInfo() {
     //       if (stock.code != stockCode.toUpperCase()) return null;
     //     }
     const figureUpdate = () => {
-        alert("The stock chart will be updated")
+        alert("The stock chart updation feature will come soon")
     }
 
     if (stockCode.toUpperCase() != stock.code) {

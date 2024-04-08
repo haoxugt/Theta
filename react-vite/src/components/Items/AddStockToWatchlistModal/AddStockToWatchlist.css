@@ -44,6 +44,10 @@
     margin-top: 15px;
 }
 
+.addstocktowatchlist-btn:hover {
+    cursor: pointer;
+}
+
 .checkbox-container{
     height: 40px;
     display: flex;

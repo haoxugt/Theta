@@ -29,16 +29,16 @@ function HasRetirementPage() {
 
     let current_portfolio = portfolio_array?.filter(el => el.is_retirement == true)[0];
     let amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_assets;
-    const open_amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_transfers;
+    // const open_amount = portfolio_array?.filter(el => el.is_retirement == true)[0]?.total_transfers;
     const portfolio_id = portfolio_array?.filter(el => el.is_retirement == true)[0]?.id;
-    let change = amount - open_amount;
-    change = change.toFixed(2);
+    // let change = amount - open_amount;
+    // change = change.toFixed(2);
 
 
-    const positiveOrNegativeClassName = (num) => {
-        if (num >= 0) return " positive-num";
-        else return " negative-num"
-    }
+    // const positiveOrNegativeClassName = (num) => {
+    //     if (num >= 0) return " positive-num";
+    //     else return " negative-num"
+    // }
 
 
     useEffect(() => {
@@ -60,7 +60,7 @@ function HasRetirementPage() {
     }, [dispatch])
 
     const figureUpdate = () => {
-        alert("The portfolio chart will be updated")
+        alert("The portfolio chart updation feature will come soon")
     }
 
     return (
@@ -72,11 +72,11 @@ function HasRetirementPage() {
                         {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)}
                     </h1>
 
-                    <p className={positiveOrNegativeClassName(change)}>
+                    {/* <p className={positiveOrNegativeClassName(change)}>
                         {change >= 0 ? (<span>+{change}</span>) : (<span>{change}</span>)}
 
                         ({(change / amount * 100).toFixed(2) + "%"})
-                    </p>
+                    </p> */}
 
                 </div>
                 {/* <div className="portfolio-chart-container">

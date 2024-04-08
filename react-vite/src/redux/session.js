@@ -12,14 +12,14 @@ const removeUser = () => ({
 
 export const thunkAuthenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/");
+    const data = await response.json();
+    // console.log(" data =======> ", data)
 	if (response.ok) {
-		const data = await response.json();
-		if (data.errors) {
-			return;
-		}
-
 		dispatch(setUser(data));
-	}
+        return data
+	} else {
+        return data;
+    }
 };
 
 export const thunkLogin = (credentials) => async dispatch => {

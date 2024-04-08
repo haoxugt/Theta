@@ -76,7 +76,7 @@ function HomeLoggedIn() {
     }
 
     const figureUpdate = () => {
-        alert("The portfolio chart will be updated")
+        alert("The portfolio chart updation feature will come soon")
     }
 
     if (Object.values(errors).length) return <h1>Oops: {errors.message}</h1>

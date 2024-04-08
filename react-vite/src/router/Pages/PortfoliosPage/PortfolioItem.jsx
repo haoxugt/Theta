@@ -73,7 +73,7 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
                                     <span>{(stockinfo?.current_price - stockinfo?.previous_close_price).toFixed(2)} </span>
                                     <span>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
                                     <span>{((stockinfo?.current_price - el.avg_price) * el.shares).toFixed(2)}</span>
-                                    <span>{((stockinfo?.current_price - el.avg_price) / el.avg_price * 100).toFixed(2)}</span>
+                                    <span>{((stockinfo?.current_price - el.avg_price) / el.avg_price * 100).toFixed(2)}%</span>
                                 </span>}
                             </div>
                         )

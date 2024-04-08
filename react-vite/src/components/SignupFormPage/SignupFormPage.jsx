@@ -52,7 +52,7 @@ function SignupFormPage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      let portfolio = {title: "investing", is_retirement: false};
+      let portfolio = {title: "Investing", is_retirement: false};
       dispatch(createPortfolioThunk(portfolio))
       .then(async(res) => {return await dispatch(createPortfolioJSONThunk(res))})
       .then(() => alert(`As a new user, an regular investing account is automatically created for you with 0 balance. You need to transfer money into your new account to start invest.

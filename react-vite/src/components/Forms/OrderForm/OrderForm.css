@@ -19,3 +19,14 @@
     cursor: pointer;
     color: var(--blue-color);
 }
+.portfolio-select-item:focus{
+    outline: 1px solid var(--blue-color);
+}
+
+.select-box:focus{
+    outline: 1px solid var(--blue-color);
+}
+
+.share-input:focus{
+    outline: 1px solid var(--blue-color);
+}

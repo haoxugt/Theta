@@ -16,3 +16,7 @@
     border: 1px solid var(--blue-color);
     margin-top: 10px;
 }
+
+.create-retirement-btn:hover{
+    cursor: pointer;
+}

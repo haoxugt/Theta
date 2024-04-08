@@ -86,11 +86,15 @@
 .time-scale-container {
    display: grid;
    grid-template-columns: 25px 25px 25px 25px 25px;
-   column-gap: 5px;
+   column-gap: 3px;
    /* justify-content: start; */
    margin-top: 10px;
    margin-bottom: 10px;
-
+   font-size: 13px;
+}
+.time-scale-container>span:hover {
+    cursor: pointer;
+    color: var(--blue-color);
 }
 
 .week-scale {

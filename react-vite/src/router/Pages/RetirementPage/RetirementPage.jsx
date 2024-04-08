@@ -20,7 +20,12 @@ function RetirementPage() {
 
   useEffect(() => {
     const fetchData = async () => {
+        try {
         await dispatch(getCurrentPortfoliosThunk());
+        } catch (e) {
+            console.log(" errors ===> ", e)
+            return;
+        }
     }
     fetchData();
 
