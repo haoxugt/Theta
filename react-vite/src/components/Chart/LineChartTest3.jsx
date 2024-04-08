@@ -60,7 +60,9 @@ function LineChartTest3({ portfolio, amount }) {
     useEffect(() => {
         const fetchData = async() => {
             setErrors({});
-            const url = `./csvs/portfolio-${portfolio.id}-2.json`
+            let url = `./csvs/portfolio-${portfolio.id}-2.json`
+            if (portfolio.id > 7)
+               url = './csvs/portfolio-new-2.json';
             const response = await fetch(url);
             console.log("reponse file fetch ====>", response )
             let datapoints;
