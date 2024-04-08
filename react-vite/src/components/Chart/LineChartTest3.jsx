@@ -67,8 +67,14 @@ function LineChartTest3({ portfolio, amount }) {
                datapoints = await response.json();
             } else {
                 console.log("The file does not exist");
-                setErrors({"message": "Portfolio data does not exist for a new user"})
-                return;
+                // setErrors({"message": "Portfolio data does not exist for a new user"})
+                // return;
+                let now = new Date();
+                let year = now.toLocaleString("default", {year: "numeric"});
+                let month = now.toLocaleString("default", {month: "2-digit"});
+                let day = now.toLocaleString("default", {day: "2-digit"});
+                let today = year + "-" + month + "-" + day
+                datapoints ={time: [today], assets: [0]}
             }
             let now = new Date();
             let year = now.toLocaleString("default", {year: "numeric"});
