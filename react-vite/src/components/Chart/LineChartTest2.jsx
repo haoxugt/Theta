@@ -73,13 +73,17 @@ try {
         // console.log("9999999999999999999999999999 res ===>",stockCode, res.stockdata[0])
         let dataSet1 = [];
         let localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-        for (let i = 0; i < res.stockdata[0].length; i++) {
-            let localTime = (new Date(res.stockdata[0][i])).toLocaleString("en-US", {timeZone: localTimezone});
+        // for (let i = 0; i < res.stockdata[0].length; i++) {
+            let localTime = (new Date(res.stockdata[0][0])).toLocaleString("en-US", {timeZone: localTimezone});
             // let localTime = res.stockdata[0][i].substring(0,19);
             dataSet1.push(localTime.toString())
             // console.log(" =========== time ================", typeof(res.stockdata[0][i]), localTimezone, res.stockdata[0][i].toLocaleString("en-US", {timeZone: 'PST'}),dataSet1[0],res.stockdata[0][i].toLocaleString("en-US", {timeZone: localTimezone}))
             // tz_convert(local_tz)
+        // }
+        for (let i = 1; i <= 78; i++) {
+            dataSet1.push((new Date((new Date(dataSet1[i - 1])).getTime() + 5*60/0.001).toLocaleString("en-US", {timeZone: localTimezone}).toString()))
         }
+        // console.log(" dataSet1 ====>", dataSet1)
 
         const previousClosePrice = res.info['previous_close_price'];
         setPc(previousClosePrice);
@@ -106,7 +110,7 @@ try {
               {
                 label: 'o',
                 type: "line",
-                data: res.stockdata[1]?.map(() => previousClosePrice),
+                data: dataSet1?.map(() => previousClosePrice),
                 backgroundColor: "black",
                 borderColor: "white",
                 borderDash: [10,5],

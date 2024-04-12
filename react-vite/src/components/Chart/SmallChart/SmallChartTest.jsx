@@ -63,9 +63,17 @@ try{
             const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
 
             const previousClosePrice = res.info['previous_close_price'];
+            let dataSet1 = [];
+            let localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            let localTime = (new Date(res.stockdata[0][0])).toLocaleString("en-US", {timeZone: localTimezone});
+            dataSet1.push(localTime.toString())
+
+            for (let i = 1; i <= 78; i++) {
+                dataSet1.push((new Date((new Date(dataSet1[i - 1])).getTime() + 5*60/0.001).toLocaleString("en-US", {timeZone: localTimezone}).toString()))
+            }
 
             setPlotdata({
-                labels: res.stockdata[0],
+                labels: dataSet1,
                 datasets: [
                   {
                     // label: 'c',
@@ -80,7 +88,7 @@ try{
                   {
                     // label: 'o',
                     type: "line",
-                    data: res.stockdata[1]?.map(() => previousClosePrice),
+                    data: dataSet1?.map(() => previousClosePrice),
                     backgroundColor: "white",
                     borderColor: "white",
                     borderDash: [2,2],
