@@ -71,3 +71,24 @@ def getStockDataInfo(stockCode):
         price.append(todays_data['Close'][i])
 
     return {"stockdata": [date, price], "info": {"current_price": current_price, "previous_close_price": previous_close_price}}
+
+
+@stockinfo_routes.route('/index')
+@login_required
+def getIndexInfo():
+
+    index_list = ["^GSPC", "^IXIC", "^DJI"]
+    index_info = yf.Tickers(" ".join(index_list))
+    index_res_dict = {};
+
+    for index in index_list:
+        info = index_info.tickers[index].info
+        index_res_dict[index] = {}
+        index_res_dict[index]['previousClose'] = info['previousClose']
+        todays_data = index_info.tickers[index].history(period='5m', interval='1m')
+        index_res_dict[index]['currentPrice'] = todays_data['Close'].iloc[-1]
+
+    # print("0000000000000000000000000000000000000000000000000000000000000000000000000")
+    # print(index_res_dict)
+    # print("0000000000000000000000000000000000000000000000000000000000000000000000000")
+    return {"indexs": index_res_dict}

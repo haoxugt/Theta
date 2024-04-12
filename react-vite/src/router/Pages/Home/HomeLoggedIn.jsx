@@ -5,8 +5,8 @@ import StockHoldList from "../../../components/Lists/StockHoldList/StockHoldList
 import WatchList from "../../../components/Lists/WatchList/WatchList";
 import { getCurrentWatchlistsThunk } from "../../../redux/watchlist";
 import { getAllStocksHoldThunk } from "../../../redux/stock_hold";
-import { getAllStockThunk } from "../../../redux/stockinfo";
-import { getCurrentPortfoliosThunk } from "../../../redux/portfolio";
+import { getAllStockThunk, getIndexThunk } from "../../../redux/stockinfo";
+import { getCurrentPortfoliosThunk} from "../../../redux/portfolio";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { HiOutlinePlus } from "react-icons/hi2";
@@ -27,6 +27,7 @@ function HomeLoggedIn() {
     const stockshold_array = Object.values(stockshold?.Stockshold);
     const portfolio_array = Object.values(portfolioState?.Portfolios);
     const stockinfo_array = Object.values(stockinfoState?.Stocklists);
+    const indexs = stockinfoState?.indexs;
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -56,6 +57,8 @@ function HomeLoggedIn() {
             await dispatch(getAllStocksHoldThunk());
             await dispatch(getCurrentPortfoliosThunk());
             await dispatch(getAllStockThunk())
+            await dispatch(getIndexThunk());
+
         }
         fetchData();
         // const chart = document.querySelector('.line-chart>canvas');
@@ -126,25 +129,36 @@ function HomeLoggedIn() {
                     <div className="index-header">
                         <span>Index</span>
                     </div>
+                    {indexs &&
                     <div className="index-info-container">
                         <div className="index-info">
                             <div className="single-index">
                                 <span>S&P 500</span>
-                                <span>{new Intl.NumberFormat('en-US',).format(5204)}</span>
-                                <span>1.11%</span>
+                                <span>{new Intl.NumberFormat('en-US',).format(indexs["^GSPC"]?.currentPrice)}</span>
+                                <span style= {{color: indexs["^GSPC"]?.currentPrice - indexs["^GSPC"]?.previousClose >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)'}}>
+                                    {
+                                    ((indexs["^GSPC"]?.currentPrice - indexs["^GSPC"]?.previousClose) / indexs["^GSPC"]?.previousClose * 100).toFixed(2)
+                                    }%</span>
                             </div>
                             <div className="single-index middle">
                                 <span>Nasdaq</span>
-                                <span>{new Intl.NumberFormat('en-US',).format(16248.52)}</span>
-                                <span>1.11%</span>
+                                <span>{new Intl.NumberFormat('en-US',).format(indexs["^IXIC"]?.currentPrice)}</span>
+                                <span style= {{color: indexs["^IXIC"]?.currentPrice - indexs["^IXIC"]?.previousClose >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)'}}>
+                                    {
+                                    ((indexs["^IXIC"]?.currentPrice - indexs["^IXIC"]?.previousClose) / indexs["^IXIC"]?.previousClose * 100).toFixed(2)
+                                    }%</span>
                             </div>
                             <div className="single-index">
                                 <span>Dow Johns</span>
-                                <span>{new Intl.NumberFormat('en-US',).format(38904.04)}</span>
-                                <span>1.11%</span>
+                                <span>{new Intl.NumberFormat('en-US',).format(indexs["^DJI"]?.currentPrice)}</span>
+                                <span style= {{color: indexs["^DJI"]?.currentPrice - indexs["^DJI"]?.previousClose >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)'}}>
+                                    {
+                                    ((indexs["^DJI"]?.currentPrice - indexs["^DJI"]?.previousClose) / indexs["^DJI"]?.previousClose * 100).toFixed(2)
+                                    }%</span>
                             </div>
                         </div>
                     </div>
+                    }
 
                 </div>
 

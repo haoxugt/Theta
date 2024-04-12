@@ -1,4 +1,5 @@
 const GET_SINGLE_STOCK_INFO = 'stockinfo/getSingleStock';
+const GET_INDEX_INFO = 'stockinfo/getIndex';
 const GET_ALL_STOCK_INFO = 'stockinfo/getAllStock';
 const GET_SINGLE_STOCK_REALTIME_DATA = 'stockinfo/getSingleStockRealtimeData'
 
@@ -9,6 +10,13 @@ const getAllStockAction = (stocks) => {
     payload: stocks
   }
 }
+
+const getIndexAction = (indexs) => {
+    return {
+      type: GET_INDEX_INFO,
+      payload: indexs
+    }
+  }
 
 const getSingleStockAction = (stock) => {
   return {
@@ -34,6 +42,17 @@ export const getAllStockThunk = () => async (dispatch) => {
   return data
 }
 
+export const getIndexThunk = () => async (dispatch) => {
+    const response = await fetch('/api/stockinfo/index');
+    const data = await response.json();
+    console.log("data======>", data)
+    if (response.ok) {
+      dispatch(getIndexAction(data.indexs));
+      return data
+    }
+    throw data;
+  }
+
 
 export const getSingleStockThunk = (stockCode) => async (dispatch) => {
   const response = await fetch(`/api/stockinfo/${stockCode}`);
@@ -52,10 +71,10 @@ export const getSingleStockRealtimeDataThunk = (stockCode) => async (dispatch) =
     // dispatch(getSingleStockAction(data.stock));
     dispatch(getSingleStockRealtimeDataAction(data))
     return data
-  }
+}
 
 // state update
-const initialState = { Stocklists: {}, stock: {}, rawdata: {}};
+const initialState = { Stocklists: {}, stock: {}, rawdata: {}, indexs: {}};
 
 const stockinfoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -64,6 +83,9 @@ const stockinfoReducer = (state = initialState, action) => {
       action.payload.forEach(el => newObj[el.code] = { ...el });
       return { ...state, Stocklists: { ...newObj } };
     }
+    case GET_INDEX_INFO: {
+        return { ...state, ...{indexs: {...action.payload }}};
+      }
     case GET_SINGLE_STOCK_REALTIME_DATA: {
         // const newObj = {};
         // action.payload.forEach(el => newObj[el.code] = { ...el });
