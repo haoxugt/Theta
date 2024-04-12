@@ -1,4 +1,4 @@
-import LineChartTest3 from '../../../components/Chart/LineChartTest3'
+// import LineChartTest3 from '../../../components/Chart/LineChartTest3'
 // import File
 
 import './ManagePage.css'
@@ -11,7 +11,7 @@ function ManagePage() {
     // let asset = data.assets
     // console.log("22222222222222222222222", data['time'])
     // let datapoints = {date: date, asset: asset}
-    let datapoints = {}
+    // let datapoints = {}
     // import data from
     // console.log(" data =================>", data)
     // let csv_file = new File(["time"], './csvs/portfolio-3.csv');
@@ -157,33 +157,41 @@ function ManagePage() {
 
     //     return { date, asset }
     // }
-    async function getData() {
-        const url = './csvs/portfolio-3-2.json'
-        // const date = []
-        // const asset = []
+    // async function getData() {
+    //     const url = './csvs/portfolio-3-2.json'
+    //     // const date = []
+    //     // const asset = []
 
-        const response = await fetch(url);
-        datapoints = await response.json();
-        // console.log(datapoints.assets)
-        // // console.log(typeof(datapoints))
+    //     const response = await fetch(url);
+    //     datapoints = await response.json();
+    //     // console.log(datapoints.assets)
+    //     // // console.log(typeof(datapoints))
 
-        // const table = datapoints.split('\n');
-        // // console.log(table)
-        // table.forEach(el => {
-        //     const column = el.split(',');
-        //     date.push(column[0]);
-        //     asset.push(column[1])
-        // })
+    //     // const table = datapoints.split('\n');
+    //     // // console.log(table)
+    //     // table.forEach(el => {
+    //     //     const column = el.split(',');
+    //     //     date.push(column[0]);
+    //     //     asset.push(column[1])
+    //     // })
 
-        // date.shift();
-        // asset.shift();
+    //     // date.shift();
+    //     // asset.shift();
 
-        // return { date, asset }
+    //     // return { date, asset }
+    // }
+    // getData();
+
+
+    const update = async () => {
+        const res = await fetch(`/api/portfolios/update`, {
+            method: 'POST'
+        });
+
+        const data = await res.json();
+        console.log("data ====> ", data);
+
     }
-    getData();
-
-
-
 
 
     // console.log("33333333333333333333333333333333333333", datapoints)
@@ -191,7 +199,8 @@ function ManagePage() {
     return (
         <div>
             <h2>Manage dashboard</h2>
-            <LineChartTest3 datapoints={datapoints} />
+            <button onClick={update}>Update portfolios</button>
+            {/* <LineChartTest3 datapoints={datapoints} /> */}
 
 
             {/* <Line data={data}  options={options} plugins={plugins}/> */}

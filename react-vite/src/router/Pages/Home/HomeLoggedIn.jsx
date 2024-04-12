@@ -122,7 +122,7 @@ function HomeLoggedIn() {
                     <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(current_portfolio?.cash)}</span>
                 </div>
 
-                {/* <div className="index-container">
+                <div className="index-container">
                     <div className="index-header">
                         <span>Index</span>
                     </div>
@@ -146,7 +146,7 @@ function HomeLoggedIn() {
                         </div>
                     </div>
 
-                </div> */}
+                </div>
 
                 <div className="recommand-stocks-container">
                     <div className="recommand-stocks-header">

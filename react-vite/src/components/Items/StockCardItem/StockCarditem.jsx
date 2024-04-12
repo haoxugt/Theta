@@ -14,8 +14,7 @@ function StockCardItem({ stock }) {
                 <span>{stock.code}</span>
                 <span className='stock-item-change'>
                     <span style={{ color: color }}>
-                        {change >= 0 ? <RxTriangleUp color='rgb(10,186,181)' size={20} /> : <RxTriangleDown color='rgb(255, 80, 0)' size={20} />}
-                        {Math.abs(change).toFixed(2)}
+                        ${stock.current_price.toFixed(2)}
                     </span>
                     <span style={{ color: color }}>
                         {change >= 0 ? <RxTriangleUp color='rgb(10,186,181)' size={20} /> : <RxTriangleDown color='rgb(255, 80, 0)' size={20} />}
