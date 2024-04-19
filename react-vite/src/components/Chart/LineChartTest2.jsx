@@ -108,7 +108,7 @@ try {
                 pointHoverRadius: 5,
               },
               {
-                label: 'o',
+                label: 'pc',
                 type: "line",
                 data: dataSet1?.map(() => previousClosePrice),
                 backgroundColor: "black",

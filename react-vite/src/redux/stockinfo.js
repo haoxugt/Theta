@@ -45,7 +45,7 @@ export const getAllStockThunk = () => async (dispatch) => {
 export const getIndexThunk = () => async (dispatch) => {
     const response = await fetch('/api/stockinfo/index');
     const data = await response.json();
-    console.log("data======>", data)
+    // console.log("data======>", data)
     if (response.ok) {
       dispatch(getIndexAction(data.indexs));
       return data

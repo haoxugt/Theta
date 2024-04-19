@@ -21,7 +21,7 @@ function WatchListItem({stock}) {
                <span>{stock.code}</span>
             </div>
             <div className='watchlist-chart'>
-               <SmallChartTest stockCode={stock.code} color={colorCheck()}/>
+               {stock.code && <SmallChartTest stockCode={stock.code} color={colorCheck()}/>}
             </div>
             <div className='watchlist-price'>
                <span>${stock.current_price.toFixed(2)}</span>

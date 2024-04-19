@@ -157,6 +157,7 @@ function LineChartTest3({ portfolio, amount }) {
                 // position: 'top',
                 // mode: "index",
                 intersect: false,
+                // enabled: false,
                 // callbacks: {
                 //   afterFooter: function(chart) {
                 //     const hoverval = document.getElementById("hoverval");

@@ -177,7 +177,7 @@ def seed_stocks_info():
 
     TSM = StockInfo(
         code='TSM',
-        name='Taiwan Semiconductor Manufactur',
+        name='Taiwan Semiconductor Manufacturing',
         quote_type='EQUITY',
         long_name='Taiwan Semiconductor Manufacturing Company Limited',
         city='Hsinchu City',

@@ -129,7 +129,7 @@ function HomeLoggedIn() {
                     <div className="index-header">
                         <span>Index</span>
                     </div>
-                    {indexs &&
+                    {!isNaN(indexs["^GSPC"]?.currentPrice) &&
                     <div className="index-info-container">
                         <div className="index-info">
                             <div className="single-index">

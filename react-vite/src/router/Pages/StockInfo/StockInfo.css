@@ -179,3 +179,16 @@ span.share-box {
     margin-bottom: 25px;
     margin-top: 15px;
 }
+
+.stockinfopage-left-col {
+    padding: 20px;
+    padding-top: 0;
+}
+
+.stockinfopage-right-col {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+    max-width: 420px;
+  }
