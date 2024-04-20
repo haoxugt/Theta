@@ -26,7 +26,9 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // alert("Test")
-        if (isLimitOrder) {
+        console.log("isLimitOrder", isLimitOrder)
+        if (isLimitOrder==="true") {
+            console.log("isLimitOrder type", typeof(isLimitOrder))
             newFeature();
             return;
         }
@@ -53,7 +55,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             portfolio_id: portfolio,
             shares: shareNum,
             is_buy: isBuy,
-            is_limit_order: isLimitOrder,
+            is_limit_order: isLimitOrder === "true",
             transaction_price: stock.current_price.toFixed(2)
         }
 
@@ -99,12 +101,12 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
     }
 
 
-    return <form onSubmit={handleSubmit} className="form-box">
+    return <form className="form-box">
         <label>
-            Order Type
+            Order Type {isLimitOrder}
             <select className="select-box"
                 value={isLimitOrder}
-                onChange={e => setIsLimitOrder(e.target.value)} >
+                onChange={e => {setIsLimitOrder(e.target.value);console.log("check islimitOrder", e.target.value, isLimitOrder);}} >
                 <option value={false}>Market Order</option>
                 <option value={true}>Limit Order</option>
             </select>
@@ -150,7 +152,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 </div>
             </div>)
         }
-        <button type="submit" className="order-submit-btn">
+        <button type="submit" className="order-submit-btn" onClick={handleSubmit} >
             Submit Order
         </button>
         <div className="buy-sell-info">

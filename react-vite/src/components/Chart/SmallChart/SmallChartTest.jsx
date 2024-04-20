@@ -43,7 +43,7 @@ function SmallChartTest({ stockCode, color }) {
             {
                 // label: stockCode,
                 type: "line",
-                data: [0, 1],
+                data: [0, 0],
                 backgroundColor: "black",
                 borderColor: "rgb(10,186,181)",
                 borderWidth: 1,
@@ -52,7 +52,7 @@ function SmallChartTest({ stockCode, color }) {
             },
         ]
     });
-    const [ydataset, setYdataset] = useState([])
+    const [ydataset, setYdataset] = useState([0, 1])
     const [errors, setErrors] = useState({});
 
     const dispatch = useDispatch();
