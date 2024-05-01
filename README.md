@@ -50,4 +50,4 @@
 
 ## Future Enhancements
 - **Search**: To search for new stocks.
-- **Websocket**: To send simultaneous two-way communication channel between client and server.
+- **Websocket**: To send simultaneous two-way communication between client and server.

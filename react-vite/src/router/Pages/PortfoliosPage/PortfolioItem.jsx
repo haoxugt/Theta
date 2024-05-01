@@ -42,7 +42,7 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
                 <span>Total: ${(portfolio.cash + stockholdlist?.reduce((acc, curr) => {
                     return acc + stockinfolist?.find(el => el.code == curr.stock_info_code)?.current_price * curr?.shares;
                 }, 0)).toFixed(2)}</span>
-                <span>Cash : ${portfolio.cash.toFixed(2)}</span>
+                <span className='cash-col'>Cash : ${portfolio.cash.toFixed(2)}</span>
                 {portfolio.is_retirement && <span className="closeaccount-btn" onClick={closeAccount}>Close account</span>}
             </div>
             <div className="portfolio-details-container">
@@ -52,11 +52,11 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
                     <span>Quantity</span>
                     <span>Price</span>
                     <span>Unit Cost</span>
-                    <span>Value</span>
-                    <span>Day&apos;s $ Chg</span>
-                    <span>Day&apos;s % Chg</span>
-                    <span>Total $ Chg</span>
-                    <span>Total % Chg</span>
+                    <span className='value-col-stockhold-row'>Value</span>
+                    <span className='daychange-num-col-stockhold-row'>Day&apos;s $ Chg</span>
+                    <span className='daychange-percent-col-stockhold-row'>Day&apos;s % Chg</span>
+                    <span className='totalchange-num-col-stockhold-row'>Total $ Chg</span>
+                    <span className='totalchange-percent-col-stockhold-row'>Total % Chg</span>
                 </div>
                 <div className="portfolio-details-stockhold">
                     {stockholdlist?.filter(el => el.portfolio_id == portfolio.id).map(el => {
@@ -69,11 +69,11 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
                                     <span className='third-line-stockhold-row'>{el.shares}</span>
                                     <span>${stockinfo?.current_price.toFixed(2)}</span>
                                     <span>${el.avg_price.toFixed(2)}</span>
-                                    <span>${(stockinfo?.current_price * el.shares).toFixed(2)} </span>
-                                    <span>{(stockinfo?.current_price - stockinfo?.previous_close_price).toFixed(2)} </span>
-                                    <span>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
-                                    <span>{((stockinfo?.current_price - el.avg_price) * el.shares).toFixed(2)}</span>
-                                    <span>{((stockinfo?.current_price - el.avg_price) / el.avg_price * 100).toFixed(2)}%</span>
+                                    <span className='value-col-stockhold-row'>${(stockinfo?.current_price * el.shares).toFixed(2)} </span>
+                                    <span className='daychange-num-col-stockhold-row'>{(stockinfo?.current_price - stockinfo?.previous_close_price).toFixed(2)} </span>
+                                    <span className='daychange-percent-col-stockhold-row'>{((stockinfo?.current_price - stockinfo?.previous_close_price) / stockinfo?.previous_close_price * 100).toFixed(2)}%</span>
+                                    <span className='totalchange-num-col-stockhold-row'>{((stockinfo?.current_price - el.avg_price) * el.shares).toFixed(2)}</span>
+                                    <span className='totalchange-percent-col-stockhold-row'>{((stockinfo?.current_price - el.avg_price) / el.avg_price * 100).toFixed(2)}%</span>
                                 </span>}
                             </div>
                         )

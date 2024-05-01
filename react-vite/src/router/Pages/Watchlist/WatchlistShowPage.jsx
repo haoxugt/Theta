@@ -119,7 +119,7 @@ function WatchlistShowPage() {
                             <span>Symbol</span>
                             <span>Price</span>
                             <span>Today</span>
-                            <span className="fifth-col">Market Cap</span>
+                            <span className="marketcap-col">Market Cap</span>
                             <span></span>
                         </div>
                         {watchlist.stocks?.map((stock) => {

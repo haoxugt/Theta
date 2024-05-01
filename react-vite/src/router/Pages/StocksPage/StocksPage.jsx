@@ -49,7 +49,7 @@ function StocksPage() {
                     <span>Symbol</span>
                     <span>Price</span>
                     <span>Today</span>
-                    <span className="fifth-col">Market Cap</span>
+                    <span className="marketcap-col">Market Cap</span>
             </div>
             {/* {console.log("======= stockinfolist_array =====", stockinfolist_array[0])} */}
             {stockinfolist_array.sort((a, b)=> { return a.code > b.code ? 1 : -1}).map((stock) => {

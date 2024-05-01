@@ -1,0 +1,305 @@
+@media screen and (max-width: 1250px) and (min-width: 1051px) {
+    /* homepage */
+    .homepage-container {
+        grid-template-columns: calc(100vw - 320px) 300px;
+    }
+
+    .homepage-right-col {
+       width: 300px;
+       padding: 20px 0px;
+    }
+
+    .portfolio-chart-container {
+       width: calc(100vw - 340px);
+    }
+
+    /* stock page */
+    .stockinfopage-container {
+        grid-template-columns: calc(100vw - 320px) 300px;
+    }
+
+    .stockinfopage-right-col {
+       width: 285px;
+       /* padding: 10px 10px; */
+       padding: 20px 0px;
+
+    }
+
+    .line-chart {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 1050px) and (min-width: 901px) {
+    /* homepage */
+    .homepage-container {
+        grid-template-columns: calc(100vw - 300px) 270px;
+    }
+    .homepage-right-col {
+       width: 270px;
+       padding: 20px 0px;
+    }
+
+    .lists-container {
+        width: 100%;
+    }
+    .portfolio-chart-container {
+       width: calc(100vw - 315px);
+    }
+
+    /* index info */
+        .index-num {
+            display: none;
+    }
+
+    /* recommanded stock list */
+    .stock-item-change > span:first-child {
+        font-size: 18px;
+    }
+    /* stock page */
+    .stockinfopage-container {
+        grid-template-columns: calc(100vw - 290px) 270px;
+    }
+
+    .stockinfopage-right-col {
+       width: 250px;
+       /* padding: 10px 10px; */
+       padding: 20px 0px;
+       font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 900px) and (min-width: 801px) {
+    /* homepage */
+    .homepage-container {
+        grid-template-columns: calc(100vw - 300px) 270px;
+    }
+    .homepage-right-col {
+       width: 270px;
+       padding: 20px 0px;
+    }
+
+    .lists-container {
+        width: 100%;
+    }
+    .portfolio-chart-container {
+       width: calc(100vw - 315px);
+    }
+
+    /* index info */
+    .index-num {
+        display: none;
+}
+
+    /* recommanded stock list */
+    .recommand-stock-list {
+        grid-template-columns: calc(25% - 8px) calc(25% - 8px) calc(25% - 8px) calc(25% - 8px);
+        row-gap: 14px;
+    }
+
+    .stock-item-change > span:first-child {
+        font-size: 18px;
+    }
+
+
+    /* stock page */
+    .stockinfopage-container {
+        grid-template-columns: calc(100vw - 290px) 270px;
+    }
+
+    .stockinfopage-right-col {
+       width: 250px;
+       /* padding: 10px 10px; */
+       padding: 20px 0px;
+       font-size: 14px;
+    }
+
+    /* portfolio page */
+    .portfolio-details-header, .stockholdlist-row {
+        grid-template-columns: repeat(9, 1fr);
+    }
+    .second-line-stockhold-row {
+       display: none;
+    }
+}
+
+
+@media screen and (max-width: 800px) and (min-width: 701px) {
+    /* homepage */
+    .homepage-container {
+        grid-template-columns: calc(100vw - 300px) 270px;
+    }
+    .homepage-right-col {
+       width: 270px;
+       padding: 20px 0px;
+    }
+
+    .lists-container {
+        width: 100%;
+    }
+    .portfolio-chart-container {
+       width: calc(100vw - 315px);
+    }
+
+    /* index info */
+    .index-num {
+        display: none;
+}
+
+    /* recommanded stock list */
+    .recommand-stock-list {
+        grid-template-columns: calc(33.3% - 8px) calc(33.3% - 8px) calc(33.3% - 8px);
+        row-gap: 14px;
+    }
+
+    .stock-item-change > span:first-child {
+        font-size: 18px;
+    }
+
+
+    /* stock page */
+    .stockinfopage-container {
+        grid-template-columns: calc(100vw - 290px) 270px;
+    }
+
+    .stockinfopage-right-col {
+       width: 250px;
+       /* padding: 10px 10px; */
+       padding: 20px 0px;
+       font-size: 14px;
+    }
+
+        /* stock list/watchlist show page */
+        .stocklist-list-row-title,
+        .stocklist-item-row {
+            grid-template-columns: 2.5fr 1fr 1fr 1.2fr;
+        }
+
+        .watchlist-list-row-title,
+        .watchlist-list-item-row {
+            grid-template-columns: 2.5fr 1fr 1fr 1.2fr 15px;
+        }
+
+        .marketcap-col {
+            display:none
+        }
+
+    /* portfolio page */
+    .portfolio-details-header, .stockholdlist-row {
+        grid-template-columns: repeat(9, 1fr);
+    }
+    .second-line-stockhold-row {
+       display: none;
+    }
+
+    /* chart */
+    .line-chart {
+        width: 99%;
+        /* border: 1px solid white; */
+        height: 200px;
+        max-height: 250px;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    /* homepage */
+    .homepage-container {
+        grid-template-columns: 1fr;
+    }
+    .homepage-right-col {
+      width: 100%;
+      max-width: 100vw;
+      padding: 20px 0px;
+      align-self: center;
+      justify-self: center;
+    }
+
+    .lists-container {
+        width: 100%;
+        max-width: 100vw;
+        margin: auto;
+    }
+    .portfolio-chart-container {
+       width: 100%;
+    }
+
+    /* index info */
+    .index-num {
+        display: none;
+    }
+
+    /* recommanded stock list */
+    .recommand-stocks-container {
+        display: none
+    }
+
+    .stock-item-change > span:first-child {
+        font-size: 18px;
+    }
+
+
+    /* stock page */
+    .stockinfopage-container {
+        grid-template-columns: 1fr;
+    }
+
+    .stockinfopage-right-col {
+       width: 100%;
+       max-width: 100vw;
+       /* padding: 10px 10px; */
+       padding: 20px 0px;
+       font-size: 14px;
+       align-self: center;
+       justify-self: center;
+    }
+
+    /* stock list/watchlist show page */
+    .stocklist-list-row-title,
+    .stocklist-item-row {
+        grid-template-columns: 2.5fr 1fr 1fr 1.2fr;
+    }
+
+    .watchlist-list-row-title,
+    .watchlist-list-item-row {
+        grid-template-columns: 2.5fr 1fr 1fr 1.2fr 15px;
+    }
+
+    .marketcap-col {
+        display:none
+    }
+
+    /* portfolio page */
+    .portfolio-details-header,
+    .stockholdlist-row{
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .portfolio-header {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .second-line-stockhold-row {
+       display: none;
+    }
+
+    .cash-col {
+        display: none;
+    }
+
+    .value-col-stockhold-row,
+    .daychange-num-col-stockhold-row,
+    .daychange-percent-col-stockhold-row,
+    .totalchange-num-col-stockhold-row,
+    .totalchange-percent-col-stockhold-row {
+        display: none;
+    }
+
+    /* chart */
+    .line-chart {
+        width: 99%;
+        /* border: 1px solid white; */
+        height: 200px;
+        max-height: 250px;
+      }
+}

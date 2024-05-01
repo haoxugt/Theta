@@ -24,7 +24,7 @@ function WatchlistItemInShowPage({ watchlist, stock }) {
           <span><RxTriangleUp color='rgb(10,186,181)' size={20}/>{percentageChange}</span> :
           <span><RxTriangleDown color='rgb(255, 80, 0)' size={20}/>{Math.abs(percentageChange)}</span>}%
       </span>
-      <span>{(stock.market_cap/1000000000).toFixed(2)}B</span>
+      <span  className="marketcap-col">{(stock.market_cap/1000000000).toFixed(2)}B</span>
       <span className="remove-stock-btn" onClick={removeStock}><MdClose /></span>
     </div>
   )
