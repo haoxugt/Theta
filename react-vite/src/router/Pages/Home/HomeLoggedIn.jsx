@@ -134,7 +134,7 @@ function HomeLoggedIn() {
                         <div className="index-info">
                             <div className="single-index">
                                 <span>S&P 500</span>
-                                <span>{new Intl.NumberFormat('en-US',).format(indexs["^GSPC"]?.currentPrice)}</span>
+                                <span className="index-num">{new Intl.NumberFormat('en-US',).format(indexs["^GSPC"]?.currentPrice)}</span>
                                 <span style= {{color: indexs["^GSPC"]?.currentPrice - indexs["^GSPC"]?.previousClose >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)'}}>
                                     {
                                     ((indexs["^GSPC"]?.currentPrice - indexs["^GSPC"]?.previousClose) / indexs["^GSPC"]?.previousClose * 100).toFixed(2)
@@ -142,7 +142,7 @@ function HomeLoggedIn() {
                             </div>
                             <div className="single-index middle">
                                 <span>Nasdaq</span>
-                                <span>{new Intl.NumberFormat('en-US',).format(indexs["^IXIC"]?.currentPrice)}</span>
+                                <span className="index-num">{new Intl.NumberFormat('en-US',).format(indexs["^IXIC"]?.currentPrice)}</span>
                                 <span style= {{color: indexs["^IXIC"]?.currentPrice - indexs["^IXIC"]?.previousClose >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)'}}>
                                     {
                                     ((indexs["^IXIC"]?.currentPrice - indexs["^IXIC"]?.previousClose) / indexs["^IXIC"]?.previousClose * 100).toFixed(2)
@@ -150,7 +150,7 @@ function HomeLoggedIn() {
                             </div>
                             <div className="single-index">
                                 <span>Dow Johns</span>
-                                <span>{new Intl.NumberFormat('en-US',).format(indexs["^DJI"]?.currentPrice)}</span>
+                                <span className="index-num">{new Intl.NumberFormat('en-US',).format(indexs["^DJI"]?.currentPrice)}</span>
                                 <span style= {{color: indexs["^DJI"]?.currentPrice - indexs["^DJI"]?.previousClose >=0 ? 'rgb(10,186,181)' : 'rgb(255, 80, 0)'}}>
                                     {
                                     ((indexs["^DJI"]?.currentPrice - indexs["^DJI"]?.previousClose) / indexs["^DJI"]?.previousClose * 100).toFixed(2)
