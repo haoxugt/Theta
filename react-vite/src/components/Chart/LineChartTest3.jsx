@@ -70,7 +70,7 @@ function LineChartTest3({ portfolio, amount }) {
                 datapoints = await response.json();
 
             } else {
-                console.log("The file does not exist");
+                // console.log("The file does not exist");
                 // setErrors({"message": "Portfolio data does not exist for a new user"})
                 // return;
                 let now = new Date();
