@@ -5,7 +5,7 @@
 
 ## Packages Used
 
-* *ChartJS* - Fto plot the stock price and to interactively display stock information based on mouse motion.
+* *ChartJS* - to plot the stock price and to interactively display stock information based on mouse motion.
 
 * *yfinance* - to get the real time data of stock market information to dynamical display stock price changes.
 
@@ -30,15 +30,18 @@
 #### Portfolio / Stocks
 - Users can view their portfolios or stocks change with time.
 - Users can view the stocks information in each watchlist.
+
 ![Portfolio](/docs/images/gifs/portfolio.gif)
 
 #### Watchlist
 - Users can create new watchlist.
 - Users can add or remove stocks into or from watchlists.
+
 ![Watchlist](/docs/images/gifs/watchlist.gif)
 
 #### Buy/sell stock
 - Users can buy or sell stock.
+
 ![Order](/docs/images/gifs/order.gif)
 
 ### [Installation](https://github.com/haoxugt/Theta/wiki/Installation)
