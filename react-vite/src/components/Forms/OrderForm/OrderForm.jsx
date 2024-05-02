@@ -25,10 +25,8 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // alert("Test")
-        console.log("isLimitOrder", isLimitOrder)
+
         if (isLimitOrder==="true") {
-            console.log("isLimitOrder type", typeof(isLimitOrder))
             newFeature();
             return;
         }
@@ -40,7 +38,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
         }
 
         if (!isBuy && shareNum > getHoldShares(portfolio)) {
-            // console.log("222222222222222222222", shareNum, getHoldShares(portfolio))
+
             alert("You cannot sell stocks more than you hold without margin")
             return null;
         }
@@ -66,13 +64,12 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 } else {
                     await dispatch(sellStocksHoldThunk(res));
                 }
-                // console.log("5555555555555555555555",portfolios, portfolio)
                 await dispatch(buySellStockInPortfolioThunk(portfolios[portfolio], res))
                 alert("You have successfully submit orders!")
                 return
             })
             .catch((res) => {
-                // console.log("res errors =======>", res)
+
                 if (res.errors) {
                     setErrors(res.errors);
                     alert("Errors happens")
@@ -81,7 +78,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             });
 
 
-        // console.log("res =============> ", res)
+
     }
 
     const newFeature = () => {
@@ -89,11 +86,11 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
     }
 
     const getHoldShares = (portfolio) => {
-        // console.log("66666666666666666666666666666666",stockhold,stock.code, portfolio)
+
         let target_stock = Object.values(stockhold).filter(el => {
             return el.stock_info_code == stock.code && el.portfolio_id == portfolio;
         })
-        // console.log("77777777777777777777777", target_stock, Object.values(stockhold))
+
         if (target_stock.length) return target_stock[0].shares;
         else {
             return 0;
@@ -106,7 +103,7 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             Order Type {isLimitOrder}
             <select className="select-box"
                 value={isLimitOrder}
-                onChange={e => {setIsLimitOrder(e.target.value);console.log("check islimitOrder", e.target.value, isLimitOrder);}} >
+                onChange={e => {setIsLimitOrder(e.target.value)}} >
                 <option value={false}>Market Order</option>
                 <option value={true}>Limit Order</option>
             </select>
@@ -156,7 +153,6 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
             Submit Order
         </button>
         <div className="buy-sell-info">
-            {/* {console.log("print ===================>", portfolio, portfolios[portfolio])} */}
             {isBuy ? <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(portfolios[portfolio]?.cash)} buying power available</span> : <span>{getHoldShares(portfolio)} Shares available</span>}
         </div>
         <label htmlFor="portfolio"></label>

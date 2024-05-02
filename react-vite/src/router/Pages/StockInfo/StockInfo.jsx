@@ -79,7 +79,6 @@ function StockInfo() {
 
 
     // }, [c, change])
-    //    console.log("222222222222222222222222222222222", datalist)
 
     //    if (!stock) return null;
     //     else {
@@ -90,7 +89,6 @@ function StockInfo() {
     }
 
     if (stockCode.toUpperCase() != stock.code) {
-        // console.log("code ==============> ", stockCode, stock.code)
         return <h2>Loading...</h2>;
     }
     return (

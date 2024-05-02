@@ -17,7 +17,6 @@ function PortfoliosPage() {
   const stockinfo_array = Object.values(stockinfoState?.Stocklists);
   const stockhold_array = Object.values(stockholdState?.Stockshold);
   // const stockholdState = useSelector(state => state.stockshold);
-  // console.log("============= stockholdState", stockholdState)
   // const stocks = Object.values(stockholdState?.Stockshold);
   const dispatch = useDispatch();
 
@@ -30,8 +29,6 @@ function PortfoliosPage() {
     fetchData();
     // dispatch(getAllThunk())
   }, [dispatch])
-  // console.log("22222222222222222222", portfolio_array)
-
 
 
   return (

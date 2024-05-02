@@ -23,14 +23,13 @@ function RetirementPage() {
         try {
         await dispatch(getCurrentPortfoliosThunk());
         } catch (e) {
-            console.log(" errors ===> ", e)
+            console.log(e)
             return;
         }
     }
     fetchData();
 
   }, [dispatch])
-  // console.log(" retirementPlan 1111111111111111111111111", retirementPlan)
 
   if (!sessionUser) navigate("/")
   if (!retirementPlan?.length) {

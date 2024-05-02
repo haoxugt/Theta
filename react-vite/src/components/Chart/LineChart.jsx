@@ -151,7 +151,7 @@ function LineChart() {
 
 
   Tooltip.positioners.top = function(elements, eventPosition) {
-      // console.log(this)
+
       // const { chartArea: { top, bottom } } = this.chart;
       return {
         x:eventPosition.x,

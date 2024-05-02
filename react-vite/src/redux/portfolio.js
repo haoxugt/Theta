@@ -47,7 +47,7 @@ const deletePortfolioAction = (portfolioId) => {
 export const getCurrentPortfoliosThunk = () => async (dispatch) => {
   const response = await fetch('/api/users/current/portfolios');
   const data = await response.json();
-  // console.log("data======>", data)
+
   if (response.ok) {
     dispatch(getCurrentPortfoliosAction(data.portfolios));
     return data
@@ -114,7 +114,7 @@ export const deletePortfolioThunk = (portfolioId) => async (dispatch) => {
 }
 
 export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatch) => {
-  // console.log("44444444444444444444444444", portfolio)
+
   const response = await fetch(`/api/portfolios/${portfolio.id}/makeorder`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
@@ -123,7 +123,6 @@ export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatc
 
   const data = await response.json();
   if (response.ok) {
-    // console.log("data =================>", data)
     dispatch(buySellStockInPortfolioAction(data));
     return data;
   } else {
@@ -132,7 +131,7 @@ export const buySellStockInPortfolioThunk = (portfolio, order) => async (dispatc
 }
 
 export const transferInPortfolioThunk = (portfolio, transfer) => async (dispatch) => {
-  // console.log("44444444444444444444444444", portfolio)
+
   const response = await fetch(`/api/portfolios/${portfolio.id}/transfer`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
@@ -141,7 +140,7 @@ export const transferInPortfolioThunk = (portfolio, transfer) => async (dispatch
 
   const data = await response.json();
   if (response.ok) {
-    // console.log("data =================>", data)
+
     dispatch(transferInPortfolioAction(data));
     return data;
   } else {

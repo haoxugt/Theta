@@ -36,7 +36,7 @@ function LineChartTest3({ portfolio, amount }) {
     //   { x: 15, y: 20 },
     //   { x: 20, y: 15 }
     // ]
-    //   console.log("11111111111111111111111111", datapoints)
+
     const[errors, setErrors] = useState({})
     const [plotdata, setPlotdata] = useState({
         labels: [0, 1],
@@ -70,7 +70,7 @@ function LineChartTest3({ portfolio, amount }) {
                 datapoints = await response.json();
 
             } else {
-                // console.log("The file does not exist");
+
                 // setErrors({"message": "Portfolio data does not exist for a new user"})
                 // return;
                 let now = new Date();
@@ -191,7 +191,6 @@ function LineChartTest3({ portfolio, amount }) {
 
 
     // Tooltip.positioners.top = function(elements, eventPosition) {
-    //     // console.log(this)
     //     // const { chartArea: { top, bottom } } = this.chart;
     //     return {
     //       x:eventPosition.x,

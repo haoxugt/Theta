@@ -23,7 +23,7 @@ function NoRetirementPage() {
             })
     }
     if(Object.values(errors).length) {
-        console.log("errors ====> ", errors);
+        console.log(errors);
         return <h2>{errors.message}</h2>
     }
 

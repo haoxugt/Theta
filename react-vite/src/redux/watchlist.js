@@ -59,7 +59,7 @@ const addStockToWatchlistAction = (watchlist, stock) => {
 export const getCurrentWatchlistsThunk = () => async (dispatch) => {
   const response = await fetch('/api/users/current/watchlists');
   const data = await response.json();
-  // console.log("data======>", data)
+
   if (response.ok) {
     dispatch(getCurrentWatchlistsAction(data.watchlists));
     return data
@@ -140,7 +140,7 @@ export const removeStockInWatchlistThunk = (watchlist, stockCode) => async (disp
 
   if (response.ok) {
     const data = await response.json();
-    // console.log("data =================>", data)
+
     dispatch(removeStockInWatchlistAction(data, stockCode));
     return data;
   } else {
@@ -157,7 +157,7 @@ export const addStockToWatchlistThunk = (watchlist, stock) => async (dispatch) =
 
   if (response.ok) {
     const data = await response.json();
-    // console.log("data =================>", data)
+
     dispatch(addStockToWatchlistAction(data, stock));
     return data;
   } else {

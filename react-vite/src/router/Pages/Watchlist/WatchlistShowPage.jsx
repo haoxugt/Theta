@@ -57,7 +57,6 @@ function WatchlistShowPage() {
         if (!showMenu) return;
 
         // const closeMenu = (e) => {
-        //     // console.log("22222222222222222222", ulRef.current, e.target)
         //     if (ulRef.current && !ulRef.current.contains(e.target)) {
         //         setShowMenu(false);
         //     }

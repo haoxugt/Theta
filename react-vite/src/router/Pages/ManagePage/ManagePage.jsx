@@ -13,18 +13,17 @@ function ManagePage() {
     // let datapoints = {date: date, asset: asset}
     // let datapoints = {}
     // import data from
-    // console.log(" data =================>", data)
+
     // let csv_file = new File(["time"], './csvs/portfolio-3.csv');
     // let reader = new FileReader();
     // reader.onload = function (e) {
-    //    console.log(e.target.result)
+
     // }
     // reader.readAsText(csv_file)
     // csv_file.readfile()
     // const reader = new FileReader();
     // let aa= reader.readAsText(csv_file)
-    // console.log(reader.result)
-    // console.log(csv_file.arrayBuffer())
+
     // let csv_file = new File(["time"], './csvs/portfolio-3.csv');
     // let date = [];
     // let asset = [];
@@ -34,7 +33,7 @@ function ManagePage() {
     // csv_file.close();
     // for (let row in data)  {
     //     let [col1, col2] = data[row].split(','); // split all lines by comas
-    //     console.log("11111111111111111", col1, col2)
+
     // }
 
     // new ChartJS(ctx, {
@@ -141,11 +140,10 @@ function ManagePage() {
 
     //     const response = await fetch(url);
     //     const datapoints = await response.text();
-    //     // console.log(datapoints)
-    //     // console.log(typeof(datapoints))
+
 
     //     const table = datapoints.split('\n');
-    //     // console.log(table)
+
     //     table.forEach(el => {
     //         const column = el.split(',');
     //         date.push(column[0]);
@@ -164,11 +162,9 @@ function ManagePage() {
 
     //     const response = await fetch(url);
     //     datapoints = await response.json();
-    //     // console.log(datapoints.assets)
-    //     // // console.log(typeof(datapoints))
 
     //     // const table = datapoints.split('\n');
-    //     // // console.log(table)
+
     //     // table.forEach(el => {
     //     //     const column = el.split(',');
     //     //     date.push(column[0]);
@@ -189,12 +185,10 @@ function ManagePage() {
         });
 
         const data = await res.json();
-        console.log("data ====> ", data);
+        alert(data.message);
 
     }
 
-
-    // console.log("33333333333333333333333333333333333333", datapoints)
 
     return (
         <div>

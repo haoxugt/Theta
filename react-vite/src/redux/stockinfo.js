@@ -36,7 +36,6 @@ const getSingleStockRealtimeDataAction = (data) => {
 export const getAllStockThunk = () => async (dispatch) => {
   const response = await fetch(`/api/stockinfo`);
   const data = await response.json();
-//   console.log("data======>", data)
 
   dispatch(getAllStockAction(data.stocks));
   return data
@@ -45,7 +44,7 @@ export const getAllStockThunk = () => async (dispatch) => {
 export const getIndexThunk = () => async (dispatch) => {
     const response = await fetch('/api/stockinfo/index');
     const data = await response.json();
-    // console.log("data======>", data)
+
     if (response.ok) {
       dispatch(getIndexAction(data.indexs));
       return data
@@ -57,7 +56,7 @@ export const getIndexThunk = () => async (dispatch) => {
 export const getSingleStockThunk = (stockCode) => async (dispatch) => {
   const response = await fetch(`/api/stockinfo/${stockCode}`);
   const data = await response.json();
-  // console.log("data======>", data)
+
 
   dispatch(getSingleStockAction(data.stock));
   return data
@@ -66,7 +65,6 @@ export const getSingleStockThunk = (stockCode) => async (dispatch) => {
 export const getSingleStockRealtimeDataThunk = (stockCode) => async (dispatch) => {
     const response = await fetch(`/api/stockinfo/${stockCode}/data`);
     const data = await response.json();
-    // console.log("data======>", data)
 
     // dispatch(getSingleStockAction(data.stock));
     dispatch(getSingleStockRealtimeDataAction(data))

@@ -43,7 +43,6 @@ const buyStocksHoldAction = (stock) => {
 export const getAllThunk = () => async (dispatch) => {
   const response = await fetch('/api/users/current/portfolios/stockshold');
   const data = await response.json();
-  // console.log("data======>", data.Stockshold)
 
   dispatch(getAllAction(data.Stockshold));
   return data
@@ -52,7 +51,6 @@ export const getAllThunk = () => async (dispatch) => {
 export const getAllStocksHoldThunk = () => async (dispatch) => {
   const response = await fetch('/api/users/current/portfolios/investing/stockshold');
   const data = await response.json();
-  // console.log("data======>", data.Stockshold)
 
   dispatch(getAllStocksHoldAction(data.Stockshold));
   return data
@@ -61,7 +59,6 @@ export const getAllStocksHoldThunk = () => async (dispatch) => {
 export const getRetirementStocksHoldThunk = () => async (dispatch) => {
   const response = await fetch('/api/users/current/portfolios/retirement/stockshold');
   const data = await response.json();
-  // console.log("data======>", data.Stockshold)
 
   dispatch(getRetirementStocksHoldAction(data.Stockshold));
   return data

@@ -42,7 +42,7 @@ function HomeLoggedIn() {
             }, 0);
         }
     } catch (e) {
-        // console.log("errors====>", e.massage);
+        console.log(e.massage);
         setErrors({ "message": e.message });
     }
     const open_amount = portfolio_array?.filter(el => el.is_retirement == false)[0]?.total_transfers;

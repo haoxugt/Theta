@@ -9,7 +9,6 @@ function WatchlistItemInShowPage({ watchlist, stock }) {
   const dispatch = useDispatch();
 
   const removeStock = async () => {
-    // console.log("test============>",watchlist.id, stock.code)
     await dispatch(removeStockInWatchlistThunk(watchlist, stock.code))
   }
 

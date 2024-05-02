@@ -51,7 +51,6 @@ function StocksPage() {
                     <span>Today</span>
                     <span className="marketcap-col">Market Cap</span>
             </div>
-            {/* {console.log("======= stockinfolist_array =====", stockinfolist_array[0])} */}
             {stockinfolist_array.sort((a, b)=> { return a.code > b.code ? 1 : -1}).map((stock) => {
               return (
                   <StocklistItemInShowPage stock={stock} key={`stocklist-${stock.code}`}/>

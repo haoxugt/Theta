@@ -7,9 +7,7 @@ import { useDispatch } from 'react-redux'
 
 function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
     //   const stockholdState = useSelector(state => state.stockshold);
-    // console.log("============= stockholdState", stockholdState, portfolio)
     //   const stocks = Object.values(stockholdState?.Stockshold);
-    // console.log("============= stocks", stocks)
     const dispatch = useDispatch()
 
 
@@ -17,7 +15,6 @@ function PortfolioItem({ portfolio, stockholdlist, stockinfolist }) {
     //     dispatch(getAllThunk())
     //   }, [dispatch])
 
-    // console.log("00000000000000000000000000000", stockholdlist, stockinfolist)
 
     const closeAccount = async () => {
         if (!portfolio.is_retirement) {

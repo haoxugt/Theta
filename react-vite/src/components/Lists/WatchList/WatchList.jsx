@@ -50,7 +50,7 @@ function WatchList({ watchlist }) {
                 </div>
 
             </div>
-            {/* {console.log("test watchlsit ============", watchlist, watchlist?.stocks)} */}
+
             {showStock && watchlist?.stocks?.map(el => {
                 return (
                     <WatchListItem key={`watchlist-${watchlist.id}-${el.code}`} stock={el} />

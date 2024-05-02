@@ -64,26 +64,25 @@ function LineChartTest2({stockCode }) {
 //   let plugins = []
 
   let options = {}
-//   console.log("============= stockCode ============", stockCode)
+
 try {
   useEffect(() => {
     const fetchData = async () => {
 
         const res = await dispatch(getSingleStockRealtimeDataThunk(stockCode))
-        // console.log("9999999999999999999999999999 res ===>",stockCode, res.stockdata[0])
+
         let dataSet1 = [];
         let localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
         // for (let i = 0; i < res.stockdata[0].length; i++) {
             let localTime = (new Date(res.stockdata[0][0])).toLocaleString("en-US", {timeZone: localTimezone});
             // let localTime = res.stockdata[0][i].substring(0,19);
             dataSet1.push(localTime.toString())
-            // console.log(" =========== time ================", typeof(res.stockdata[0][i]), localTimezone, res.stockdata[0][i].toLocaleString("en-US", {timeZone: 'PST'}),dataSet1[0],res.stockdata[0][i].toLocaleString("en-US", {timeZone: localTimezone}))
+
             // tz_convert(local_tz)
         // }
         for (let i = 1; i <= 78; i++) {
             dataSet1.push((new Date((new Date(dataSet1[i - 1])).getTime() + 5*60/0.001).toLocaleString("en-US", {timeZone: localTimezone}).toString()))
         }
-        // console.log(" dataSet1 ====>", dataSet1)
 
         const previousClosePrice = res.info['previous_close_price'];
         setPc(previousClosePrice);
@@ -255,7 +254,7 @@ try {
 
 
 //   Tooltip.positioners.top = function(elements, eventPosition) {
-//       // console.log(this)
+
 //       // const { chartArea: { top, bottom } } = this.chart;
 //       return {
 //         x:eventPosition.x,

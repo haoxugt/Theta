@@ -3,7 +3,6 @@ import { FaLightbulb } from "react-icons/fa6";
 
 function AddStockToWatchlistItem({ watchlist, stock }) {
     const [checked, setChecked] = useState(watchlist.stocks.find(el => el.code == stock.code))
-    // console.log("watchlist =========> ", watchlist.stocks, watchlist.stocks.includes(stock), stock)
     const handleChange = () => {
         setChecked(!checked);
     }

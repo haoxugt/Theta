@@ -36,7 +36,7 @@ function LineChartTest({ datalist })  {
     //   { x: 15, y: 20 },
     //   { x: 20, y: 15 }
     // ]
-    // console.log("111111111111111111111111", datalist)
+
     const hoverLine = {
         id: 'hoverLine',
         afterDatasetsDraw(chart) {
@@ -155,7 +155,7 @@ function LineChartTest({ datalist })  {
 
 
     Tooltip.positioners.top = function (elements, eventPosition) {
-        // console.log(this)
+
         // const { chartArea: { top, bottom } } = this.chart;
         return {
             x: eventPosition.x,

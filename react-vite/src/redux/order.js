@@ -21,7 +21,7 @@ const createOrderAction = (order) => {
 export const getCurrentOrdersThunk = () => async (dispatch) => {
   const response = await fetch('/api/orders/current');
   const data = await response.json();
-  // console.log("data======>", data)
+
   if (response.ok) {
     dispatch(getCurrentOrdersAction(data.orders));
     return data
