@@ -31,8 +31,7 @@ def user(id):
 @user_routes.route("/current")
 @login_required
 def getCurrentUser():
-    # print("================================")
-    # print(current_user.__dir__)
+
     user = current_user.to_dict()
     return {"user": user}
 

@@ -105,15 +105,15 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                 value={isLimitOrder}
                 onChange={e => {setIsLimitOrder(e.target.value)}} >
                 <option value={false}>Market Order</option>
-                <option value={true}>Limit Order</option>
+                {/* <option value={true}>Limit Order</option> */}
             </select>
         </label>
         {isBuy ?
             (<div>
-                <label>
+                {/* <label>
                     <span>Buy in</span>
                     <span className="share-box" onClick={newFeature}>Shares</span>
-                </label>
+                </label> */}
                 <label>
                     Shares:
                     <input min="0" type="number" value={shareNum} className="share-input"
@@ -129,10 +129,10 @@ function OrderForm({ portfolios, stock, isBuy, stockhold }) {
                     <span>${(stock.current_price * shareNum).toFixed(2)}</span>
                 </div>
             </div>) : (<div>
-                <label>
+                {/* <label>
                     <span>Sell in</span>
                     <span className="share-box" onClick={newFeature}>Shares</span>
-                </label>
+                </label> */}
                 <label>
                     Shares:
                     <input min="0" type="number" value={shareNum} className="share-input"

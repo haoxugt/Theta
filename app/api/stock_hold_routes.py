@@ -10,9 +10,9 @@ def buyStockHold():
     stockCode = order['stock_info_code']
     portfolio_id = order['portfolio_id']
     # stockinfo = StockInfo.query.get(stockCode);
-    # print("111111111111111111111111", stockCode)
+
     prev_stock_hold = StockHold.query.filter(and_(StockHold.stock_info_code == stockCode, StockHold.portfolio_id == portfolio_id)).first()
-    # print("2222222222222222222222222", prev_stock_hold.to_dict())
+
 
     if not prev_stock_hold:
         new_stock_hold = StockHold(

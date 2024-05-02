@@ -64,7 +64,6 @@ def removeStockInWatchlist(id):
     target_watchlist = Watchlist.query.get(id)
     stockCode = request.get_json()['stockCode']
     target_stock = StockInfo.query.get(stockCode)
-    # print("11111111111111111111", stockCode)
 
 
     if not target_stock:
@@ -77,7 +76,6 @@ def removeStockInWatchlist(id):
         return {"errors": {"message": "Unauthorized" }}, 403
 
 
-    # print("33333333333333333333 here", target_watchlist.stocks)
     if target_stock in target_watchlist.stockinfo_in_watchlist:
         target_watchlist.stockinfo_in_watchlist.remove(target_stock)
         db.session.commit()
@@ -91,10 +89,8 @@ def removeStockInWatchlist(id):
 @login_required
 def addStockToWatchlist(id):
     target_watchlist = Watchlist.query.get(id)
-    print("11111111111111111111111",request.get_json()['stock'])
     stockCode = request.get_json()['stock']['code']
     target_stock = StockInfo.query.get(stockCode)
-    # print("11111111111111111111", stockCode)
 
 
     if not target_stock:
@@ -107,7 +103,6 @@ def addStockToWatchlist(id):
         return {"errors": {"message": "Unauthorized" }}, 403
 
 
-    # print("33333333333333333333 here", target_watchlist.stocks)
     if target_stock in target_watchlist.stockinfo_in_watchlist:
         return {"errors": {"message": "This stock is already included in the watchlist" }}, 400
 

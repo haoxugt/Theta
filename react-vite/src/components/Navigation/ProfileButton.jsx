@@ -60,9 +60,9 @@ function ProfileButton() {
           <button className={navLinkClassName} onClick={() => navigate('/stocks')}>
             Stocks
           </button>
-          <button className={navLinkClassName} onClick={() => alert('Notifications')}>
+          {/* <button className={navLinkClassName} onClick={() => alert('Notifications')}>
             Notifications
-          </button>
+          </button> */}
           <button className={navLinkClassName} onClick={toggleMenu}>
             Account
           </button>
@@ -74,7 +74,7 @@ function ProfileButton() {
               {user && (
                 <div>
                   <p>{user.first_name} {user.last_name}</p>
-                  <p onClick={() => alert('Profile page')}>Profile</p>
+                  {/* <p onClick={() => alert('Profile page')}>Profile</p> */}
                   <p onClick={() => {navigate('/portfolios/current');closeMenu()}}>Portfolios</p>
                   <p onClick={() => {navigate('/transfer'); closeMenu()}}>Transfer</p>
                   <p onClick={logout}>Log Out</p>

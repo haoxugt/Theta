@@ -1,7 +1,7 @@
 import WatchListItem from "../../Items/WatchListItem/WatchListItem";
 import { FaLightbulb } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
-import { IoEllipsisHorizontal } from "react-icons/io5";
+// import { IoEllipsisHorizontal } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 
@@ -44,7 +44,7 @@ function WatchList({ watchlist }) {
                     <span>{watchlist.name}</span>
                 </div>
                 <div className="watchlist-name-right">
-                    <IoEllipsisHorizontal onClick={(e) => {e.stopPropagation(); alert(`Please go to watchlist pages for editing and deleting watchlist. The functionality will be added to this button soon.`)}}/>
+                    {/* <IoEllipsisHorizontal onClick={(e) => {e.stopPropagation(); alert(`Please go to watchlist pages for editing and deleting watchlist. The functionality will be added to this button soon.`)}}/> */}
                     {/* <span>{showStock ? <FaAngleUp style={{transform: 'rotate(0.5turn)', transitionDuration: '1000ms'}}/> : <FaAngleUp style={{transform: 'rotate(0.5turn)', transitionDuration: '1000ms'}} /> }</span> */}
                     <span><FaAngleDown id={`faAngle-icon-${watchlist.id}`}/> </span>
                 </div>

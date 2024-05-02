@@ -20,9 +20,9 @@ def getAllStockInfo():
     stocks = StockInfo.query.all();
     stocks_list = [stock.code for stock in stocks]
     stocks_info = yf.Tickers(" ".join(stocks_list))
-    # print(stocks_info.tickers['MCD'].info)
+
     for stock in stocks_list:
-        print(f" starting {stock} ===========")
+
         info = stocks_info.tickers[stock].info
         target_stock = StockInfo.query.get(stock)
         target_stock.high_52wk = info['fiftyTwoWeekHigh']
@@ -36,7 +36,7 @@ def getAllStockInfo():
         target_stock.previous_close_price = info['previousClose']
 
         db.session.commit()
-        print(f" {stock} is done ===========")
+
 
     return {'stocks': [s.to_dict() for s in stocks]}
 
@@ -88,12 +88,8 @@ def getIndexInfo():
         todays_data = index_info.tickers[index].history(period='5m', interval='1m')
         if todays_data.empty:
             todays_data = index_info.tickers[index].history(period='15m', interval='1m')
-        # print("0000000000000000000000000000000000000000000000000000000000000000000000000")
-        # print("todays_data", todays_data)
+
         index_res_dict[index]['currentPrice'] = todays_data['Close'].iloc[-1]
 
-    # print("0000000000000000000000000000000000000000000000000000000000000000000000000")
-    # print("todays_data", todays_data)
-    # print(index_res_dict)
-    # print("0000000000000000000000000000000000000000000000000000000000000000000000000")
+
     return {"indexs": index_res_dict}

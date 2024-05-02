@@ -59,9 +59,9 @@ function HasRetirementPage() {
 
     }, [dispatch])
 
-    const figureUpdate = () => {
-        alert("The portfolio chart updation feature will come soon")
-    }
+    // const figureUpdate = () => {
+    //     alert("The portfolio chart updation feature will come soon")
+    // }
 
     return (
         <div className="homepage-container">
@@ -87,11 +87,12 @@ function HasRetirementPage() {
                     <LineChartTest3 portfolio={current_portfolio} amount={amount}/>
 
                 </div>
-                <div className="time-scale-container" onClick={figureUpdate}>
-                    <span>1D</span>
+                {/* <div className="time-scale-container" onClick={figureUpdate}> */}
+                <div className="time-scale-container" >
+                    {/* <span>1D</span>
                     <span >1W</span>
                     <span>1M</span>
-                    <span>1Y</span>
+                    <span>1Y</span> */}
                     <span className="week-scale">All</span>
                 </div>
 

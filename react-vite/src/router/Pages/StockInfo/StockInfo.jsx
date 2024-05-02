@@ -47,9 +47,9 @@ function StockInfo() {
         else return " negative-num"
     }
 
-    const newFeature = () => {
-        alert("Feature coming soon")
-    }
+    // const newFeature = () => {
+    //     alert("Feature coming soon")
+    // }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -84,9 +84,9 @@ function StockInfo() {
     //     else {
     //       if (stock.code != stockCode.toUpperCase()) return null;
     //     }
-    const figureUpdate = () => {
-        alert("The stock chart updation feature will come soon")
-    }
+    // const figureUpdate = () => {
+    //     alert("The stock chart updation feature will come soon")
+    // }
 
     if (stockCode.toUpperCase() != stock.code) {
         return <h2>Loading...</h2>;
@@ -122,12 +122,13 @@ function StockInfo() {
                 <div className="portfolio-chart-container">
                     <LineChartTest2 stockCode={stockCode} />
                 </div>
-                <div className="time-scale-container" onClick={figureUpdate}>
+                {/* <div className="time-scale-container" onClick={figureUpdate}> */}
+                <div className="time-scale-container" >
                     <span style={{ color: 'rgb(10,186,181)' }}>1D</span>
-                    <span>1W</span>
+                    {/* <span>1W</span>
                     <span>1M</span>
                     <span>1Y</span>
-                    <span>All</span>
+                    <span>All</span> */}
                 </div>
                 {stock.quote_type == 'EQUITY' ?
                     <div className="about-container">
@@ -242,9 +243,9 @@ function StockInfo() {
                     </div>
 
                     <div className="stock-option-addtolist-container">
-                        <button className="trade-option-btn" onClick={newFeature}>
+                        {/* <button className="trade-option-btn" onClick={newFeature}>
                             Trade {stock.code} Options
-                        </button>
+                        </button> */}
                         <OpenModalButton
                             buttonText={<span><AiOutlinePlus /> <span>Add to Lists</span></span>}
                             // onButtonClick={closeMenu}
