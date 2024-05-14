@@ -111,31 +111,31 @@ function LineChartTest3({ portfolio, amount }) {
         fetchData();
     },[portfolio.id, amount]);
 
-    // const hoverLine = {
-    //     id: 'hoverLine',
-    //     afterDatasetsDraw(chart) {
-    //         const { ctx,
-    //             tooltip,
-    //             chartArea: {
-    //                 top, bottom
-    //             },
-    //             scales: { x }
-    //         } = chart;
-    //         if (tooltip._active.length > 0) {
-    //             const xCoor = x.getPixelForValue(tooltip.dataPoints[0].dataIndex);
-    //             // const yCoor = tooltip.dataPoints[0].parsed.y;
-    //             ctx.save();
-    //             ctx.beginPath();
-    //             ctx.lineWidth = 2;
-    //             ctx.strokeStyle = 'rgba(66, 73, 77, 1)';
-    //             ctx.moveTo(xCoor, top);
-    //             ctx.lineTo(xCoor, bottom);
-    //             ctx.stroke();
-    //             ctx.closePath();
-    //         }
-    //     }
-    // }
-    // const plugins = [hoverLine]
+    const hoverLine = {
+        id: 'hoverLine',
+        afterDatasetsDraw(chart) {
+            const { ctx,
+                tooltip,
+                chartArea: {
+                    top, bottom
+                },
+                scales: { x }
+            } = chart;
+            if (tooltip._active.length > 0) {
+                const xCoor = x.getPixelForValue(tooltip.dataPoints[0].dataIndex);
+                // const yCoor = tooltip.dataPoints[0].parsed.y;
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(66, 73, 77, 1)';
+                ctx.moveTo(xCoor, top);
+                ctx.lineTo(xCoor, bottom);
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+    }
+    const plugins = [hoverLine]
 
     const options = {
         responsive: true,
@@ -154,15 +154,15 @@ function LineChartTest3({ portfolio, amount }) {
             //   intersect: false,
             // },
             tooltip: {
-                // position: 'top',
-                // mode: "index",
+                position: 'top',
+                mode: "index",
                 intersect: false,
-                // callbacks: {
-                //   afterFooter: function(chart) {
-                //     const hoverval = document.getElementById("hoverval");
-                //     hoverval.innerText=`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(chart[0].parsed.y)}`;
-                //   }
-                // }
+                callbacks: {
+                  afterFooter: function(chart) {
+                    const hoverval = document.getElementById("hoverval");
+                    hoverval.innerText=`${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(chart[0].parsed.y)}`;
+                  }
+                }
             },
         },
         scales: {
@@ -190,23 +190,23 @@ function LineChartTest3({ portfolio, amount }) {
 
 
 
-    // Tooltip.positioners.top = function(elements, eventPosition) {
-    //     // const { chartArea: { top, bottom } } = this.chart;
-    //     return {
-    //       x:eventPosition.x,
-    //       y: 0,
-    //       xAlign: 'center',
-    //       yAlign: 'bottom'
-    //     }
-    // }
+    Tooltip.positioners.top = function(elements, eventPosition) {
+        // const { chartArea: { top, bottom } } = this.chart;
+        return {
+          x:eventPosition.x,
+          y: 0,
+          xAlign: 'center',
+          yAlign: 'bottom'
+        }
+    }
 
     if (Object.values(errors).length) return <h2 style={{margin: "30px 0"}}>{errors.message}</h2>
 
     return (
         <div className='line-chart'>
             {/* =========== test ====================  */}
-            {/* <Line data={plotdata} options={options} plugins={plugins}/> */}
-            <Line data={plotdata} options={options} />
+            <Line data={plotdata} options={options} plugins={plugins}/>
+            {/* <Line data={plotdata} options={options} /> */}
         </div>
     )
 }

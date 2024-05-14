@@ -40,7 +40,7 @@ function LineChartTest2({stockCode }) {
   //   { x: 20, y: 15 }
   // ]
   const [pc, setPc] = useState(1);
-  const [errors, setErrors] = useState({});
+  const [errors] = useState({});
   const [plotdata, setPlotdata] = useState({
     labels: [0,pc],
     datasets: [
@@ -60,12 +60,12 @@ function LineChartTest2({stockCode }) {
       },
     ]
 });
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
 //   let plugins = []
 
-  let options = {}
+let options = {}
 
-try {
+
   useEffect(() => {
     const fetchData = async () => {
 
@@ -128,31 +128,31 @@ try {
     fetchData();
   }, [dispatch, stockCode])
 
-//   const hoverLine = {
-//     id: 'hoverLine',
-//     afterDatasetsDraw(chart) {
-//       const { ctx,
-//               tooltip,
-//               chartArea: {
-//                 top, bottom
-//               },
-//               scales: { x }
-//             } = chart;
-//             if (tooltip._active.length > 0){
-//               const xCoor = x.getPixelForValue(tooltip.dataPoints[0].dataIndex);
-//               // const yCoor = tooltip.dataPoints[0].parsed.y;
-//               ctx.save();
-//               ctx.beginPath();
-//               ctx.lineWidth = 2;
-//               ctx.strokeStyle = 'rgba(66, 73, 77, 1)';
-//               ctx.moveTo(xCoor, top);
-//               ctx.lineTo(xCoor, bottom);
-//               ctx.stroke();
-//               ctx.closePath();
-//             }
-//     }
-//   }
-//   plugins = [hoverLine]
+  const hoverLine = {
+    id: 'hoverLine',
+    afterDatasetsDraw(chart) {
+      const { ctx,
+              tooltip,
+              chartArea: {
+                top, bottom
+              },
+              scales: { x }
+            } = chart;
+            if (tooltip._active.length > 0){
+              const xCoor = x.getPixelForValue(tooltip.dataPoints[0].dataIndex);
+              // const yCoor = tooltip.dataPoints[0].parsed.y;
+              ctx.save();
+              ctx.beginPath();
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = 'rgba(66, 73, 77, 1)';
+              ctx.moveTo(xCoor, top);
+              ctx.lineTo(xCoor, bottom);
+              ctx.stroke();
+              ctx.closePath();
+            }
+    }
+  }
+  const plugins = [hoverLine]
 
   options = {
     responsive: true,
@@ -171,25 +171,25 @@ try {
       //   intersect: false,
       // },
       tooltip: {
-        // position: 'top',
-        // mode: "index",
+        position: 'top',
+        mode: "index",
         intersect: false,
-        // callbacks: {
-        //   afterFooter: function(chart) {
-        //     const hoverval = document.getElementById("hoverval");
-        //     const hoverval2 = document.getElementById("hoverval2");
-        //     if (hoverval) {
-        //         hoverval.innerText=`$${chart[0].parsed.y.toFixed(2)}`;
-        //     }
-        //     if (hoverval2) {
-        //         const c = chart[0].parsed.y;
-        //         const change = c - pc;
-        //         hoverval2.innerText = `${change >= 0 ? +change.toFixed(2) : change.toFixed(2)}` + " " +
-        //         `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
-        //         hoverval2.className= change>=0 ? " positive-num": " negative-num";
-        //     }
-        //   }
-        // }
+        callbacks: {
+          afterFooter: function(chart) {
+            const hoverval = document.getElementById("hoverval");
+            const hoverval2 = document.getElementById("hoverval2");
+            if (hoverval) {
+                hoverval.innerText=`$${chart[0].parsed.y.toFixed(2)}`;
+            }
+            if (hoverval2) {
+                const c = chart[0].parsed.y;
+                const change = c - pc;
+                hoverval2.innerText = `${change >= 0 ? +change.toFixed(2) : change.toFixed(2)}` + " " +
+                `(${change >= 0 ? +(change / c * 100).toFixed(2) + "%" : (change / c * 100).toFixed(2) + "%"})`;
+                hoverval2.className= change>=0 ? " positive-num": " negative-num";
+            }
+          }
+        }
       },
     },
     scales: {
@@ -253,30 +253,27 @@ try {
 //   };
 
 
-//   Tooltip.positioners.top = function(elements, eventPosition) {
+  Tooltip.positioners.top = function(elements, eventPosition) {
 
-//       // const { chartArea: { top, bottom } } = this.chart;
-//       return {
-//         x:eventPosition.x,
-//         y: 0,
-//         xAlign: 'center',
-//         yAlign: 'bottom'
-//       }
-//   }
+      // const { chartArea: { top, bottom } } = this.chart;
+      return {
+        x:eventPosition.x,
+        y: 0,
+        xAlign: 'center',
+        yAlign: 'bottom'
+      }
+  }
 
   if (Object.values(errors).length) {
     return <h2>{errors.message}</h2>
   }
-} catch(e) {
-    console.log(e)
-    setErrors({"message": e.message});
-}
+
   return (
     <div className='line-chart'>
        {/* =========== test ====================  */}
 
-      {/* <Line data={plotdata}  options={options} plugins={plugins}/> */}
-      <Line data={plotdata}  options={options} />
+      <Line data={plotdata}  options={options} plugins={plugins}/>
+      {/* <Line data={plotdata}  options={options} /> */}
 
     </div>
   )
