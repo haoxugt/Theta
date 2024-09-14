@@ -63,7 +63,8 @@ def getStockDataInfo(stockCode):
     if target_stock:
         current_price = stock.info.get('currentPrice', stock.history(period='2d', interval='1d')['Close'].iloc[-1])
         previous_close_price = stock.info['previousClose']
-        target_stock.current_price = round(current_price, 2)
+        # target_stock.current_price = round(current_price, 2)
+        target_stock.current_price = current_price
 
         db.session.commit()
 
