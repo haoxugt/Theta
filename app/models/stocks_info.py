@@ -3,7 +3,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 class StockInfo(db.Model):
     __tablename__ = 'stocks_info'
 
-    if environment == "production":
+    if environment != "development":
         __table_args__ = {'schema': SCHEMA}
 
     code = db.Column(db.String(5), primary_key=True)
