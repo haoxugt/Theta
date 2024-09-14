@@ -5,8 +5,8 @@ def seed_stocks_hold():
     stock1 = StockHold(
         stock_info_code='NVDA',
         portfolio_id=1,
-        avg_price=226.84,
-        shares=4000
+        avg_price=22.684,
+        shares=40000
     )
 
     stock2 = StockHold(

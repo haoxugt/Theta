@@ -6,25 +6,25 @@ def seed_orders():
     order1 = Order(
         stock_info_code='NVDA',
         portfolio_id=1,
-        shares=4000,
-        transaction_price=226.84,
+        shares=40000,
+        transaction_price=22.684,
         transaction_date=datetime(2023,3,1,16,0,0)
     )
 
     order2 = Order(
         stock_info_code='NVDA',
         portfolio_id=3,
-        shares=800,
-        transaction_price=226.84,
+        shares=8000,
+        transaction_price=22.684,
         transaction_date=datetime(2023,3,1,16,0,0)
     )
 
     order3 = Order(
         stock_info_code='NVDA',
         portfolio_id=3,
-        shares=800,
+        shares=8000,
         is_buy=False,
-        transaction_price=502.04,
+        transaction_price=50.204,
         transaction_date=datetime(2023,8,24,9,30,0)
     )
 
