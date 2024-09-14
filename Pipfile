@@ -30,6 +30,7 @@ wtforms = "==3.0.1"
 yfinance = "*"
 zipp = "==3.17.0"
 matplotlib = "*"
+numpy = "*"
 
 [dev-packages]
 
