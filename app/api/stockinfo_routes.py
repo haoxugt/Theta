@@ -36,7 +36,7 @@ def getAllStockInfo():
         target_stock.low_today = info['dayLow']
         target_stock.open_price = info['open']
         # target_stock.current_price = round(info.get('currentPrice', cp), 2)
-        target_stock.current_price = info.get('currentPrice', cp)
+        target_stock.current_price = info.get('currentPrice', float(cp))
         # print("======currentPrice", round(info.get('currentPrice', cp), 2))
         target_stock.previous_close_price = info['previousClose']
 
@@ -67,7 +67,7 @@ def getStockDataInfo(stockCode):
         # print("======================================", current_price)
         previous_close_price = stock.info['previousClose']
         # target_stock.current_price = round(current_price, 2)
-        target_stock.current_price = current_price
+        target_stock.current_price = float(current_price)
 
         db.session.commit()
 
