@@ -24,8 +24,9 @@ def getAllStockInfo():
     for stock in stocks_list:
 
         info = stocks_info.tickers[stock].info
-        cp = stocks_info.tickers[stock].history(period='2d', interval='1d')['Close'].iloc[-1]
-        print("======",cp)
+        # print("======",info)
+        cp = stocks_info.tickers[stock].history(period='5d', interval='1d')['Close'].iloc[-1]
+        # print("======",cp)
         target_stock = StockInfo.query.get(stock)
         target_stock.high_52wk = info['fiftyTwoWeekHigh']
         target_stock.low_52wk = info['fiftyTwoWeekLow']
@@ -61,7 +62,9 @@ def getStockDataInfo(stockCode):
     # local_tz = local_now.tzinfo
     target_stock = StockInfo.query.get(stockCode.upper())
     if target_stock:
-        current_price = stock.info.get('currentPrice', stock.history(period='2d', interval='1d')['Close'].iloc[-1])
+        # print("======================================")
+        current_price = stock.info.get('currentPrice', stock.history(period='5d', interval='1d')['Close'].iloc[-1])
+        # print("======================================", current_price)
         previous_close_price = stock.info['previousClose']
         # target_stock.current_price = round(current_price, 2)
         target_stock.current_price = current_price
