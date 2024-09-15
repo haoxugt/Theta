@@ -93,9 +93,9 @@ def getIndexInfo():
         info = index_info.tickers[index].info
         index_res_dict[index] = {}
         index_res_dict[index]['previousClose'] = info['previousClose']
-        todays_data = index_info.tickers[index].history(period='5m', interval='1m')
+        todays_data = index_info.tickers[index].history(period='1d', interval='1m')
         if todays_data.empty:
-            todays_data = index_info.tickers[index].history(period='15m', interval='1m')
+            todays_data = index_info.tickers[index].history(period='1d', interval='1m')
 
         index_res_dict[index]['currentPrice'] = todays_data['Close'].iloc[-1]
 
